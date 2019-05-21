@@ -1,7 +1,22 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+const path = require("path")
+const webpack = require("webpack")
 
-// You can delete this file if you're not using it
+exports.onCreateWebpackConfig = ({
+  stage,
+  rules,
+  loaders,
+  plugins,
+  actions,
+}) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        config: path.resolve(__dirname, "config"),
+        images: path.resolve(__dirname, "src/images"),
+        components: path.resolve(__dirname, "src/components"),
+        lib: path.resolve(__dirname, "src/lib"),
+        pages: path.resolve(__dirname, "src/pages"),
+      },
+    },
+  })
+}
