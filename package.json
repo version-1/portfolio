@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "portfolio",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "My Portfolio with Gatsby",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Jiro Onodera <j.onodera@gmail.com>",
   "dependencies": {
     "gatsby": "^2.5.7",
     "gatsby-image": "^2.1.0",
