@@ -1,9 +1,11 @@
 import React from "react"
 import styled from "styled-components"
+import constants from 'constants'
 
 const Container = styled.header`
-  height: 65px;
+  height: ${constants.headerHeight};
   width: 100%;
+  padding: 16px;
   border-bottom: 1px solid lightgray;
 `
 const Header = ({ siteTitle }) => (
