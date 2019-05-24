@@ -2,22 +2,28 @@ import React from 'react'
 
 const Context = React.createContext()
 
+const initialState = {
+  page: {
+    title: 'Top',
+    url: '/',
+  },
+}
+
 export class Provider extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      app: { count: 1 },
-    }
+    this.state = initialState
   }
 
-  increment = () => this.setState({ count: this.state.count + 1 })
+  updatePage = page => this.setState({ page })
+
   render() {
     const { children } = this.props
-    const { app } = this.state
+    const { page } = this.state
 
     return (
-      <Context.Provider value={{ app, increment: this.increment }}>
+      <Context.Provider value={{ page, updatePage: this.updatePage }}>
         {children}
       </Context.Provider>
     )

@@ -2,18 +2,19 @@ import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import SNSLinks from 'components/molecules/SNSLinks'
+import ChannelList from 'components/molecules/ChannelList'
 import Header from 'components/molecules/SidebarHeader'
 import colors from 'constants/colors'
 import constants from 'constants'
 
-const links = [
+const channels = [
   { text: 'Top', to: '/' },
   { text: 'About Me', to: '/channels/AboutMe' },
   { text: 'Works', to: '/channels/Works' },
   { text: 'Blog', to: '/channels/Blog' },
 ]
 
-const privateLinks = [
+const directMessages = [
   { text: 'You', to: '/channels/You' },
   { text: 'To jjoo', to: '/channels/ToMe' },
 ]
@@ -42,18 +43,10 @@ const Public = styled.div`
 `
 const Private = styled.div``
 const Title = styled.div`
-  color: ${colors.weakText}
+  color: ${colors.weakText};
 `
 
-const Channel = styled.h2`
-  color: ${colors.weakText};
-  font-size: 16px;
-  font-weight: normal;
-  &::before {
-    content: '#  ';
-  }
-`
-const Sidebar = () => (
+const Sidebar = ({ updatePage }) => (
   <Container>
     <Left>
       <SNSLinks />
@@ -63,31 +56,11 @@ const Sidebar = () => (
       <Body>
         <Public>
           <Title>Channels</Title>
-          <div>
-            <ul>
-              {links.map(({ to, text }) => (
-                <li key={to}>
-                  <Link to={to}>
-                    <Channel>{text}</Channel>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ChannelList list={channels} updatePage={updatePage} />
         </Public>
         <Private>
           <Title>Direct Messages</Title>
-          <div>
-            <ul>
-              {privateLinks.map(({ to, text }) => (
-                <li key={to}>
-                  <Link to={to}>
-                    <Channel>{text}</Channel>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ChannelList list={directMessages} updatePage={updatePage} />
         </Private>
       </Body>
     </Right>
