@@ -25,7 +25,7 @@ const SubTitle = styled.h2`
 const SidebarHeader = () => (
   <Container>
     <Title>jjoo</Title>
-    <SubTitle>Full-Stack Frontend Engineer</SubTitle>
+    <SubTitle>engineer portfolio site</SubTitle>
   </Container>
 )
 
