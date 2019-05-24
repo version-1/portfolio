@@ -1,5 +1,5 @@
 export default {
-  headerHeight: '100px',
+  headerHeight: '80px',
   sidebarWidth: '320px',
   sidebarLeftWidth: '80px'
 }
