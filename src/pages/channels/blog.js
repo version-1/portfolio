@@ -14,15 +14,22 @@ class Component extends React.PureComponent {
       state: { channels },
       updatePage,
     } = this.props.context
-    updatePage(channels[3])
+
+    const path = this.props.props['*']
+    if (path === '/') {
+      updatePage(channels.top)
+    } else {
+      const [key] = path.split('/').slice(-1)
+      updatePage(channels[key])
+    }
   }
 
   render() {
-    const { channels } = this.props.context.state
+    const { page, channels } = this.props.context.state
 
     return (
       <Layout>
-        <SEO title="blog" />
+        <SEO title={page.name} />
         <Body>
           <Message title="Hello World" body={<></>} />
         </Body>

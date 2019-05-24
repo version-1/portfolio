@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-
 import Context from 'context'
 import { Body, H3, P, LI, Bold } from 'components/styles'
 import Layout from 'components/templates/Layout'
@@ -10,14 +9,20 @@ import Message from 'components/molecules/Message'
 import SEO from 'components/organisms/Seo'
 import colors from 'constants/colors'
 
-
 class Component extends React.PureComponent {
   componentDidMount() {
     const {
       state: { channels },
       updatePage,
     } = this.props.context
-    updatePage(channels[0])
+
+    const path = this.props.props['*']
+    if (path === '') {
+      updatePage(channels.top)
+    } else {
+      const [key] = path.split('/').slice(-1)
+      updatePage(channels[key])
+    }
   }
 
   render() {
@@ -100,21 +105,21 @@ class Component extends React.PureComponent {
                 </P>
                 <H3 fontSize={14}>Channels:</H3>
                 <LI>
-                  <Link to={channels[0].to}>#{channels[0].name}</Link>{' '}
+                  <Link to={channels.top.to}>#{channels.top.name}</Link>{' '}
                   ・・・Here. If you lost in this site, it's goot to back this
                   channel.
                 </LI>
                 <LI>
-                  <Link to={channels[1].to}>#{channels[1].name}</Link> ・・・You
-                  can see my work history.
+                  <Link to={channels.carrier.to}>#{channels.carrier.name}</Link>{' '}
+                  ・・・You can see my work history.
                 </LI>
                 <LI>
-                  <Link to={channels[2].to}>#{channels[2].name}</Link>{' '}
+                  <Link to={channels.works.to}>#{channels.works.name}</Link>{' '}
                   ・・・Drop by this channel and take a look at my works.
                 </LI>
                 <LI>
-                  <Link to={channels[3].to}>#{channels[3].name}</Link> ・・・You
-                  can read my blog's recently articles.
+                  <Link to={channels.blog.to}>#{channels.blog.name}</Link>{' '}
+                  ・・・You can read my blog's recently articles.
                 </LI>
               </>
             }

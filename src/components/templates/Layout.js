@@ -38,7 +38,7 @@ const Layout = ({ children }) => (
             <>
               <GlobalStyle />
               <Container>
-                <Sidebar channels={channels} dm={dm} />
+                <Sidebar channels={Object.values(channels)} dm={Object.values(dm)} />
                 <main>
                   <Header page={page} />
                   <Body>{children}</Body>
