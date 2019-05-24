@@ -8,8 +8,7 @@ import SEO from "components/organisms/Seo"
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
+    <SEO title="top" />
   </Layout>
 )
 

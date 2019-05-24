@@ -40,11 +40,13 @@ const dm = [
   },
 ]
 
+const [defaultChannel] = channels
+
 const initialState = {
   page: {
-    title: 'Top',
+    title: defaultChannel.text,
     url: '/',
-    description: channels[0].description
+    description: defaultChannel.description
   },
   channels,
   dm,

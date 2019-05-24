@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import moment from 'moment'
 import constants from 'constants'
 import colors from 'constants/colors'
 import LogoTwitter from 'react-ionicons/lib/LogoTwitter'
@@ -7,11 +8,14 @@ import LogoFacebook from 'react-ionicons/lib/LogoFacebook'
 import LogoReddit from 'react-ionicons/lib/LogoReddit'
 import MdCopy from 'react-ionicons/lib/MdCopy'
 
+import Separator from 'components/atoms/Separator'
+
 const Container = styled.header`
   height: ${constants.headerHeight};
   width: 100%;
+`
+const Content = styled.div`
   padding: 16px;
-  border-bottom: 1px solid lightgray;
 `
 
 const Title = styled.h1`
@@ -38,7 +42,7 @@ const ButtonGroup = styled.div`
   align-items: center;
 `
 
-const Separator = styled.div`
+const VSeparator = styled.div`
   margin: 0 4px;
 `
 
@@ -48,20 +52,32 @@ const icons = [
   <LogoReddit fontSize="16px" color={colors.grayText} />,
   <LogoFacebook fontSize="16px" color={colors.grayText} />,
 ]
+
+// ex) Friday, May 24
+const date = moment()
+  .format('LLLL')
+  .split(' ')
+  .slice(0, 3)
+  .join(' ')
+  .slice(0, -1)
+
 const Header = ({ page }) => (
   <Container>
-    <Title>{page.title}</Title>
-    <Footer>
-      <ButtonGroup>
-        {icons.map(icon => (
-          <>
-            {icon}
-            <Separator>|</Separator>
-          </>
-        ))}
-      </ButtonGroup>
-      <Description>{page.description}</Description>
-    </Footer>
+    <Content>
+      <Title>{page.title}</Title>
+      <Footer>
+        <ButtonGroup>
+          {icons.map(icon => (
+            <>
+              {icon}
+              <VSeparator>|</VSeparator>
+            </>
+          ))}
+        </ButtonGroup>
+        <Description>{page.description}</Description>
+      </Footer>
+    </Content>
+    <Separator text={date} />
   </Container>
 )
 
