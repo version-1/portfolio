@@ -8,7 +8,7 @@ import SEO from 'components/organisms/Seo'
 
 const ToMePage = () => (
   <Layout>
-    <SEO title="To Me" />
+    <SEO title="To jjoo" />
   </Layout>
 )
 
