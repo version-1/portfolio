@@ -11,9 +11,9 @@ const Channel = styled.h2`
     content: '#  ';
   }
 `
-const ChannelItem = ({ to, text, onClick }) => (
-  <Link to={to}>
-    <Channel onClick={onClick}>{text}</Channel>
+const ChannelItem = ({ url, name, onClick }) => (
+  <Link to={url}>
+    <Channel>{name}</Channel>
   </Link>
 )
 

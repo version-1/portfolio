@@ -64,7 +64,7 @@ const date = moment()
 const Header = ({ page }) => (
   <Container>
     <Content>
-      <Title>{page.title}</Title>
+      <Title>{page.name}</Title>
       <Footer>
         <ButtonGroup>
           {icons.map(icon => (

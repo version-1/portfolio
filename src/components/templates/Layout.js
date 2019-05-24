@@ -33,13 +33,12 @@ const Layout = ({ children }) => (
         {context => {
           const {
             state: { page, channels, dm },
-            updatePage,
           } = context
           return (
             <>
               <GlobalStyle />
               <Container>
-                <Sidebar channels={channels} dm={dm} updatePage={updatePage} />
+                <Sidebar channels={channels} dm={dm} />
                 <main>
                   <Header page={page} />
                   <Body>{children}</Body>
