@@ -34,9 +34,25 @@ const Right = styled.div`
   height: 100vh;
   width: 100%;
 `
-const Public = styled.div``
+const Body = styled.div`
+  padding: 16px;
+`
+const Public = styled.div`
+  margin-bottom: 50px;
+`
 const Private = styled.div``
+const Title = styled.div`
+  color: ${colors.weakText}
+`
 
+const Channel = styled.h2`
+  color: ${colors.weakText};
+  font-size: 16px;
+  font-weight: normal;
+  &::before {
+    content: '#  ';
+  }
+`
 const Sidebar = () => (
   <Container>
     <Left>
@@ -44,28 +60,36 @@ const Sidebar = () => (
     </Left>
     <Right>
       <Header />
-      <Public>
-        <ul>
-          {links.map(({ to, text }) => (
-            <li key={to}>
-              <h2>
-                <Link to={to}>{text}</Link>
-              </h2>
-            </li>
-          ))}
-        </ul>
-      </Public>
-      <Private>
-        <ul>
-          {privateLinks.map(({ to, text }) => (
-            <li key={to}>
-              <h2>
-                <Link to={to}>{text}</Link>
-              </h2>
-            </li>
-          ))}
-        </ul>
-      </Private>
+      <Body>
+        <Public>
+          <Title>Channels</Title>
+          <div>
+            <ul>
+              {links.map(({ to, text }) => (
+                <li key={to}>
+                  <Link to={to}>
+                    <Channel>{text}</Channel>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Public>
+        <Private>
+          <Title>Direct Messages</Title>
+          <div>
+            <ul>
+              {privateLinks.map(({ to, text }) => (
+                <li key={to}>
+                  <Link to={to}>
+                    <Channel>{text}</Channel>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Private>
+      </Body>
     </Right>
   </Container>
 )

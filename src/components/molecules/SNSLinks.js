@@ -67,7 +67,7 @@ const SNSLinks = props => {
       <ul>
         {snsLinks.map(({ to, icon }) => (
           <Item key={to}>
-            <Link to={to}>{icon}</Link>
+            <a href={to}>{icon}</a>
           </Item>
         ))}
       </ul>
