@@ -14,6 +14,7 @@ const Container = styled.div`
 `
 
 const Body = styled.div`
+  overflow: scroll;
   height: calc(100vh - 180px);
 `
 
