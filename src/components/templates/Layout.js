@@ -31,14 +31,14 @@ const Layout = ({ children }) => (
     render={data => (
       <Context.Consumer>
         {context => {
-          console.log('context', context)
+          const { page, updatePage } = context
           return (
             <>
               <GlobalStyle />
               <Container>
-                <Sidebar />
+                <Sidebar updatePage={updatePage} />
                 <main>
-                  <Header siteTitle={data.site.siteMetadata.title} />
+                  <Header pageTitle={page.title} />
                   <Body>{children}</Body>
                   <Footer />
                 </main>

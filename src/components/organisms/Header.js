@@ -8,10 +8,14 @@ const Container = styled.header`
   padding: 16px;
   border-bottom: 1px solid lightgray;
 `
-const Header = ({ siteTitle }) => (
+
+const Title = styled.h1`
+  font-size : 20px;
+`
+const Header = ({ pageTitle }) => (
   <Container>
     <div>
-      <h1>{siteTitle}</h1>
+      <Title>{pageTitle}</Title>
     </div>
   </Container>
 )
