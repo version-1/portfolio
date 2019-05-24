@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     font-family: "Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
+    letter-spacing: 0.2px;
     margin: 0;
     overflow: hidden;
   }
