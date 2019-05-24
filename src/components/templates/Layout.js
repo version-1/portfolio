@@ -1,27 +1,11 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { StaticQuery, graphql } from "gatsby"
-import styled, { createGlobalStyle } from "styled-components"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { StaticQuery, graphql } from 'gatsby'
+import styled from 'styled-components'
+import GlobalStyle from 'components/styles/GlobalStyle'
 
-import Header from "components/organisms/Header"
-import Sidebar from "components/organisms/Sidebar"
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    overflow: hidden;
-  }
-  ul {
-    margin-left: 0;
-    padding-left: 0;
-  }
-  li {
-    list-style: none;
-  }
-  a {
-    text-decoration: none;
-  }
-`
+import Header from 'components/organisms/Header'
+import Sidebar from 'components/organisms/Sidebar'
 
 const Container = styled.div`
   display: flex;

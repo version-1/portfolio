@@ -1,36 +1,39 @@
-import React from "react"
-import { Link } from "gatsby"
-import styled from "styled-components"
-import SNSLinks from "components/molecules/SNSLinks"
+import React from 'react'
+import { Link } from 'gatsby'
+import styled from 'styled-components'
+import SNSLinks from 'components/molecules/SNSLinks'
+import Header from 'components/molecules/SidebarHeader'
+import colors from 'constants/colors'
+import constants from 'constants'
 
 const links = [
-  { text: "Top", to: "/" },
-  { text: "About Me", to: "/channels/AboutMe" },
-  { text: "Works", to: "/channels/Works" },
-  { text: "Blog", to: "/channels/Blog" },
+  { text: 'Top', to: '/' },
+  { text: 'About Me', to: '/channels/AboutMe' },
+  { text: 'Works', to: '/channels/Works' },
+  { text: 'Blog', to: '/channels/Blog' },
 ]
 
 const privateLinks = [
-  { text: "You", to: "/channels/You" },
-  { text: "To jjoo", to: "/channels/ToMe" },
+  { text: 'You', to: '/channels/You' },
+  { text: 'To jjoo', to: '/channels/ToMe' },
 ]
 
 const Container = styled.div`
-  width: 320px;
+  min-width: ${constants.sidebarWidth};
+  width: ${constants.sidebarWidth};
   display: flex;
 `
 
 const Left = styled.div`
-  background-color: purple;
+  background-color: ${colors.sidebarLeft};
   height: 100vh;
-  width: 65px;
+  width: ${constants.sidebarLeftWidth};
 `
 const Right = styled.div`
-  background-color: red;
+  background-color: ${colors.sidebarRight};
   height: 100vh;
   width: 100%;
 `
-const Header = styled.div``
 const Public = styled.div``
 const Private = styled.div``
 
@@ -40,9 +43,7 @@ const Sidebar = () => (
       <SNSLinks />
     </Left>
     <Right>
-      <Header>
-        <h1>jjoo's Portfolio</h1>
-      </Header>
+      <Header />
       <Public>
         <ul>
           {links.map(({ to, text }) => (
