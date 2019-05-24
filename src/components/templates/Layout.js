@@ -31,14 +31,17 @@ const Layout = ({ children }) => (
     render={data => (
       <Context.Consumer>
         {context => {
-          const { page, updatePage } = context
+          const {
+            state: { page, channels, dm },
+            updatePage,
+          } = context
           return (
             <>
               <GlobalStyle />
               <Container>
-                <Sidebar updatePage={updatePage} />
+                <Sidebar channels={channels} dm={dm} updatePage={updatePage} />
                 <main>
-                  <Header pageTitle={page.title} />
+                  <Header page={page} />
                   <Body>{children}</Body>
                   <Footer />
                 </main>

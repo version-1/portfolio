@@ -11,8 +11,8 @@ const ChannelList = ({ list, updatePage }) => {
   return (
     <Container>
       <ul>
-        {list.map(({ to, text }) => {
-          const onClick = () => updatePage({ title: text, url: to })
+        {list.map(({ to, text, description }) => {
+          const onClick = () => updatePage({ title: text, url: to, description })
           return (
             <li key={to}>
               <ChannelItem to={to} text={text} onClick={onClick} />

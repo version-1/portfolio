@@ -7,18 +7,6 @@ import Header from 'components/molecules/SidebarHeader'
 import colors from 'constants/colors'
 import constants from 'constants'
 
-const channels = [
-  { text: 'Top', to: '/' },
-  { text: 'About Me', to: '/channels/AboutMe' },
-  { text: 'Works', to: '/channels/Works' },
-  { text: 'Blog', to: '/channels/Blog' },
-]
-
-const directMessages = [
-  { text: 'You', to: '/channels/You' },
-  { text: 'To jjoo', to: '/channels/ToMe' },
-]
-
 const Container = styled.div`
   min-width: ${constants.sidebarWidth};
   width: ${constants.sidebarWidth};
@@ -46,7 +34,7 @@ const Title = styled.div`
   color: ${colors.weakText};
 `
 
-const Sidebar = ({ updatePage }) => (
+const Sidebar = ({ channels, dm, updatePage }) => (
   <Container>
     <Left>
       <SNSLinks />
@@ -60,7 +48,7 @@ const Sidebar = ({ updatePage }) => (
         </Public>
         <Private>
           <Title>Direct Messages</Title>
-          <ChannelList list={directMessages} updatePage={updatePage} />
+          <ChannelList list={dm} updatePage={updatePage} />
         </Private>
       </Body>
     </Right>
