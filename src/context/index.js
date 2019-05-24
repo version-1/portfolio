@@ -4,38 +4,38 @@ const Context = React.createContext()
 
 const channels = [
   {
-    text: 'top',
-    to: '/',
+    name: 'top',
+    url: '/',
     description:
       'This is my portfolio page.About my works are summarized in left pane. enjoy my site !!!!!',
   },
   {
-    text: 'about-me',
-    to: '/channels/AboutMe',
+    name: 'carrier',
+    url: '/channels/carrier',
     description: 'This is page about my carrier.',
   },
   {
-    text: 'works',
-    to: '/channels/Works',
+    name: 'works',
+    url: '/channels/works',
     description: 'Here is my work list. enjoy it.',
   },
   {
-    text: 'blog',
-    to: '/channels/Blog',
+    name: 'blog',
+    url: '/channels/blog',
     description: 'Recent posts in my blog is posted here.',
   },
 ]
 
 const dm = [
   {
-    text: 'you',
-    to: '/channels/You',
+    name: 'you',
+    url: '/channels/you',
     description:
       'Here is your private chat space. Free to post what you think.',
   },
   {
-    text: 'to jjoo',
-    to: '/channels/ToMe',
+    name: 'jjoo',
+    url: '/channels/me',
     description: 'You can free to send message to me.',
   },
 ]
@@ -43,11 +43,7 @@ const dm = [
 const [defaultChannel] = channels
 
 const initialState = {
-  page: {
-    title: defaultChannel.text,
-    url: '/',
-    description: defaultChannel.description
-  },
+  page: defaultChannel,
   channels,
   dm,
 }

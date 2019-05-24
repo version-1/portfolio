@@ -34,7 +34,7 @@ const Title = styled.div`
   color: ${colors.weakText};
 `
 
-const Sidebar = ({ channels, dm, updatePage }) => (
+const Sidebar = ({ channels, dm }) => (
   <Container>
     <Left>
       <SNSLinks />
@@ -44,11 +44,11 @@ const Sidebar = ({ channels, dm, updatePage }) => (
       <Body>
         <Public>
           <Title>Channels</Title>
-          <ChannelList list={channels} updatePage={updatePage} />
+          <ChannelList list={channels} />
         </Public>
         <Private>
           <Title>Direct Messages</Title>
-          <ChannelList list={dm} updatePage={updatePage} />
+          <ChannelList list={dm} />
         </Private>
       </Body>
     </Right>

@@ -7,15 +7,14 @@ const Item = styled.li`
 `
 const Container = styled.div``
 
-const ChannelList = ({ list, updatePage }) => {
+const ChannelList = ({ list }) => {
   return (
     <Container>
       <ul>
-        {list.map(({ to, text, description }) => {
-          const onClick = () => updatePage({ title: text, url: to, description })
+        {list.map(({ url, name }) => {
           return (
-            <li key={to}>
-              <ChannelItem to={to} text={text} onClick={onClick} />
+            <li key={url}>
+              <ChannelItem url={url} name={name} />
             </li>
           )
         })}
