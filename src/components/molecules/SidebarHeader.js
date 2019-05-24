@@ -12,9 +12,9 @@ const Container = styled.div`
 `
 
 const Title = styled.h1`
-  color: ${colors.pureWhite};
   font-size: 20px;
   font-weight: bold;
+  color: ${colors.pureWhite}
 `
 
 const SubTitle = styled.h2`

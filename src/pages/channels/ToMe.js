@@ -1,22 +1,15 @@
-import React from "react"
-import { Link } from "gatsby"
-import styled from "styled-components"
+import React from 'react'
+import { Link } from 'gatsby'
+import styled from 'styled-components'
 
-import Layout from "components/templates/Layout"
-import Image from "components/atoms/Image"
-import SEO from "components/organisms/Seo"
-
-
-const Container = styled.div`
-  background-color: red;
-`
+import Layout from 'components/templates/Layout'
+import Image from 'components/atoms/Image'
+import SEO from 'components/organisms/Seo'
 
 const ToMePage = () => (
-  <Container>
-    <Layout>
-      <SEO title="To Me" />
-    </Layout>
-  </Container>
+  <Layout>
+    <SEO title="To Me" />
+  </Layout>
 )
 
 export default ToMePage
