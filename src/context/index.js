@@ -47,6 +47,7 @@ const initialState = {
   page: channels.top,
   channels,
   dm,
+  articles: [],
 }
 
 export class Provider extends React.Component {
@@ -57,13 +58,18 @@ export class Provider extends React.Component {
   }
 
   updatePage = page => this.setState({ page })
+  updateArticles = articles => this.setState({ articles })
 
   render() {
     const { children } = this.props
 
     return (
       <Context.Provider
-        value={{ state: this.state, updatePage: this.updatePage }}
+        value={{
+          state: this.state,
+          updatePage: this.updatePage,
+          updateArticles: this.updateArticles,
+        }}
       >
         {children}
       </Context.Provider>

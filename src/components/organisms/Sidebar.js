@@ -24,13 +24,14 @@ const Right = styled.div`
   width: 100%;
 `
 const Body = styled.div`
-  padding: 16px;
 `
 const Public = styled.div`
   margin-bottom: 50px;
 `
 const Private = styled.div``
 const Title = styled.div`
+  padding: 16px;
+  padding-bottom: 0;
   color: ${colors.weakText};
 `
 
