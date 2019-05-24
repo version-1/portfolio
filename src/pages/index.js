@@ -1,49 +1,22 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'gatsby'
-import styled from 'styled-components'
+
 
 import Context from 'context'
+import { Body, H3, P, LI, Bold } from 'components/styles'
 import Layout from 'components/templates/Layout'
 import Image from 'components/atoms/Image'
-import Avatar from 'components/atoms/Avatar'
 import Message from 'components/molecules/Message'
 import SEO from 'components/organisms/Seo'
 import colors from 'constants/colors'
 
-const Body = styled.div`
-  margin-top: 30px;
-`
-
-const H3 = styled.h3`
-  margin: 5px 0;
-  font-size: ${({ fontSize }) =>
-    fontSize ? [fontSize, 'px'].join('') : '16px'};
-  font-weight: ${({ fontWeight }) => (fontWeight ? fontWeight : 'bold')};
-`
-const P = styled.p`
-  margin: 0px;
-  margin-bottom: 2px;
-  padding: 0;
-  padding-left: ${({ indent }) => (indent ? [indent, 'px'].join('') : 0)};
-`
-
-const LI = styled.p`
-  margin: 0px;
-  margin-bottom: 10px;
-  padding: 0;
-  ::before {
-    content: '■  ';
-  }
-`
-
-const Bold = styled.span`
-  font-weight: bold;
-`
 
 class Component extends React.PureComponent {
-
-  componentDidMount () {
-    const { state: { channels }, updatePage } = this.props.context
+  componentDidMount() {
+    const {
+      state: { channels },
+      updatePage,
+    } = this.props.context
     updatePage(channels[0])
   }
 
@@ -152,12 +125,8 @@ class Component extends React.PureComponent {
   }
 }
 
-const IndexPage = props => {
-  return (
-    <Context.Consumer>
-      {context => <Component props={props} context={context} />}
-    </Context.Consumer>
-  )
-}
-
-export default IndexPage
+export default props => (
+  <Context.Consumer>
+    {context => <Component props={props} context={context} />}
+  </Context.Consumer>
+)
