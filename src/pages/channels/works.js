@@ -31,7 +31,54 @@ class Component extends React.PureComponent {
       <Layout>
         <SEO title={page.name} />
         <Body>
-          <Message title="Hello World" body={<></>} />
+          <Message
+            title="My Blog implemented by Gatsbyjs"
+            body={
+              <>
+                Blog's Theme is engineering, work for freelnce, travel. I
+                designed UI and developed and wrote all articles in this blog.
+                <p>more...</p>
+              </>
+            }
+          />
+          <Message
+            title="React Snake Game"
+            body={
+              <>
+                Well-known Snake Game implemented with React. you can play it on
+                web.
+                <p>more...</p>
+              </>
+            }
+          />
+          <Message
+            title="React Native Various Form"
+            body={
+              <>
+                npm package.
+                <p>more...</p>
+              </>
+            }
+          />
+          <Message
+            title="KUROUTO ACT"
+            body={
+              <>
+                React Native application for real estate agent. They can output
+                documents required on trade easily with this.
+                <p>more...</p>
+              </>
+            }
+          />
+          <Message
+            title="SMAMA"
+            body={
+              <>
+                C to C Web Service. User can sale their used home applicances and buy them cheaper.
+                <p>more...</p>
+              </>
+            }
+          />
         </Body>
       </Layout>
     )
