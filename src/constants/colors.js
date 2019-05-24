@@ -1,8 +1,9 @@
 export default {
-  purewWhite: '#ffffff',
+  pureWhite: 'white',
   white: '#fefefe',
-  subtitle: '#dedede',
+  weakText: '#c5b7c6',
+  darkText: '#1d1c1d',
   border: 'lightgray',
-  sidebarRight: 'purple',
+  sidebarRight: '#3F0E40',
   sidebarLeft: '#400040'
 }

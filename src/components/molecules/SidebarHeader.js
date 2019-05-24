@@ -14,16 +14,17 @@ const Container = styled.div`
 const Title = styled.h1`
   color: ${colors.pureWhite};
   font-size: 20px;
+  font-weight: bold;
 `
 
 const SubTitle = styled.h2`
-  color: ${colors.subtitle};
+  color: ${colors.weakText};
   font-size: 14px;
 `
 
 const SidebarHeader = () => (
   <Container>
-    <Title>jjoo's Portfolio</Title>
+    <Title>jjoo</Title>
     <SubTitle>Full-Stack Frontend Engineer</SubTitle>
   </Container>
 )
