@@ -1,6 +1,7 @@
-import { Link } from "gatsby"
 import React from "react"
+import { Link } from "gatsby"
 import styled from "styled-components"
+import SNSLinks from "components/molecules/SNSLinks"
 
 const links = [
   { text: "Top", to: "/" },
@@ -14,23 +15,21 @@ const privateLinks = [
   { text: "To jjoo", to: "/channels/ToMe" },
 ]
 
-const snsLinks = [
-  { text: "blog", to: "https://ver-1-0.net" },
-  { text: "github", to: "https://github.com/version-1" },
-  {
-    text: "linkedin",
-    to: "https://www.linkedin.com/in/jiro-onodera-1b3766145",
-  },
-  { text: "twitter", to: "https://twitter.com/version1_2017" },
-]
-
 const Container = styled.div`
   width: 320px;
   display: flex;
 `
 
-const Left = styled.div``
-const Right = styled.div``
+const Left = styled.div`
+  background-color: purple;
+  height: 100vh;
+  width: 65px;
+`
+const Right = styled.div`
+  background-color: red;
+  height: 100vh;
+  width: 100%;
+`
 const Header = styled.div``
 const Public = styled.div``
 const Private = styled.div``
@@ -38,15 +37,7 @@ const Private = styled.div``
 const Sidebar = () => (
   <Container>
     <Left>
-      <ul>
-        {snsLinks.map(({ to, text }) => (
-          <li>
-            <h2>
-              <Link to={to}>{text}</Link>
-            </h2>
-          </li>
-        ))}
-      </ul>
+      <SNSLinks />
     </Left>
     <Right>
       <Header>
@@ -55,7 +46,7 @@ const Sidebar = () => (
       <Public>
         <ul>
           {links.map(({ to, text }) => (
-            <li>
+            <li key={to}>
               <h2>
                 <Link to={to}>{text}</Link>
               </h2>
@@ -66,7 +57,7 @@ const Sidebar = () => (
       <Private>
         <ul>
           {privateLinks.map(({ to, text }) => (
-            <li>
+            <li key={to}>
               <h2>
                 <Link to={to}>{text}</Link>
               </h2>

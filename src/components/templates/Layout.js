@@ -11,6 +11,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     overflow: hidden;
   }
+  ul {
+    margin-left: 0;
+    padding-left: 0;
+  }
   li {
     list-style: none;
   }

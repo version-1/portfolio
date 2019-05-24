@@ -12,6 +12,7 @@ exports.onCreateWebpackConfig = ({
     resolve: {
       alias: {
         config: path.resolve(__dirname, "config"),
+        constatns: path.resolve(__dirname, "config"),
         images: path.resolve(__dirname, "src/images"),
         components: path.resolve(__dirname, "src/components"),
         lib: path.resolve(__dirname, "src/lib"),
