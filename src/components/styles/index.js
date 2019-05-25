@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import colors from 'constants/colors'
 
 export const Body = styled.div`
   margin-top: 30px;
@@ -30,3 +31,10 @@ export const Bold = styled.span`
   font-weight: bold;
 `
 
+export const More = styled.span`
+  color: ${colors.linkText};
+  cursor: pointer;
+  :hover {
+    color: ${colors.linkHoverText};
+  }
+`
