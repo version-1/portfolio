@@ -60,18 +60,22 @@ const mutations = {
     const [key, val] = Object.entries(allChannels).find(
       ([key, val]) => val.url === page.url
     )
-    this.setState({ page, key })
+    this.setState({ page: { ...page, key } })
   },
   updateArticles: function(articles) {
     this.setState({ articles })
   },
   postMessage: function(message) {
     const { key } = this.state.page
-    const _messages = this.meesages[key]
-    return [..._messages, message]
+    const _messages = this.state.messages[key]
+    const newMessages = [..._messages, message]
+    this.setState({ messages: { ...this.state.messages, [key]: newMessages } })
   },
   fetchRssFeedAsync: async function() {
-    await fetch(feeds => this.mutations.updateArticles(feeds.items), console.error)
+    await fetch(
+      feeds => this.mutations.updateArticles(feeds.items),
+      console.error
+    )
   },
 }
 

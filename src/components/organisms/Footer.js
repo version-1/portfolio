@@ -34,12 +34,38 @@ const Input = styled.textarea`
   }
 `
 
-const Footer = ({ siteTitle }) => {
+const CHAT_INPUT_FORM = 'chat-input-form'
+
+const Footer = ({ page, postMessage }) => {
   const [focus, setFocus] = useState(false)
+  const [content, setContent] = useState('')
+  const placeholder = [
+    'Message',
+    `#${page.name}.`,
+    'Send message by pushing Enter..',
+  ].join(' ')
   return (
     <Container>
       <Content focus={focus}>
-        <Input placeholder="Message" onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} />
+        <Input
+          className={CHAT_INPUT_FORM}
+          placeholder={placeholder}
+          onFocus={() => setFocus(true)}
+          onBlur={() => setFocus(false)}
+          onChange={e => {
+            setContent(e.target.value)
+          }}
+          onKeyUp={e => {
+            if (content && e.keyCode !== 13) {
+              return
+            }
+            e.preventDefault()
+            postMessage({ content })
+            setContent('')
+            const ele = document.querySelector(`.${CHAT_INPUT_FORM}`)
+            ele.value = ''
+          }}
+        />
       </Content>
     </Container>
   )
