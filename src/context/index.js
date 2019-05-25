@@ -79,14 +79,25 @@ const mutations = {
   },
 }
 
+const getters = {
+  messages: function() {
+    const { key } = this.state.page
+    return this.state.messages[key]
+  }
+}
+
 export class Provider extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = initialState
     this.mutations = {}
+    this.getters = {}
     Object.entries(mutations).forEach(([key, value]) => {
       this.mutations[key] = value.bind(this)
+    })
+    Object.entries(getters).forEach(([key, value]) => {
+      this.getters[key] = value.bind(this)
     })
   }
 
@@ -94,6 +105,7 @@ export class Provider extends React.Component {
     return {
       state: this.state,
       mutations: this.mutations,
+      getters: this.getters
     }
   }
 

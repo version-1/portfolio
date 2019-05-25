@@ -60,7 +60,7 @@ const Footer = ({ page, postMessage }) => {
               return
             }
             e.preventDefault()
-            postMessage({ content })
+            postMessage({ sender: 'you', content })
             setContent('')
             const ele = document.querySelector(`.${CHAT_INPUT_FORM}`)
             ele.value = ''
