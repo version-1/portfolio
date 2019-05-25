@@ -1,10 +1,11 @@
 export default {
   pureWhite: 'white',
   white: '#fefefe',
-  weakText: '#c5b7c6',
-  grayText: '#616061',
-  darkText: '#1d1c1d',
+  weakText: '#ffe5a5',
+  grayText: '#5f5c50',
+  darkText: '#272100',
   border: 'lightgray',
-  sidebarRight: '#3F0E40',
-  sidebarLeft: '#400040'
+  sidebarRight: '#FF9F01',
+  sidebarLeft: '#f38009',
+  sidebarLeftIcon: '#6d6246'
 }

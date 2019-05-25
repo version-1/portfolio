@@ -4,6 +4,7 @@ import LogoGithub from "react-ionicons/lib/LogoGithub"
 import LogoLinkedin from "react-ionicons/lib/LogoLinkedin"
 import LogoTwitter from "react-ionicons/lib/LogoTwitter"
 import { Link } from "gatsby"
+import colors from 'constants/colors'
 
 import LogoBlog from "components/atoms/BlogIcon"
 
@@ -12,7 +13,7 @@ const BlogIcon = styled.div`
   width: 60;
   margin: 10px;
   padding: 10px;
-  background-color: gray;
+  background-color: ${colors.sidebarLeftIcon};
   border-radius: 6px;
   padding: 10;
   color: "#ffffff";
