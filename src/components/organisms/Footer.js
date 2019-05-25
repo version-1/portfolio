@@ -1,27 +1,48 @@
-import React from "react"
-import styled from "styled-components"
+import React, { useState } from 'react'
+import styled from 'styled-components'
 import constants from 'constants'
 import colors from 'constants/colors'
 
 const Container = styled.footer`
-  height: 66px;
   width: 100%;
-  padding: 16px;
+  height: 62px;
+  padding: 8px 16px;
 `
 
-const Input = styled.div`
-  border: 1px solid ${colors.border};
+const Content = styled.div`
+  border: ${({ focus }) => (focus ? '2px' : '1px')} solid ${colors.border};
   border-radius: 6px;
   width: 100%;
-  height: 40px;
+  height: 100%;
+  padding: 6px;
+  font-size: 16px;
+  display: flex;
+  align-items: flex-end;
 `
 
-const Footer = ({ siteTitle }) => (
-  <Container>
-    <div>
-      <Input />
-    </div>
-  </Container>
-)
+const Input = styled.textarea`
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  padding: 6px;
+  resize: none;
+  border: 0;
+  font-size: 16px;
+  :focus {
+    outline: none;
+    bor
+  }
+`
+
+const Footer = ({ siteTitle }) => {
+  const [focus, setFocus] = useState(false)
+  return (
+    <Container>
+      <Content focus={focus}>
+        <Input placeholder="Message" onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} />
+      </Content>
+    </Container>
+  )
+}
 
 export default Footer
