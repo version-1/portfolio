@@ -34,7 +34,9 @@ const Layout = ({ children }) => (
         {context => {
           const {
             state: { page, channels, dm },
+            mutations: { postMessage }
           } = context
+          console.log('rerender', context.state)
           return (
             <>
               <GlobalStyle />
@@ -43,7 +45,7 @@ const Layout = ({ children }) => (
                 <main>
                   <Header page={page} />
                   <Body>{children}</Body>
-                  <Footer />
+                  <Footer page={page} postMessage={postMessage}/>
                 </main>
               </Container>
             </>
