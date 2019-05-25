@@ -9,6 +9,7 @@ import Footer from 'components/organisms/Footer'
 import Sidebar from 'components/organisms/Sidebar'
 import Modal from 'components/templates/Modal'
 import Loading from 'components/templates/Loading'
+import ContentLoading from 'components/templates/ContentLoading'
 import Context from 'context'
 
 const Container = styled.div`
@@ -50,11 +51,15 @@ const Layout = ({ children }) => (
                 />
                 <main>
                   <Header page={page} />
-                  <Body>{children}</Body>
+                  {loading.content ? (
+                    <ContentLoading show={loading.content} />
+                  ) : (
+                    <Body>{children}</Body>
+                  )}
                   <Footer page={page} postMessage={postMessage} />
                 </main>
                 <Modal {...modal} hideModal={hideModal} />
-                <Loading show={loading.page}/>
+                <Loading show={loading.page} />
               </Container>
             </>
           )

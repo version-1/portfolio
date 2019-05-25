@@ -101,26 +101,26 @@ class Component extends React.PureComponent {
               </P>
               <H3 fontSize={14}>Channels:</H3>
               <LI>
-                <Link to={channels.top.to}>
+                <Link to={channels.top.url}>
                   <More>#{channels.top.name}</More>
                 </Link>{' '}
                 ・・・Here. If you lost in this site, it's goot to back this
                 channel.
               </LI>
               <LI>
-                <Link to={channels.carrier.to}>
+                <Link to={channels.carrier.url}>
                   <More>#{channels.carrier.name}</More>
                 </Link>{' '}
                 ・・・You can see my work history.
               </LI>
               <LI>
-                <Link to={channels.works.to}>
+                <Link to={channels.works.url}>
                   <More>#{channels.works.name}</More>
                 </Link>{' '}
                 ・・・Drop by this channel and take a look at my works.
               </LI>
               <LI>
-                <Link to={channels.blog.to}>
+                <Link to={channels.blog.url}>
                   <More>#{channels.blog.name}</More>
                 </Link>{' '}
                 ・・・You can read my blog's recently articles.
