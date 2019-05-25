@@ -10,17 +10,10 @@ import Page from 'components/templates/Page'
 class Component extends React.PureComponent {
   componentDidMount() {
     const {
-      state: { channels },
-      mutations: { updatePage },
+      mutations: { init },
     } = this.props.context
-
     const path = this.props.props['*']
-    if (path === '/') {
-      updatePage(channels.top)
-    } else {
-      const [key] = path.split('/').slice(-1)
-      updatePage(channels[key])
-    }
+    init(path)
   }
 
   render() {
