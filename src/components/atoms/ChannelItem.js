@@ -4,7 +4,8 @@ import { Link } from 'gatsby'
 import colors from 'constants/colors'
 
 const Channel = styled.h2`
-  color: ${colors.weakText};
+  color: ${({ selected }) => selected ? colors.strongText : colors.weakText};
+  background-color: ${({ selected }) => selected ? colors.accent : '' };
   font-size: 16px;
   font-weight: normal;
   margin: 0;
@@ -13,13 +14,12 @@ const Channel = styled.h2`
     content: '#  ';
   }
   :hover {
-    background-color: ${colors.accent};
-    color: ${colors.strongText};
+    background-color: ${colors.keyHover};
   }
 `
-const ChannelItem = ({ url, name, onClick }) => (
+const ChannelItem = ({ url, name, selected }) => (
   <Link to={url}>
-    <Channel>{name}</Channel>
+    <Channel selected={selected}>{name}</Channel>
   </Link>
 )
 

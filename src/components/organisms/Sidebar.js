@@ -48,7 +48,7 @@ const TextInput = styled.div`
   padding: 3px;
 `
 
-const Sidebar = ({ channels, dm }) => (
+const Sidebar = ({ state, channels, dm }) => (
   <Container>
     <Left>
       <SNSLinks />
@@ -64,11 +64,11 @@ const Sidebar = ({ channels, dm }) => (
         </Input>
         <Public>
           <Title>Channels</Title>
-          <ChannelList list={channels} />
+          <ChannelList page={state.page} list={channels} />
         </Public>
         <Private>
           <Title>Direct Messages</Title>
-          <ChannelList list={dm} />
+          <ChannelList page={state.page} list={dm} />
         </Private>
       </Body>
     </Right>

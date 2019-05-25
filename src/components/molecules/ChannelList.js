@@ -4,14 +4,15 @@ import ChannelItem from 'components/atoms/ChannelItem'
 
 const Container = styled.div``
 
-const ChannelList = ({ list }) => {
+const ChannelList = ({ page, list }) => {
   return (
     <Container>
       <ul>
         {list.map(({ url, name }) => {
+          const selected = page.url === url
           return (
             <li key={url}>
-              <ChannelItem url={url} name={name} />
+              <ChannelItem url={url} name={name} selected={selected}/>
             </li>
           )
         })}

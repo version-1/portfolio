@@ -14,6 +14,7 @@ export default {
   weakText: '#ffe5a5',
   grayText: '#5f5c50',
   darkText: '#272100',
+  keyHover: '#f9b444',
   border: 'lightgray',
   sidebarRight: '#FF9F01',
   sidebarLeft: '#f38009',
