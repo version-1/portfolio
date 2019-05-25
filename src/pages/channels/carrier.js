@@ -12,7 +12,7 @@ class Component extends React.PureComponent {
   componentDidMount() {
     const {
       state: { channels },
-      updatePage,
+      mutations: { updatePage },
     } = this.props.context
 
     const path = this.props.props['*']
