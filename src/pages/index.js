@@ -27,6 +27,7 @@ class Component extends React.PureComponent {
 
   render() {
     const { channels } = this.props.context.state
+    const { messages } = this.props.context.getters
 
     return (
       <Layout>
@@ -124,6 +125,9 @@ class Component extends React.PureComponent {
               </>
             }
           />
+          {messages().map(message => (
+            <Message title={message.sender} body={message.content} />
+          ))}
         </Body>
       </Layout>
     )
