@@ -88,10 +88,12 @@ const mutations = {
     this.setState({ messages: { ...this.state.messages, [key]: newMessages } })
   },
   fetchRssFeedAsync: async function() {
+    this.mutations.startLoading('content')
     await fetch(
       feeds => this.mutations.updateArticles(feeds.items),
       console.error
     )
+    this.mutations.stopLoading('content')
   },
   showModal: function({ title, content }) {
     const modal = { show: true, title, content }
