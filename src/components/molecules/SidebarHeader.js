@@ -8,7 +8,6 @@ import constants from 'constants'
 const Container = styled.div`
   height: ${constants.headerHeight};
   padding: 16px;
-  border-bottom: 1px solid ${colors.border};
 `
 
 const Title = styled.h1`
