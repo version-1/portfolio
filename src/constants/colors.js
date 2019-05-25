@@ -11,6 +11,8 @@ export default {
   ...schema,
   pureWhite: 'white',
   white: '#fefefe',
+  linkText: 'skyblue',
+  linkHoverText: 'blue',
   weakText: '#ffe5a5',
   grayText: '#5f5c50',
   darkText: '#272100',

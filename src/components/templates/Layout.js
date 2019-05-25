@@ -7,6 +7,7 @@ import GlobalStyle from 'components/styles/GlobalStyle'
 import Header from 'components/organisms/Header'
 import Footer from 'components/organisms/Footer'
 import Sidebar from 'components/organisms/Sidebar'
+import Modal from 'components/templates/Modal'
 import Context from 'context'
 
 const Container = styled.div`
@@ -33,8 +34,8 @@ const Layout = ({ children }) => (
       <Context.Consumer>
         {context => {
           const {
-            state: { page, channels, dm },
-            mutations: { postMessage },
+            state: { page, modal, channels, dm },
+            mutations: { hideModal, postMessage },
           } = context
           console.log('rerender', context.state)
           return (
@@ -51,6 +52,7 @@ const Layout = ({ children }) => (
                   <Body>{children}</Body>
                   <Footer page={page} postMessage={postMessage} />
                 </main>
+                <Modal {...modal} hideModal={hideModal} />
               </Container>
             </>
           )

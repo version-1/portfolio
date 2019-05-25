@@ -14,7 +14,7 @@ const Channel = styled.h2`
     content: '#  ';
   }
   :hover {
-    background-color: ${colors.keyHover};
+    background-color: ${({ selected }) => selected ? '' : colors.keyHover};
   }
 `
 const ChannelItem = ({ url, name, selected }) => (
