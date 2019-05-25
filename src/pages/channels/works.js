@@ -1,12 +1,18 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import styled from 'styled-components'
 
 import Context from 'context'
 import { Body } from 'components/styles'
 import Layout from 'components/templates/Layout'
 import Message from 'components/molecules/Message'
-import Image from 'components/atoms/Image'
-import SEO from 'components/organisms/Seo'
+import Page from 'components/templates/Page'
+import colors from 'constants/colors'
+
+const More = styled.p`
+  color: ${colors.linkText};
+  cursor: pointer;
+`
 
 class Component extends React.PureComponent {
   componentDidMount() {
@@ -25,62 +31,63 @@ class Component extends React.PureComponent {
   }
 
   render() {
-    const { page, channels } = this.props.context.state
+    const { mutations, getters, state } = this.props.context
+    const { page } = state
+    const { showModal } = mutations
+    const content = <div>Hello World</div>
 
     return (
-      <Layout>
-        <SEO title={page.name} />
-        <Body>
-          <Message
-            title="My Blog implemented by Gatsbyjs"
-            body={
-              <>
-                Blog's Theme is engineering, work for freelnce, travel. I
-                designed UI and developed and wrote all articles in this blog.
-                <p>more...</p>
-              </>
-            }
-          />
-          <Message
-            title="React Snake Game"
-            body={
-              <>
-                Well-known Snake Game implemented with React. you can play it on
-                web.
-                <p>more...</p>
-              </>
-            }
-          />
-          <Message
-            title="React Native Various Form"
-            body={
-              <>
-                npm package.
-                <p>more...</p>
-              </>
-            }
-          />
-          <Message
-            title="KUROUTO ACT"
-            body={
-              <>
-                React Native application for real estate agent. They can output
-                documents required on trade easily with this.
-                <p>more...</p>
-              </>
-            }
-          />
-          <Message
-            title="SMAMA"
-            body={
-              <>
-                C to C Web Service. User can sale their used home applicances and buy them cheaper.
-                <p>more...</p>
-              </>
-            }
-          />
-        </Body>
-      </Layout>
+      <Page state={state} getters={getters}>
+        <Message
+          title="My Blog implemented by Gatsbyjs"
+          body={
+            <>
+              Blog's Theme is engineering, work for freelnce, travel. I designed
+              UI and developed and wrote all articles in this blog.
+              <More onClick={() => showModal({ title: 'Work', content })}>more...</More>
+            </>
+          }
+        />
+        <Message
+          title="React Snake Game"
+          body={
+            <>
+              Well-known Snake Game implemented with React. you can play it on
+              web.
+              <More>more...</More>
+            </>
+          }
+        />
+        <Message
+          title="React Native Various Form"
+          body={
+            <>
+              npm package.
+              <More>more...</More>
+            </>
+          }
+        />
+        <Message
+          title="KUROUTO ACT"
+          body={
+            <>
+              React Native application for real estate agent. They can output
+              documents required on trade easily with this.
+              <More>more...</More>
+            </>
+          }
+        />
+        <Message
+          title="SMAMA"
+          body={
+            <>
+              C to C Web Service. User can sale their used home applicances and
+              buy them cheaper.
+              <More>more...</More>
+            </>
+          }
+        />
+      </Page>
     )
   }
 }

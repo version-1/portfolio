@@ -48,6 +48,12 @@ const dmKeys = Object.keys(dm)
 
 const messages = allChannelKeys.reduce((acc, key) => ({ ...acc, [key]: [] }), {})
 const page = { ...channels.top, key: 'top' }
+const modal = {
+  show: false,
+  title: '',
+  header: null,
+  content: null,
+}
 
 const initialState = {
   page,
@@ -55,6 +61,7 @@ const initialState = {
   dm,
   articles: [],
   messages,
+  modal
 }
 const mutations = {
   updatePage: function(page) {
@@ -77,6 +84,13 @@ const mutations = {
       feeds => this.mutations.updateArticles(feeds.items),
       console.error
     )
+  },
+  showModal: function ({ title, content }) {
+    const modal = { show: true, title, content }
+    this.setState({ modal })
+  },
+  hideModal: function () {
+    this.setState({ modal })
   },
 }
 
