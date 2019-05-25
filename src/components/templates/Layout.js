@@ -8,6 +8,7 @@ import Header from 'components/organisms/Header'
 import Footer from 'components/organisms/Footer'
 import Sidebar from 'components/organisms/Sidebar'
 import Modal from 'components/templates/Modal'
+import Loading from 'components/templates/Loading'
 import Context from 'context'
 
 const Container = styled.div`
@@ -34,7 +35,7 @@ const Layout = ({ children }) => (
       <Context.Consumer>
         {context => {
           const {
-            state: { page, modal, channels, dm },
+            state: { page, modal, channels, dm, isLoading },
             mutations: { hideModal, postMessage },
           } = context
           console.log('rerender', context.state)
@@ -53,6 +54,7 @@ const Layout = ({ children }) => (
                   <Footer page={page} postMessage={postMessage} />
                 </main>
                 <Modal {...modal} hideModal={hideModal} />
+                <Loading show={isLoading}/>
               </Container>
             </>
           )

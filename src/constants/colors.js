@@ -4,7 +4,7 @@ const schema = {
   accent: '#0e926d',
   strongText: 'white',
   weakText: '#ffe5a5',
-  textColor: '#272100'
+  textColor: '#272100',
 }
 
 export default {
@@ -18,7 +18,8 @@ export default {
   darkText: '#272100',
   keyHover: '#f9b444',
   border: 'lightgray',
-  sidebarRight: '#FF9F01',
-  sidebarLeft: '#f38009',
-  sidebarLeftIcon: '#6d6246'
+  sidebarRight: schema.key,
+  sidebarLeft: schema.secondary,
+  sidebarLeftIcon: '#6d6246',
+  spinnerColor: schema.accent
 }

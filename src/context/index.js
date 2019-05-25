@@ -61,7 +61,8 @@ const initialState = {
   dm,
   articles: [],
   messages,
-  modal
+  modal,
+  isLoading: true
 }
 const mutations = {
   updatePage: function(page) {
@@ -84,6 +85,12 @@ const mutations = {
       feeds => this.mutations.updateArticles(feeds.items),
       console.error
     )
+  },
+  startLoading: function () {
+    this.setState({ isLoading: true })
+  },
+  endLoading: function () {
+    this.setState({ isLoading: false })
   },
   showModal: function ({ title, content }) {
     const modal = { show: true, title, content }
