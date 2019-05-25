@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 
 import Context from 'context'
-import { Body, H3, P, LI, Bold } from 'components/styles'
+import { Body, H3, P, LI, Bold, More } from 'components/styles'
 import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
 import colors from 'constants/colors'
@@ -55,14 +55,22 @@ class Component extends React.PureComponent {
               </LI>
               <P>
                 github:{' '}
-                <a href="https://github.com/version-1" target="_blank">
-                  https://github.com/version-1
+                <a
+                  href="https://github.com/version-1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <More>https://github.com/version-1</More>
                 </a>
               </P>
               <P>
                 blog:{' '}
-                <a href="https://ver-1-0.net" target="_blank">
-                  https://ver-1-0.net
+                <a
+                  href="https://ver-1-0.net"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <More>https://ver-1-0.net</More>
                 </a>
               </P>
             </>
@@ -103,20 +111,20 @@ class Component extends React.PureComponent {
               </P>
               <H3 fontSize={14}>Channels:</H3>
               <LI>
-                <Link to={channels.top.to}>#{channels.top.name}</Link>{' '}
+                <Link to={channels.top.to}><More>#{channels.top.name}</More></Link>{' '}
                 ・・・Here. If you lost in this site, it's goot to back this
                 channel.
               </LI>
               <LI>
-                <Link to={channels.carrier.to}>#{channels.carrier.name}</Link>{' '}
+                <Link to={channels.carrier.to}><More>#{channels.carrier.name}</More></Link>{' '}
                 ・・・You can see my work history.
               </LI>
               <LI>
-                <Link to={channels.works.to}>#{channels.works.name}</Link>{' '}
+                <Link to={channels.works.to}><More>#{channels.works.name}</More></Link>{' '}
                 ・・・Drop by this channel and take a look at my works.
               </LI>
               <LI>
-                <Link to={channels.blog.to}>#{channels.blog.name}</Link>{' '}
+                <Link to={channels.blog.to}><More>#{channels.blog.name}</More></Link>{' '}
                 ・・・You can read my blog's recently articles.
               </LI>
             </>

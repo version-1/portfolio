@@ -3,16 +3,11 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 
 import Context from 'context'
-import { Body } from 'components/styles'
+import { Body, More } from 'components/styles'
 import Layout from 'components/templates/Layout'
 import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
 import colors from 'constants/colors'
-
-const More = styled.p`
-  color: ${colors.linkText};
-  cursor: pointer;
-`
 
 class Component extends React.PureComponent {
   componentDidMount() {
@@ -44,7 +39,7 @@ class Component extends React.PureComponent {
             <>
               Blog's Theme is engineering, work for freelnce, travel. I designed
               UI and developed and wrote all articles in this blog.
-              <More onClick={() => showModal({ title: 'Work', content })}>more...</More>
+              <p><More onClick={() => showModal({ title: 'Work', content })}>more...</More></p>
             </>
           }
         />
@@ -54,7 +49,7 @@ class Component extends React.PureComponent {
             <>
               Well-known Snake Game implemented with React. you can play it on
               web.
-              <More>more...</More>
+              <p><More>more...</More></p>
             </>
           }
         />
@@ -63,7 +58,7 @@ class Component extends React.PureComponent {
           body={
             <>
               npm package.
-              <More>more...</More>
+              <p><More>more...</More></p>
             </>
           }
         />
@@ -73,7 +68,7 @@ class Component extends React.PureComponent {
             <>
               React Native application for real estate agent. They can output
               documents required on trade easily with this.
-              <More>more...</More>
+              <p><More>more...</More></p>
             </>
           }
         />
@@ -83,7 +78,7 @@ class Component extends React.PureComponent {
             <>
               C to C Web Service. User can sale their used home applicances and
               buy them cheaper.
-              <More>more...</More>
+              <p><More>more...</More></p>
             </>
           }
         />
