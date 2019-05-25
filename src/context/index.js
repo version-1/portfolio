@@ -41,11 +41,12 @@ const dm = {
   },
 }
 
-export const allChannels = { ...channels, ...dm }
-export const channelKeys = Object.keys(channels)
-export const dmKeys = Object.keys(dm)
+const allChannels = { ...channels, ...dm }
+const channelKeys = Object.keys(channels)
+const allChannelKeys = Object.keys(allChannels)
+const dmKeys = Object.keys(dm)
 
-const messages = channelKeys.reduce((acc, key) => ({ ...acc, [key]: [] }), {})
+const messages = allChannelKeys.reduce((acc, key) => ({ ...acc, [key]: [] }), {})
 const page = { ...channels.top, key: 'top' }
 
 const initialState = {

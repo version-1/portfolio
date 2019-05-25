@@ -5,8 +5,7 @@ import Context from 'context'
 import { Body } from 'components/styles'
 import Layout from 'components/templates/Layout'
 import Message from 'components/molecules/Message'
-import Image from 'components/atoms/Image'
-import SEO from 'components/organisms/Seo'
+import Page from 'components/templates/Page'
 
 class Component extends React.PureComponent {
   get limit() {
@@ -31,24 +30,22 @@ class Component extends React.PureComponent {
   }
 
   render() {
-    const { page, articles } = this.props.context.state
+    const { getters, state } = this.props.context
+    const { articles } = state
 
     return (
-      <Layout>
-        <SEO title={page.name} />
-        <Body>
-          {articles
-            .slice(0, this.limit)
-            .reverse()
-            .map(article => (
-              <Message
-                key={article.title}
-                title={article.title}
-                body={<>{article.content.slice(0, 150)}</>}
-              />
-            ))}
-        </Body>
-      </Layout>
+      <Page state={state} getters={getters}>
+        {articles
+          .slice(0, this.limit)
+          .reverse()
+          .map(article => (
+            <Message
+              key={article.title}
+              title={article.title}
+              body={<>{article.content.slice(0, 150)}</>}
+            />
+          ))}
+      </Page>
     )
   }
 }

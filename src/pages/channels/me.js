@@ -7,6 +7,7 @@ import Layout from 'components/templates/Layout'
 import Message from 'components/molecules/Message'
 import Image from 'components/atoms/Image'
 import SEO from 'components/organisms/Seo'
+import Page from 'components/templates/Page'
 
 class Component extends React.PureComponent {
   componentDidMount() {
@@ -21,15 +22,12 @@ class Component extends React.PureComponent {
   }
 
   render() {
-    const { page } = this.props.context.state
+    const { getters, state } = this.props.context
 
     return (
-      <Layout>
-        <SEO title={page.name} />
-        <Body>
-          <Message title="Hello World" body={<></>} />
-        </Body>
-      </Layout>
+      <Page state={state} getters={getters}>
+        <></>
+      </Page>
     )
   }
 }
