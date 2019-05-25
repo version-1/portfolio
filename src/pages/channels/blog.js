@@ -17,7 +17,7 @@ class Component extends React.PureComponent {
     const {
       state: { channels },
       updatePage,
-      updateArticles,
+      fetchRssFeedAsync
     } = this.props.context
 
     const path = this.props.props['*']
@@ -28,11 +28,7 @@ class Component extends React.PureComponent {
       updatePage(channels[key])
     }
 
-    const parser = new Parser({
-      headers: { 'Access-Control-Allow-Origin': '*' },
-    })
-    const feed = await parser.parseURL('https://ver-1-0.net/rss.xml')
-    updateArticles(feed.items)
+    await fetchRssFeedAsync()
   }
 
   render() {
