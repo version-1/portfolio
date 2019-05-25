@@ -41,14 +41,38 @@ const dm = {
   },
 }
 
+export const allChannels = { ...channels, ...dm }
 export const channelKeys = Object.keys(channels)
 export const dmKeys = Object.keys(dm)
 
+const messages = channelKeys.reduce((acc, key) => ({ ...acc, [key]: [] }), {})
+const page = { ...channels.top, key: 'top' }
+
 const initialState = {
-  page: channels.top,
+  page,
   channels,
   dm,
   articles: [],
+  messages,
+}
+const mutations = {
+  updatePage: function(page) {
+    const [key, val] = Object.entries(allChannels).find(
+      ([key, val]) => val.url === page.url
+    )
+    this.setState({ page, key })
+  },
+  updateArticles: function(articles) {
+    this.setState({ articles })
+  },
+  postMessage: function(message) {
+    const { key } = this.state.page
+    const _messages = this.meesages[key]
+    return [..._messages, message]
+  },
+  fetchRssFeedAsync: async function() {
+    await fetch(feeds => this.mutations.updateArticles(feeds.items), console.error)
+  },
 }
 
 export class Provider extends React.Component {
@@ -56,21 +80,17 @@ export class Provider extends React.Component {
     super(props)
 
     this.state = initialState
+    this.mutations = {}
+    Object.entries(mutations).forEach(([key, value]) => {
+      this.mutations[key] = value.bind(this)
+    })
   }
 
   get value() {
     return {
       state: this.state,
-      updatePage: this.updatePage,
-      updateArticles: this.updateArticles,
-      fetchRssFeedAsync: this.fetchRssFeedAsync
+      mutations: this.mutations,
     }
-  }
-
-  updatePage = page => this.setState({ page })
-  updateArticles = articles => this.setState({ articles })
-  fetchRssFeedAsync = async () => {
-    await fetch(feeds => this.updateArticles(feeds.items), console.error)
   }
 
   render() {

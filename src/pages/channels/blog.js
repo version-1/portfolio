@@ -16,8 +16,7 @@ class Component extends React.PureComponent {
   async componentDidMount() {
     const {
       state: { channels },
-      updatePage,
-      fetchRssFeedAsync
+      mutations: { updatePage, fetchRssFeedAsync },
     } = this.props.context
 
     const path = this.props.props['*']
@@ -38,13 +37,16 @@ class Component extends React.PureComponent {
       <Layout>
         <SEO title={page.name} />
         <Body>
-          {articles.slice(0, this.limit).reverse().map(article => (
-            <Message
-              key={article.title}
-              title={article.title}
-              body={<>{article.content.slice(0, 150)}</>}
-            />
-          ))}
+          {articles
+            .slice(0, this.limit)
+            .reverse()
+            .map(article => (
+              <Message
+                key={article.title}
+                title={article.title}
+                body={<>{article.content.slice(0, 150)}</>}
+              />
+            ))}
         </Body>
       </Layout>
     )
