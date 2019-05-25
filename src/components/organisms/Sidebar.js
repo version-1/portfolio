@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
+import MdMenu from 'react-ionicons/lib/MdMenu'
 import SNSLinks from 'components/molecules/SNSLinks'
 import ChannelList from 'components/molecules/ChannelList'
 import Header from 'components/molecules/SidebarHeader'
@@ -23,8 +24,7 @@ const Right = styled.div`
   height: 100vh;
   width: 100%;
 `
-const Body = styled.div`
-`
+const Body = styled.div``
 const Public = styled.div`
   margin-bottom: 50px;
 `
@@ -35,6 +35,19 @@ const Title = styled.div`
   color: ${colors.weakText};
 `
 
+const Input = styled.div`
+  padding: 8px;
+`
+const TextInput = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: #f9b444;
+  color: ${colors.weakText};
+  border-radius: 6px;
+  height: 26px;
+  padding: 3px;
+`
+
 const Sidebar = ({ channels, dm }) => (
   <Container>
     <Left>
@@ -43,6 +56,12 @@ const Sidebar = ({ channels, dm }) => (
     <Right>
       <Header />
       <Body>
+        <Input>
+          <TextInput>
+            <MdMenu color={colors.weakText} />
+            Jump to...
+          </TextInput>
+        </Input>
         <Public>
           <Title>Channels</Title>
           <ChannelList list={channels} />

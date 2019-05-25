@@ -13,7 +13,8 @@ const Channel = styled.h2`
     content: '#  ';
   }
   :hover {
-    background-color: #2e0b2f;
+    background-color: ${colors.accent};
+    color: ${colors.strongText};
   }
 `
 const ChannelItem = ({ url, name, onClick }) => (
