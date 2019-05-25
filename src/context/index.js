@@ -46,7 +46,10 @@ const channelKeys = Object.keys(channels)
 const allChannelKeys = Object.keys(allChannels)
 const dmKeys = Object.keys(dm)
 
-const messages = allChannelKeys.reduce((acc, key) => ({ ...acc, [key]: [] }), {})
+const messages = allChannelKeys.reduce(
+  (acc, key) => ({ ...acc, [key]: [] }),
+  {}
+)
 const page = { ...channels.top, key: 'top' }
 const modal = {
   show: false,
@@ -62,7 +65,11 @@ const initialState = {
   articles: [],
   messages,
   modal,
-  isLoading: true
+  loading: {
+    page: false,
+    content: false,
+  },
+  isReady: false,
 }
 const mutations = {
   updatePage: function(page) {
@@ -86,18 +93,39 @@ const mutations = {
       console.error
     )
   },
-  startLoading: function () {
-    this.setState({ isLoading: true })
-  },
-  endLoading: function () {
-    this.setState({ isLoading: false })
-  },
-  showModal: function ({ title, content }) {
+  showModal: function({ title, content }) {
     const modal = { show: true, title, content }
     this.setState({ modal })
   },
-  hideModal: function () {
+  hideModal: function() {
     this.setState({ modal })
+  },
+  startLoading: function(type) {
+    const { loading } = this.state
+    this.setState({ loading: { ...loading, [type]: true } })
+  },
+  stopLoading: function(type) {
+    const { loading } = this.state
+    this.setState({ loading: { ...loading, [type]: false } })
+  },
+  endLoading: function() {
+    this.setState({ isLoading: false })
+  },
+  init: function(path) {
+    if (!this.state.isReady) {
+      this.mutations.startLoading('page')
+      setTimeout(() => {
+        this.mutations.stopLoading('page')
+        this.setState({ isReady: true })
+      }, 1000)
+    }
+
+    if (!path) {
+      this.mutations.updatePage(channels.top)
+    } else {
+      const [key] = path.split('/').slice(-1)
+      this.mutations.updatePage(allChannels[key])
+    }
   },
 }
 
@@ -105,7 +133,7 @@ const getters = {
   messages: function() {
     const { key } = this.state.page
     return this.state.messages[key]
-  }
+  },
 }
 
 export class Provider extends React.Component {
@@ -127,7 +155,7 @@ export class Provider extends React.Component {
     return {
       state: this.state,
       mutations: this.mutations,
-      getters: this.getters
+      getters: this.getters,
     }
   }
 

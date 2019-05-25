@@ -35,7 +35,7 @@ const Layout = ({ children }) => (
       <Context.Consumer>
         {context => {
           const {
-            state: { page, modal, channels, dm, isLoading },
+            state: { page, modal, channels, dm, loading },
             mutations: { hideModal, postMessage },
           } = context
           console.log('rerender', context.state)
@@ -54,7 +54,7 @@ const Layout = ({ children }) => (
                   <Footer page={page} postMessage={postMessage} />
                 </main>
                 <Modal {...modal} hideModal={hideModal} />
-                <Loading show={isLoading}/>
+                <Loading show={loading.page}/>
               </Container>
             </>
           )

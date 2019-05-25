@@ -7,7 +7,7 @@ import colors from 'constants/colors'
 import Spinner from 'components/atoms/Spinner'
 
 const Container = styled.div`
-  display: flex;
+  display: ${({ show }) => show? 'flex' : 'none'};
   z-index: 1000;
   background-color: white;
   position: fixed;
@@ -16,9 +16,6 @@ const Container = styled.div`
   height: 100%;
   opacity: ${({ show }) => (show ? 1 : 0)};
   width: 100%;
-  transition: transform ease-in-out 0.3s;
-  transform: ${({ show }) => (show ? 'scale(1)' : 'scale(0)')};
-  transform: ${({ show }) => (show ? 'tranlateY(0)' : 'translateY(100%)')};
 `
 
 const Header = styled.div`

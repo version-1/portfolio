@@ -14,17 +14,10 @@ class Component extends React.PureComponent {
 
   async componentDidMount() {
     const {
-      state: { channels },
-      mutations: { updatePage, fetchRssFeedAsync },
+      mutations: { init, fetchRssFeedAsync }
     } = this.props.context
-
     const path = this.props.props['*']
-    if (path === '/') {
-      updatePage(channels.top)
-    } else {
-      const [key] = path.split('/').slice(-1)
-      updatePage(channels[key])
-    }
+    init(path)
 
     await fetchRssFeedAsync()
   }
