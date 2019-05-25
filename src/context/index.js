@@ -1,4 +1,5 @@
 import React from 'react'
+import { fetch } from 'services/rss'
 
 const Context = React.createContext()
 
@@ -57,23 +58,25 @@ export class Provider extends React.Component {
     this.state = initialState
   }
 
+  get value() {
+    return {
+      state: this.state,
+      updatePage: this.updatePage,
+      updateArticles: this.updateArticles,
+      fetchRssFeedAsync: this.fetchRssFeedAsync
+    }
+  }
+
   updatePage = page => this.setState({ page })
   updateArticles = articles => this.setState({ articles })
+  fetchRssFeedAsync = async () => {
+    await fetch(feeds => this.updateArticles(feeds.items), console.error)
+  }
 
   render() {
     const { children } = this.props
 
-    return (
-      <Context.Provider
-        value={{
-          state: this.state,
-          updatePage: this.updatePage,
-          updateArticles: this.updateArticles,
-        }}
-      >
-        {children}
-      </Context.Provider>
-    )
+    return <Context.Provider value={this.value}>{children}</Context.Provider>
   }
 }
 
