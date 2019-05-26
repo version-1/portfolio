@@ -64,6 +64,10 @@ const Footer = ({ page, postMessage }) => {
             if (!__content || !_content || e.keyCode !== 13) {
               return
             }
+            if (e.shiftKey && e.keyCode === 13) {
+              setContent(`${e.target.value}\n`)
+              return
+            }
             e.preventDefault()
             postMessage({ sender: 'you', content: _content })
             setContent('')
