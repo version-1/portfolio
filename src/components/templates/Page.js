@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
+import you from 'assets/you.png'
 import Context from 'context'
 import { Body, H3, P, LI, Bold } from 'components/styles'
 import Layout from 'components/templates/Layout'
@@ -31,6 +32,7 @@ const Page = ({ children, state, getters }) => {
           {children}
           {messages().map(message => (
             <Message
+              icon={you}
               title={message.sender}
               body={parseContent(message.content)}
             />

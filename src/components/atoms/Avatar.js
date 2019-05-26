@@ -16,9 +16,9 @@ const Img = styled.img`
   border-radius: 6px;
 `
 
-const Avatar = () => (
+const Avatar = ({ icon }) => (
   <Container>
-    <Img src={avatar} alt="avatar" />
+    <Img src={icon || avatar} alt="avatar" />
   </Container>
 )
 export default Avatar
