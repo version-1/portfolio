@@ -1,8 +1,8 @@
-import React from "react"
+import React from 'react'
 import styled from 'styled-components'
+import avatar from 'assets/avatar.png'
 
-const Container = styled.div`
-`
+const Container = styled.div``
 const Content = styled.div`
   height: 52px;
   width: 52px;
@@ -10,7 +10,15 @@ const Content = styled.div`
   border-radius: 6px;
 `
 
+const Img = styled.img`
+  height: 52px;
+  width: 52px;
+  border-radius: 6px;
+`
+
 const Avatar = () => (
-  <Container><Content /></Container>
+  <Container>
+    <Img src={avatar} alt="avatar" />
+  </Container>
 )
-export default Avatar;
+export default Avatar
