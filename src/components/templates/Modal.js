@@ -17,6 +17,7 @@ const Container = styled.div`
   transition: transform ease-in-out 0.3s;
   transform: ${({ show }) => (show ? 'scale(1)' : 'scale(0)')};
   transform: ${({ show }) => (show ? 'tranlateY(0)' : 'translateY(100%)')};
+  overflow: scroll;
 `
 
 const Header = styled.div`
