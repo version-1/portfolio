@@ -13,6 +13,10 @@ class Component extends React.PureComponent {
   }
 
   render() {
+    if (!this.props.context) {
+      // block beause error occurs on build
+      return <></>
+    }
     const { getters, state } = this.props.context
     const { channels } = state
 

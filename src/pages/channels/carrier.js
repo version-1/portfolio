@@ -15,6 +15,9 @@ class Component extends React.PureComponent {
   }
 
   render() {
+    if (!this.props.context) {
+      return <></>
+    }
     const { getters, state } = this.props.context
 
     return (

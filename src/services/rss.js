@@ -3,7 +3,7 @@ const parser = new Parser({
   headers: { 'Access-Control-Allow-Origin': '*' },
 })
 
-const domParser = new DOMParser()
+const domParser = typeof DOMParser !== 'undefined' && new DOMParser()
 
 export const fetchRss = async () => {
   let feeds
