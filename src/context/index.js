@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 import { fetchRss, fetchThumbnails } from 'services/rss'
 
 const Context = React.createContext()
@@ -89,13 +90,16 @@ const mutations = {
     const { queue, list: prevList } = this.state.articles
     const links = list.map(article => article.link)
     const _queue = queue.filter(item => !links.includes(item.link))
-    this.setState({ articles: { queue: _queue, list: [...prevList, ...list] } })
+    const newList = [...prevList, ...list]
+    const sortedList = newList.sort((a, b) => moment(a.pubDate).unix() - moment(b.pubDate).unix())
+    this.setState({ articles: { queue: _queue, list: sortedList } })
   },
   postMessage: function(message) {
     const { key } = this.state.page
     const _messages = this.state.messages[key]
     const newMessages = [..._messages, message]
     this.setState({ messages: { ...this.state.messages, [key]: newMessages } })
+    setTimeout(() => this.mutations.scrollBottom(), 500)
   },
   fetchRssFeedAsync: async function() {
     const { updateArticles, addArticleList } = this.mutations
@@ -105,7 +109,8 @@ const mutations = {
     new Array(count).fill('').map(async (_, index) => {
       const group = items.slice(index * 10, (index + 1) * 10)
       const _group = await fetchThumbnails(group, console.error)
-      const sleep = await setTimeout(() => {}, 1000)
+      this.mutations.scrollBottom()
+      const sleep = await setTimeout(() => {}, 3000)
       addArticleList(_group)
     })
   },
@@ -143,6 +148,10 @@ const mutations = {
       this.mutations.updatePage(allChannels[key])
     }
   },
+  scrollBottom() {
+    const body = document.body.querySelector('.content-body')
+    body.scrollTop = body.scrollHeight
+  }
 }
 
 const getters = {
