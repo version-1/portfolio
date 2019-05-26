@@ -26,10 +26,10 @@ const Body = styled.div`
   font-size: 16px;
   color: ${colors.darkText};
 `
-const Message = ({ left, title, body }) => {
+const Message = ({ icon, left, title, body }) => {
   return (
     <Container>
-      <Left>{left ? left : <Avatar />}</Left>
+      <Left>{left ? left : <Avatar icon={icon} />}</Left>
       <Right>
         <Header>{title}</Header>
         <Body>{body}</Body>
