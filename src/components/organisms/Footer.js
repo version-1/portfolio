@@ -53,14 +53,19 @@ const Footer = ({ page, postMessage }) => {
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
           onChange={e => {
+            if (e.keyCode === 13) {
+              return
+            }
             setContent(e.target.value)
           }}
           onKeyUp={e => {
-            if (content && e.keyCode !== 13) {
+            const _content = content.replace(/\n$/, '')
+            const __content = content.replace(/\n/g, '')
+            if (!__content || !_content || e.keyCode !== 13) {
               return
             }
             e.preventDefault()
-            postMessage({ sender: 'you', content })
+            postMessage({ sender: 'you', content: _content })
             setContent('')
             const ele = document.querySelector(`.${CHAT_INPUT_FORM}`)
             ele.value = ''
