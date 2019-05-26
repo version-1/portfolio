@@ -91,27 +91,40 @@ const mutations = {
     const links = list.map(article => article.link)
     const _queue = queue.filter(item => !links.includes(item.link))
     const newList = [...prevList, ...list]
-    const sortedList = newList.sort((a, b) => moment(a.pubDate).unix() - moment(b.pubDate).unix())
-    this.setState({ articles: { queue: _queue, list: sortedList } })
+    const sortedList = newList.sort(
+      (a, b) => moment(a.pubDate).unix() - moment(b.pubDate).unix()
+    )
+    this.setState(
+      { articles: { queue: _queue, list: sortedList } },
+      () => this.mutations.scrollBottom()
+    )
   },
   postMessage: function(message) {
     const { key } = this.state.page
     const _messages = this.state.messages[key]
     const newMessages = [..._messages, message]
     this.setState({ messages: { ...this.state.messages, [key]: newMessages } })
-    setTimeout(() => this.mutations.scrollBottom(), 500)
+    setTimeout(() => this.mutations.scrollBottom(), 100)
   },
   fetchRssFeedAsync: async function() {
-    const { updateArticles, addArticleList } = this.mutations
+    const {
+      updateArticles,
+      addArticleList,
+      startLoading,
+      stopLoading,
+    } = this.mutations
+    startLoading('content')
     const { items } = await fetchRss()
     this.mutations.updateArticles(items)
-    const count = Math.ceil(items.length / 10 )
+    const count = Math.ceil(items.length / 10)
     new Array(count).fill('').map(async (_, index) => {
       const group = items.slice(index * 10, (index + 1) * 10)
       const _group = await fetchThumbnails(group, console.error)
-      this.mutations.scrollBottom()
       const sleep = await setTimeout(() => {}, 3000)
       addArticleList(_group)
+      if (index === 0) {
+        stopLoading('content')
+      }
     })
   },
   showModal: function({ title, content }) {
@@ -150,8 +163,10 @@ const mutations = {
   },
   scrollBottom() {
     const body = document.body.querySelector('.content-body')
-    body.scrollTop = body.scrollHeight
-  }
+    if (body) {
+      body.scrollTop = body.scrollHeight
+    }
+  },
 }
 
 const getters = {

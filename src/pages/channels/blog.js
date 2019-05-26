@@ -4,6 +4,7 @@ import moment from 'moment'
 
 import Context from 'context'
 import { Body } from 'components/styles'
+import More from 'components/atoms/More'
 import Layout from 'components/templates/Layout'
 import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
@@ -34,9 +35,14 @@ class Component extends React.PureComponent {
                 <>
                   <p>{moment(article.pubDate).format('LL')}</p>
                   <a href={article.guid}>
-                    <img src={article.thumbnail} alt={article.title} width="320"/>
+                    <img
+                      src={article.thumbnail}
+                      alt={article.title}
+                      width="320"
+                    />
                   </a>
                   <p>{article.contentSnippet}</p>
+                  <More href={article.guid} />
                 </>
               }
             />
