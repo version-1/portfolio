@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
+import blogThumbnail from 'assets/ver-1-0.net.thumbnail.png'
 
 import Context from 'context'
 import { Body, More } from 'components/styles'
@@ -9,7 +10,14 @@ import Layout from 'components/templates/Layout'
 import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
 import Blog from 'components/templates/works/Blog'
+import Snake from 'components/templates/works/Snake'
 import colors from 'constants/colors'
+
+const Thumbnail = styled.img`
+  cursor: pointer;
+  width: 320px;
+  margin: 16px 0px;
+`
 
 class Component extends React.PureComponent {
   componentDidMount() {
@@ -20,10 +28,20 @@ class Component extends React.PureComponent {
     init(path)
   }
 
+  onClickBlog = () => {
+    this.props.context.mutations.showModal({ title: 'Work', content: <Blog /> })
+  }
+
+  onClickSnake = () => {
+    this.props.context.mutations.showModal({
+      title: 'Work',
+      content: <Snake />,
+    })
+  }
+
   render() {
     const { mutations, getters, state } = this.props.context
     const { page } = state
-    const { showModal } = mutations
 
     return (
       <Page state={state} getters={getters}>
@@ -33,14 +51,13 @@ class Component extends React.PureComponent {
             <>
               Blog's Theme is engineering, work for freelnce, travel. I designed
               UI and developed and wrote all articles in this blog.
+              <Thumbnail
+                onClick={this.onClickBlog}
+                src={blogThumbnail}
+                alt="blog thumbanail"
+              />
               <p>
-                <More
-                  onClick={() =>
-                    showModal({ title: 'Work', content: <Blog /> })
-                  }
-                >
-                  more...
-                </More>
+                <More onClick={this.onClickBlog}>more...</More>
               </p>
             </>
           }
@@ -49,10 +66,17 @@ class Component extends React.PureComponent {
           title="React Snake Game"
           body={
             <>
-              Well-known Snake Game implemented with React. you can play it on
-              web.
               <p>
-                <More>more...</More>
+                Well-known Snake Game implemented with React. you can play it on
+                web.
+              </p>
+              <Thumbnail
+                onClick={this.onClickSnake}
+                src="https://statics.ver-1-0.net/uploads/2018/06/20180627_react-snake-game-3/snake.png"
+                alt="snake thumbanail"
+              />
+              <p>
+                <More onClick={this.onClickSnake}>more...</More>
               </p>
             </>
           }
