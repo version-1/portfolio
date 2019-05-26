@@ -7,17 +7,21 @@ import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
 
 class Component extends React.PureComponent {
-  async componentDidMount() {
+  componentDidMount() {
     const {
       mutations: { init, fetchRssFeedAsync },
     } = this.props.context
     const path = this.props.props['*']
     init(path)
 
-    await fetchRssFeedAsync()
+    fetchRssFeedAsync()
   }
 
   render() {
+    if (!this.props.context) {
+      // block beause error occurs on build
+      return <></>
+    }
     const { getters, state } = this.props.context
     const { list } = state.articles
 
