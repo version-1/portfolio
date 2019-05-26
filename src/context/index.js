@@ -1,5 +1,5 @@
 import React from 'react'
-import { fetch } from 'services/rss'
+import { fetchRss, fetchThumbnails } from 'services/rss'
 
 const Context = React.createContext()
 
@@ -62,7 +62,10 @@ const initialState = {
   page,
   channels,
   dm,
-  articles: [],
+  articles: {
+    queue: [],
+    list: [],
+  },
   messages,
   modal,
   loading: {
@@ -78,8 +81,15 @@ const mutations = {
     )
     this.setState({ page: { ...page, key } })
   },
-  updateArticles: function(articles) {
-    this.setState({ articles })
+  updateArticles: function(items) {
+    const { list } = this.state.articles
+    this.setState({ articles: { queue: items, list } })
+  },
+  addArticleList: function(list) {
+    const { queue, list: prevList } = this.state.articles
+    const links = list.map(article => article.link)
+    const _queue = queue.filter(item => !links.includes(item.link))
+    this.setState({ articles: { queue: _queue, list: [...prevList, ...list] } })
   },
   postMessage: function(message) {
     const { key } = this.state.page
@@ -88,12 +98,16 @@ const mutations = {
     this.setState({ messages: { ...this.state.messages, [key]: newMessages } })
   },
   fetchRssFeedAsync: async function() {
-    this.mutations.startLoading('content')
-    await fetch(
-      feeds => this.mutations.updateArticles(feeds.items),
-      console.error
-    )
-    this.mutations.stopLoading('content')
+    const { updateArticles, addArticleList } = this.mutations
+    const { items } = await fetchRss()
+    this.mutations.updateArticles(items)
+    const count = Math.ceil(items.length / 10 )
+    new Array(count).fill('').map(async (_, index) => {
+      const group = items.slice(index * 10, (index + 1) * 10)
+      const _group = await fetchThumbnails(group, console.error)
+      const sleep = await setTimeout(() => {}, 1000)
+      addArticleList(_group)
+    })
   },
   showModal: function({ title, content }) {
     const modal = { show: true, title, content }
