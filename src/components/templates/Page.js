@@ -9,6 +9,16 @@ import Message from 'components/molecules/Message'
 import SEO from 'components/organisms/Seo'
 import colors from 'constants/colors'
 
+const parseContent = content => {
+  return (
+    <>
+      {content.split('\n').map(line => (
+        line ? <P>{line}</P> : <p></p>
+      ))}
+    </>
+  )
+}
+
 const Page = ({ children, state, getters }) => {
   const { page } = state
   const { messages } = getters
@@ -20,7 +30,10 @@ const Page = ({ children, state, getters }) => {
         <>
           {children}
           {messages().map(message => (
-            <Message title={message.sender} body={message.content} />
+            <Message
+              title={message.sender}
+              body={parseContent(message.content)}
+            />
           ))}
         </>
       </Body>
