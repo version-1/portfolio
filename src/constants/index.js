@@ -1,4 +1,5 @@
 export default {
+  author: 'version-1',
   headerHeight: '100px',
   sidebarWidth: '256px',
   sidebarLeftWidth: '80px',

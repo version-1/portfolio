@@ -3,7 +3,7 @@
   "private": true,
   "description": "My Portfolio with Gatsby",
   "version": "0.1.0",
-  "author": "Jiro Onodera <j.onodera@gmail.com>",
+  "author": "version-1 <12.05.xxxx@gmail.com>",
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.0",
     "gatsby": "^2.5.7",

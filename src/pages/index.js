@@ -24,7 +24,7 @@ class Component extends React.PureComponent {
           title="Full Stack Engineer(React, React Native, Ruby on Rails)"
           body={
             <>
-              <p>Name: jjoo</p>
+              <p></p>
               <LI>
                 Programmer with skill of developping high quality and scalable
                 web system. Be familiar With React and Ruby on Rails.{' '}
