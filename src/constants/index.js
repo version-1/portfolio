@@ -1,5 +1,7 @@
+
 export default {
   author: 'version-1',
+  origin: window ? window.location.origin : 'http://localhost:8000',
   headerHeight: '100px',
   sidebarWidth: '256px',
   sidebarLeftWidth: '80px',
