@@ -44,8 +44,7 @@ class Component extends React.PureComponent {
           body={
             <>
               <P>
-                Don't Worry. YOUR MESSAGE IS NOT SHARED OTHER PERSON THROUGH
-                THIS SITE{' '}
+                Don't Worry. YOUR MESSAGE IS NOT SHARED OTHERS THROUGH THIS SITE.
               </P>
             </>
           }
