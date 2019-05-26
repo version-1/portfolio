@@ -5,6 +5,7 @@ import thumbnail from 'assets/thumbnail.png'
 import favicon from 'assets/favicon.ico'
 import constants from 'constants'
 import { useStaticQuery, graphql } from 'gatsby'
+import _ from 'lodash'
 
 function SEO({ description, lang, meta, title }) {
   const { site } = useStaticQuery(
@@ -28,7 +29,7 @@ function SEO({ description, lang, meta, title }) {
       htmlAttributes={{
         lang,
       }}
-      title={title}
+      title={_.startCase(title)}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
         {
@@ -37,7 +38,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: `og:title`,
-          content: title,
+          content: `${_.startCase(title)} | ${site.siteMetadata.title}`,
         },
         {
           property: `og:image`,
@@ -69,7 +70,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: `${_.startCase(title)} | ${site.siteMetadata.title}`,
         },
         {
           name: `twitter:description`,
