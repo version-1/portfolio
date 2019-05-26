@@ -113,12 +113,16 @@ const mutations = {
       startLoading,
       stopLoading,
     } = this.mutations
+    if (this.state.articles.list.length > 0) {
+      return
+    }
     startLoading('content')
     const { items } = await fetchRss()
-    this.mutations.updateArticles(items)
-    const count = Math.ceil(items.length / 10)
+    const targets = items.slice(0, 30)
+    this.mutations.updateArticles(targets)
+    const count = Math.ceil(targets.length / 10)
     new Array(count).fill('').map(async (_, index) => {
-      const group = items.slice(index * 10, (index + 1) * 10)
+      const group = targets.slice(index * 10, (index + 1) * 10)
       const _group = await fetchThumbnails(group, console.error)
       const sleep = await setTimeout(() => {}, 3000)
       addArticleList(_group)
