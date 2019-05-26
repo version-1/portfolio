@@ -11,7 +11,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
+        path: `${__dirname}/src/assets`,
       },
     },
     `gatsby-transformer-sharp`,
@@ -24,8 +24,7 @@ module.exports = {
         start_url: `/`,
         background_color: `#FF9F01`,
         theme_color: `#FF9F01`,
-        display: `minimal-ui`,
-        icon: `src/assets/favicon.ico`,
+        display: `minimal-ui`
       },
     },
   ],
