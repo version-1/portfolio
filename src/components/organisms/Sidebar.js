@@ -56,12 +56,6 @@ const Sidebar = ({ state, channels, dm }) => (
     <Right>
       <Header />
       <Body>
-        <Input>
-          <TextInput>
-            <MdMenu color={colors.weakText} />
-            Jump to...
-          </TextInput>
-        </Input>
         <Public>
           <Title>Channels</Title>
           <ChannelList page={state.page} list={channels} />
