@@ -1,12 +1,14 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
+import Img from 'gatsby-image'
 
 import Context from 'context'
 import { Body, More } from 'components/styles'
 import Layout from 'components/templates/Layout'
 import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
+import Blog from 'components/templates/works/Blog'
 import colors from 'constants/colors'
 
 class Component extends React.PureComponent {
@@ -22,7 +24,6 @@ class Component extends React.PureComponent {
     const { mutations, getters, state } = this.props.context
     const { page } = state
     const { showModal } = mutations
-    const content = <div>Hello World</div>
 
     return (
       <Page state={state} getters={getters}>
@@ -32,7 +33,15 @@ class Component extends React.PureComponent {
             <>
               Blog's Theme is engineering, work for freelnce, travel. I designed
               UI and developed and wrote all articles in this blog.
-              <p><More onClick={() => showModal({ title: 'Work', content })}>more...</More></p>
+              <p>
+                <More
+                  onClick={() =>
+                    showModal({ title: 'Work', content: <Blog /> })
+                  }
+                >
+                  more...
+                </More>
+              </p>
             </>
           }
         />
@@ -42,7 +51,9 @@ class Component extends React.PureComponent {
             <>
               Well-known Snake Game implemented with React. you can play it on
               web.
-              <p><More>more...</More></p>
+              <p>
+                <More>more...</More>
+              </p>
             </>
           }
         />
@@ -51,7 +62,9 @@ class Component extends React.PureComponent {
           body={
             <>
               npm package.
-              <p><More>more...</More></p>
+              <p>
+                <More>more...</More>
+              </p>
             </>
           }
         />
@@ -61,7 +74,9 @@ class Component extends React.PureComponent {
             <>
               React Native application for real estate agent. They can output
               documents required on trade easily with this.
-              <p><More>more...</More></p>
+              <p>
+                <More>more...</More>
+              </p>
             </>
           }
         />
@@ -71,7 +86,9 @@ class Component extends React.PureComponent {
             <>
               C to C Web Service. User can sale their used home applicances and
               buy them cheaper.
-              <p><More>more...</More></p>
+              <p>
+                <More>more...</More>
+              </p>
             </>
           }
         />
