@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import constants from 'constants'
 import colors from 'constants/colors'
 
 const Container = styled.footer`

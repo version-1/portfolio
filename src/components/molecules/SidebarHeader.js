@@ -1,7 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import styled from 'styled-components'
-import SNSLinks from 'components/molecules/SNSLinks'
 import colors from 'constants/colors'
 import constants from 'constants'
 
@@ -27,7 +25,7 @@ const SPAN = styled.span`
 
 const SidebarHeader = () => (
   <Container>
-    <Title>{constants.author}<SPAN>{"\'s"}</SPAN></Title>
+    <Title>{constants.author}<SPAN>{"'s"}</SPAN></Title>
     <SubTitle>portfolio site</SubTitle>
   </Container>
 )

@@ -10,22 +10,6 @@ const rotate = keyframes`
     transform: rotate(360deg);
   }
 `
-
-const Container = styled.div`
-  display: inline-block;
-  position: relative;
-  width: ${({size}) => size ? `${size * 1.1}px` : '64px'};
-  height: ${({size}) => size ? `${size * 1.1}px` : '64px'};
-  & ${DIV}:nth-child(1) {
-    animation-delay: -0.225s;
-  }
-  & ${DIV}:nth-child(2) {
-    animation-delay: -0.15s;
-  }
-  & ${DIV}:nth-child(3) {
-    animation-delay: -0.0725s;
-  }
-`
 const DIV = styled.div`
   box-sizing: border-box;
   display: block;
@@ -39,6 +23,21 @@ const DIV = styled.div`
   border-color: ${colors.spinnerColor} transparent transparent transparent;
 `
 
+const Container = styled.div`
+  display: inline-block;
+  position: relative;
+  width: ${({ size }) => (size ? `${size * 1.1}px` : '64px')};
+  height: ${({ size }) => (size ? `${size * 1.1}px` : '64px')};
+  & ${DIV}:nth-child(1) {
+    animation-delay: -0.225s;
+  }
+  & ${DIV}:nth-child(2) {
+    animation-delay: -0.15s;
+  }
+  & ${DIV}:nth-child(3) {
+    animation-delay: -0.0725s;
+  }
+`
 const Spinner = ({ size }) => (
   <Container size={size}>
     <DIV size={size} />
