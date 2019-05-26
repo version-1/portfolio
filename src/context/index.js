@@ -1,6 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 import { fetchRss, fetchThumbnails } from 'services/rss'
+import * as slack from 'services/slack'
 
 const Context = React.createContext()
 
@@ -44,6 +45,7 @@ const dm = {
 
 const allChannels = { ...channels, ...dm }
 const allChannelKeys = Object.keys(allChannels)
+const notifableChannels = ['me']
 
 const messages = allChannelKeys.reduce(
   (acc, key) => ({ ...acc, [key]: [] }),
@@ -100,6 +102,9 @@ const mutations = {
     const { key } = this.state.page
     const _messages = this.state.messages[key]
     const newMessages = [..._messages, message]
+    if (notifableChannels.includes(key)) {
+      slack.notify(message)
+    }
     this.setState({ messages: { ...this.state.messages, [key]: newMessages } })
     setTimeout(() => this.mutations.scrollBottom(), 100)
   },
