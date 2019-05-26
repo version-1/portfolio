@@ -11,6 +11,8 @@ import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
 import Blog from 'components/templates/works/Blog'
 import Snake from 'components/templates/works/Snake'
+import Kurouto from 'components/templates/works/Kurouto'
+import Smama from 'components/templates/works/Smama'
 import colors from 'constants/colors'
 
 const Thumbnail = styled.img`
@@ -36,6 +38,20 @@ class Component extends React.PureComponent {
     this.props.context.mutations.showModal({
       title: 'Work',
       content: <Snake />,
+    })
+  }
+
+  onClickKurouto = () => {
+    this.props.context.mutations.showModal({
+      title: 'Work',
+      content: <Kurouto />,
+    })
+  }
+
+  onClickSmama = () => {
+    this.props.context.mutations.showModal({
+      title: 'Work',
+      content: <Smama />,
     })
   }
 
@@ -85,9 +101,12 @@ class Component extends React.PureComponent {
           title="React Native Various Form"
           body={
             <>
-              npm package.
+              npm package. It provides some components for Input Form. You can
+              implement Field, Form and Validator easily on React Native.
               <p>
-                <More>more...</More>
+                <a href="https://github.com/version-1/react-native-various-form">
+                  more...
+                </a>
               </p>
             </>
           }
@@ -99,7 +118,7 @@ class Component extends React.PureComponent {
               React Native application for real estate agent. They can output
               documents required on trade easily with this.
               <p>
-                <More>more...</More>
+                <More onClick={this.onClickKurouto}>more...</More>
               </p>
             </>
           }
@@ -108,10 +127,10 @@ class Component extends React.PureComponent {
           title="SMAMA"
           body={
             <>
-              C to C Web Service. User can sale their used home applicances and
+              C to C Web Service. User can sale their used home appliances and
               buy them cheaper.
               <p>
-                <More>more...</More>
+                <More onClick={this.onClickSmama}>more...</More>
               </p>
             </>
           }

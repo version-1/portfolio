@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import blogThumbnail from 'assets/ver-1-0.net.thumbnail.png'
 import constants from 'constants'
 
 const Container = styled.div``
