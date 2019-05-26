@@ -8,10 +8,6 @@ import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
 
 class Component extends React.PureComponent {
-  get limit() {
-    return 10
-  }
-
   async componentDidMount() {
     const {
       mutations: { init, fetchRssFeedAsync }
@@ -24,20 +20,17 @@ class Component extends React.PureComponent {
 
   render() {
     const { getters, state } = this.props.context
-    const { articles } = state
+    const { list } = state.articles
 
     return (
       <Page state={state} getters={getters}>
-        {articles
-          .slice(0, this.limit)
-          .reverse()
-          .map(article => (
-            <Message
+        {list.map(article => {
+           return  <Message
               key={article.title}
               title={article.title}
               body={<>{article.content.slice(0, 150)}</>}
             />
-          ))}
+        })}
       </Page>
     )
   }
