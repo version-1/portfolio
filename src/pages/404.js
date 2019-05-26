@@ -1,14 +1,36 @@
-import React from "react"
+import React from 'react'
+import { Link } from 'gatsby'
+import styled from 'styled-components'
 
-import Layout from "components/templates/Layout"
-import SEO from "components/organisms/Seo"
+import Modal from 'components/templates/Modal'
+import notFound from 'assets/404.png'
+
+const Content = styled.div`
+  display: flex;
+  justify-content: center;
+  & p,
+  & h1 {
+    text-align: center;
+  }
+`
 
 const NotFoundPage = () => (
-  <Layout>
-    <SEO title="404: Not found" />
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </Layout>
+  <Modal
+    show
+    title="Not Found 404"
+    hideModal={() => (window ? (window.location.href = '/') : undefined)}
+    content={
+      <Content>
+        <div>
+          <h1>NOT FOUND PAGE</h1>
+          <Link to="/">
+            <img src={notFound} alt="404" />
+          </Link>
+          <p>Click Image and Go to TOP.</p>
+        </div>
+      </Content>
+    }
+  />
 )
 
 export default NotFoundPage
