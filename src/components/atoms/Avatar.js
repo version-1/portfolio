@@ -3,12 +3,6 @@ import styled from 'styled-components'
 import avatar from 'assets/avatar.png'
 
 const Container = styled.div``
-const Content = styled.div`
-  height: 52px;
-  width: 52px;
-  background-color: lightgray;
-  border-radius: 6px;
-`
 
 const Img = styled.img`
   height: 52px;

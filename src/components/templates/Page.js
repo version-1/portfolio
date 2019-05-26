@@ -1,22 +1,13 @@
 import React from 'react'
-import { Link } from 'gatsby'
 
 import you from 'assets/you.png'
-import Context from 'context'
-import { Body, H3, P, LI, Bold } from 'components/styles'
+import { Body, P } from 'components/styles'
 import Layout from 'components/templates/Layout'
 import Message from 'components/molecules/Message'
 import SEO from 'components/organisms/Seo'
-import colors from 'constants/colors'
 
 const parseContent = content => {
-  return (
-    <>
-      {content.split('\n').map(line => (
-        line ? <P>{line}</P> : <p></p>
-      ))}
-    </>
-  )
+  return <>{content.split('\n').map(line => (line ? <P>{line}</P> : <p />))}</>
 }
 
 const Page = ({ children, state, getters }) => {

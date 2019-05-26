@@ -1,9 +1,6 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import styled from 'styled-components'
 
-import constants from 'constants'
-import colors from 'constants/colors'
 import Spinner from 'components/atoms/Spinner'
 
 const Container = styled.div`

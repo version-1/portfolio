@@ -1,9 +1,7 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import styled from 'styled-components'
 
 import MdClose from 'react-ionicons/lib/MdClose'
-import colors from 'constants/colors'
 
 const Container = styled.div`
   z-index: 1000;

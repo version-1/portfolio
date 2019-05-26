@@ -1,12 +1,11 @@
-import React from "react"
-import styled from "styled-components"
-import LogoGithub from "react-ionicons/lib/LogoGithub"
-import LogoLinkedin from "react-ionicons/lib/LogoLinkedin"
-import LogoTwitter from "react-ionicons/lib/LogoTwitter"
-import { Link } from "gatsby"
+import React from 'react'
+import styled from 'styled-components'
+import LogoGithub from 'react-ionicons/lib/LogoGithub'
+import LogoLinkedin from 'react-ionicons/lib/LogoLinkedin'
+import LogoTwitter from 'react-ionicons/lib/LogoTwitter'
 import colors from 'constants/colors'
 
-import LogoBlog from "components/atoms/BlogIcon"
+import LogoBlog from 'components/atoms/BlogIcon'
 
 const BlogIcon = styled.div`
   height: 60;
@@ -16,7 +15,7 @@ const BlogIcon = styled.div`
   background-color: ${colors.sidebarLeftIcon};
   border-radius: 6px;
   padding: 10;
-  color: "#ffffff";
+  color: '#ffffff';
 `
 const Item = styled.li`
   text-align: center;
@@ -25,8 +24,8 @@ const Container = styled.div``
 
 const snsLinks = [
   {
-    text: "blog",
-    to: "https://ver-1-0.net",
+    text: 'blog',
+    to: 'https://ver-1-0.net',
     icon: (
       <BlogIcon>
         <LogoBlog />
@@ -34,8 +33,8 @@ const snsLinks = [
     ),
   },
   {
-    text: "github",
-    to: "https://github.com/version-1",
+    text: 'github',
+    to: 'https://github.com/version-1',
     icon: (
       <BlogIcon>
         <LogoGithub color="#ffffff" />
@@ -43,8 +42,8 @@ const snsLinks = [
     ),
   },
   {
-    text: "linkedin",
-    to: "https://www.linkedin.com/in/jiro-onodera-1b3766145",
+    text: 'linkedin',
+    to: 'https://www.linkedin.com/in/jiro-onodera-1b3766145',
     icon: (
       <BlogIcon>
         <LogoLinkedin color="#ffffff" />
@@ -52,8 +51,8 @@ const snsLinks = [
     ),
   },
   {
-    text: "twitter",
-    to: "https://twitter.com/version1_2017",
+    text: 'twitter',
+    to: 'https://twitter.com/version1_2017',
     icon: (
       <BlogIcon>
         <LogoTwitter color="#ffffff" />
@@ -68,7 +67,9 @@ const SNSLinks = props => {
       <ul>
         {snsLinks.map(({ to, icon }) => (
           <Item key={to}>
-            <a href={to} target="_blank">{icon}</a>
+            <a href={to} target="_blank" rel="noopener noreferrer">
+              {icon}
+            </a>
           </Item>
         ))}
       </ul>

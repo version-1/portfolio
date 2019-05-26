@@ -2,10 +2,9 @@ import React from 'react'
 import { Link } from 'gatsby'
 
 import Context from 'context'
-import { Body, H3, P, LI, Bold, More } from 'components/styles'
+import { H3, P, LI, Bold, More } from 'components/styles'
 import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
-import colors from 'constants/colors'
 
 class Component extends React.PureComponent {
   componentDidMount() {
@@ -16,7 +15,6 @@ class Component extends React.PureComponent {
   render() {
     const { getters, state } = this.props.context
     const { channels } = state
-    const { messages } = getters
 
     return (
       <Page state={state} getters={getters}>

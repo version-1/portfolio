@@ -1,19 +1,15 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import styled from 'styled-components'
-import Img from 'gatsby-image'
 import blogThumbnail from 'assets/ver-1-0.net.thumbnail.png'
 
 import Context from 'context'
-import { Body, More } from 'components/styles'
-import Layout from 'components/templates/Layout'
+import { More } from 'components/styles'
 import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
 import Blog from 'components/templates/works/Blog'
 import Snake from 'components/templates/works/Snake'
 import Kurouto from 'components/templates/works/Kurouto'
 import Smama from 'components/templates/works/Smama'
-import colors from 'constants/colors'
 
 const Thumbnail = styled.img`
   cursor: pointer;
@@ -56,8 +52,7 @@ class Component extends React.PureComponent {
   }
 
   render() {
-    const { mutations, getters, state } = this.props.context
-    const { page } = state
+    const { getters, state } = this.props.context
 
     return (
       <Page state={state} getters={getters}>

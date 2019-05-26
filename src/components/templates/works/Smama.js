@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import smamaThumbnail from 'assets/smama.thumbnail.png'
-import constants from 'constants'
 
 const Container = styled.div``
 const Header = styled.div``

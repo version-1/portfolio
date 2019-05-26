@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import kuroutoThumbnail from 'assets/kurouto.thumbnail.png'
-import constants from 'constants'
 
 const Container = styled.div``
 const Header = styled.div``

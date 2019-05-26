@@ -1,7 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import styled from 'styled-components'
-import MdMenu from 'react-ionicons/lib/MdMenu'
 import SNSLinks from 'components/molecules/SNSLinks'
 import ChannelList from 'components/molecules/ChannelList'
 import Header from 'components/molecules/SidebarHeader'
@@ -33,19 +31,6 @@ const Title = styled.div`
   padding: 16px;
   padding-bottom: 0;
   color: ${colors.weakText};
-`
-
-const Input = styled.div`
-  padding: 8px;
-`
-const TextInput = styled.div`
-  display: flex;
-  align-items: center;
-  background-color: #f9b444;
-  color: ${colors.weakText};
-  border-radius: 6px;
-  height: 26px;
-  padding: 3px;
 `
 
 const Sidebar = ({ state, channels, dm }) => (

@@ -1,10 +1,6 @@
 import React from 'react'
-import { Link } from 'gatsby'
 
 import Context from 'context'
-import { Body } from 'components/styles'
-import Layout from 'components/templates/Layout'
-import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
 
 class Component extends React.PureComponent {

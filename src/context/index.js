@@ -43,9 +43,7 @@ const dm = {
 }
 
 const allChannels = { ...channels, ...dm }
-const channelKeys = Object.keys(channels)
 const allChannelKeys = Object.keys(allChannels)
-const dmKeys = Object.keys(dm)
 
 const messages = allChannelKeys.reduce(
   (acc, key) => ({ ...acc, [key]: [] }),
@@ -77,7 +75,7 @@ const initialState = {
 }
 const mutations = {
   updatePage: function(page) {
-    const [key, val] = Object.entries(allChannels).find(
+    const [key] = Object.entries(allChannels).find(
       ([key, val]) => val.url === page.url
     )
     this.setState({ page: { ...page, key } })
@@ -94,9 +92,8 @@ const mutations = {
     const sortedList = newList.sort(
       (a, b) => moment(a.pubDate).unix() - moment(b.pubDate).unix()
     )
-    this.setState(
-      { articles: { queue: _queue, list: sortedList } },
-      () => this.mutations.scrollBottom()
+    this.setState({ articles: { queue: _queue, list: sortedList } }, () =>
+      this.mutations.scrollBottom()
     )
   },
   postMessage: function(message) {
@@ -107,12 +104,7 @@ const mutations = {
     setTimeout(() => this.mutations.scrollBottom(), 100)
   },
   fetchRssFeedAsync: async function() {
-    const {
-      updateArticles,
-      addArticleList,
-      startLoading,
-      stopLoading,
-    } = this.mutations
+    const { addArticleList, startLoading, stopLoading } = this.mutations
     if (this.state.articles.list.length > 0) {
       return
     }
@@ -124,7 +116,7 @@ const mutations = {
     new Array(count).fill('').map(async (_, index) => {
       const group = targets.slice(index * 10, (index + 1) * 10)
       const _group = await fetchThumbnails(group, console.error)
-      const sleep = await setTimeout(() => {}, 3000)
+      await setTimeout(() => {}, 3000)
       addArticleList(_group)
       if (index === 0) {
         stopLoading('content')

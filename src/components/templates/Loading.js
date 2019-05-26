@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import styled from 'styled-components'
 
 import constants from 'constants'
@@ -7,7 +6,7 @@ import colors from 'constants/colors'
 import Spinner from 'components/atoms/Spinner'
 
 const Container = styled.div`
-  display: ${({ show }) => show? 'flex' : 'none'};
+  display: ${({ show }) => (show ? 'flex' : 'none')};
   z-index: 1000;
   background-color: white;
   position: fixed;
@@ -16,32 +15,6 @@ const Container = styled.div`
   height: 100%;
   opacity: ${({ show }) => (show ? 1 : 0)};
   width: 100%;
-`
-
-const Header = styled.div`
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
-  display: ${({ show }) => (show ? 'flex' : 'none')};
-  height: 60px;
-  align-items: center;
-`
-const Title = styled.h2`
-  margin: 0px;
-  text-align: center;
-  width: 100%;
-`
-
-const Close = styled.div`
-  position: fixed;
-  right: 16px;
-  top: 16px;
-  cursor: pointer;
-`
-const Content = styled.div`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `
 
 const Sidebar = styled.div`
@@ -75,7 +48,7 @@ const Loading = ({ show }) => {
         <SidebarRight />
       </Sidebar>
       <Main>
-        <Spinner/>
+        <Spinner />
       </Main>
     </Container>
   )

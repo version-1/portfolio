@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import constants from 'constants'
 
 const Container = styled.div``
 const Header = styled.div``
@@ -22,8 +21,6 @@ const Video = styled.video`
 const Spacer = styled.div`
   height: 30px;
 `
-
-const Thumbnail = styled.img``
 
 const Blog = props => {
   return (

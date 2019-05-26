@@ -1,9 +1,7 @@
 import React from 'react'
-import { Link } from 'gatsby'
 
 import Context from 'context'
-import { Body, LI, H3, Bold } from 'components/styles'
-import Layout from 'components/templates/Layout'
+import { LI, H3, Bold } from 'components/styles'
 import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
 
@@ -18,7 +16,6 @@ class Component extends React.PureComponent {
 
   render() {
     const { getters, state } = this.props.context
-    const { page, channels } = state
 
     return (
       <Page state={state} getters={getters}>
