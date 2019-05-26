@@ -2,6 +2,8 @@
 export default {
   author: 'version-1',
   origin: window ? window.location.origin : 'http://localhost:8000',
+  development: process.env.NODE_ENV === 'development',
+  production: process.env.NODE_ENV === 'production',
   headerHeight: '100px',
   sidebarWidth: '256px',
   sidebarLeftWidth: '80px',

@@ -10,6 +10,7 @@ import Modal from 'components/templates/Modal'
 import Loading from 'components/templates/Loading'
 import ContentLoading from 'components/templates/ContentLoading'
 import Context from 'context'
+import constants from 'constants'
 
 const Container = styled.div`
   display: flex;
@@ -38,7 +39,9 @@ const Layout = ({ children }) => (
             state: { page, modal, channels, dm, loading },
             mutations: { hideModal, postMessage },
           } = context
-          console.log('rerender', context.state)
+          if (constants.development) {
+            console.log('rerender', context.state)
+          }
           return (
             <>
               <GlobalStyle />
