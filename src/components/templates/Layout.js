@@ -54,7 +54,7 @@ const Layout = ({ children }) => (
                   {loading.content ? (
                     <ContentLoading show={loading.content} />
                   ) : (
-                    <Body>{children}</Body>
+                    <Body className="content-body">{children}</Body>
                   )}
                   <Footer page={page} postMessage={postMessage} />
                 </main>

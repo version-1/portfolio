@@ -1,5 +1,6 @@
 import React from 'react'
 import Parser from 'rss-parser'
+import moment from 'moment'
 
 import Context from 'context'
 import { Body } from 'components/styles'
@@ -10,7 +11,7 @@ import Page from 'components/templates/Page'
 class Component extends React.PureComponent {
   async componentDidMount() {
     const {
-      mutations: { init, fetchRssFeedAsync }
+      mutations: { init, fetchRssFeedAsync },
     } = this.props.context
     const path = this.props.props['*']
     init(path)
@@ -25,11 +26,21 @@ class Component extends React.PureComponent {
     return (
       <Page state={state} getters={getters}>
         {list.map(article => {
-           return  <Message
+          return (
+            <Message
               key={article.title}
               title={article.title}
-              body={<>{article.content.slice(0, 150)}</>}
+              body={
+                <>
+                  <p>{moment(article.pubDate).format('LL')}</p>
+                  <a href={article.guid}>
+                    <img src={article.thumbnail} alt={article.title} width="320"/>
+                  </a>
+                  <p>{article.contentSnippet}</p>
+                </>
+              }
             />
+          )
         })}
       </Page>
     )
