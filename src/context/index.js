@@ -36,7 +36,7 @@ const dm = {
       'Here is your private chat space. Free to post what you think.',
   },
   me: {
-    name: 'jjoo',
+    name: 'me',
     url: '/channels/me',
     description: 'You can free to send message to me.',
   },

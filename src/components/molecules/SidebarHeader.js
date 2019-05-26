@@ -13,7 +13,7 @@ const Container = styled.div`
 const Title = styled.h1`
   font-size: 20px;
   font-weight: bold;
-  color: ${colors.pureWhite}
+  color: ${colors.pureWhite};
 `
 
 const SubTitle = styled.h2`
@@ -21,10 +21,14 @@ const SubTitle = styled.h2`
   font-size: 14px;
 `
 
+const SPAN = styled.span`
+  color: ${colors.weakText};
+`
+
 const SidebarHeader = () => (
   <Container>
-    <Title>jjoo</Title>
-    <SubTitle>engineer portfolio site</SubTitle>
+    <Title>{constants.author}<SPAN>{"\'s"}</SPAN></Title>
+    <SubTitle>portfolio site</SubTitle>
   </Container>
 )
 
