@@ -9,7 +9,7 @@ export const notify = message => {
     return
   }
   notifier.send({
-    channel: '#protfolio',
+    channel: '#portfolio',
     icon_emoji: ':penguin:',
     author_name: 'someone',
     text: content,
