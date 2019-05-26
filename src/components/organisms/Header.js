@@ -6,9 +6,15 @@ import colors from 'constants/colors'
 import LogoTwitter from 'react-ionicons/lib/LogoTwitter'
 import LogoFacebook from 'react-ionicons/lib/LogoFacebook'
 import LogoReddit from 'react-ionicons/lib/LogoReddit'
+import {
+  TwitterShareButton,
+  RedditShareButton,
+  FacebookShareButton,
+} from 'react-share'
 import MdCopy from 'react-ionicons/lib/MdCopy'
 
 import Separator from 'components/atoms/Separator'
+import Tooltip from 'components/atoms/Tooltip'
 
 const Container = styled.header`
   height: ${constants.headerHeight};
@@ -45,14 +51,6 @@ const ButtonGroup = styled.div`
 const VSeparator = styled.div`
   margin: 0 4px;
 `
-
-const icons = [
-  <MdCopy fontSize="16px" color={colors.grayText} />,
-  <LogoTwitter fontSize="16px" color={colors.grayText} />,
-  <LogoReddit fontSize="16px" color={colors.grayText} />,
-  <LogoFacebook fontSize="16px" color={colors.grayText} />,
-]
-
 // ex) Friday, May 24
 const date = moment()
   .format('LLLL')
@@ -61,24 +59,59 @@ const date = moment()
   .join(' ')
   .slice(0, -1)
 
-const Header = ({ page }) => (
-  <Container>
-    <Content>
-      <Title>{page.name}</Title>
-      <Footer>
-        <ButtonGroup>
-          {icons.map(icon => (
-            <>
-              {icon}
-              <VSeparator>|</VSeparator>
-            </>
-          ))}
-        </ButtonGroup>
-        <Description>{page.description}</Description>
-      </Footer>
-    </Content>
-    <Separator text={date} />
-  </Container>
-)
+const copy = url => {
+  navigator.clipboard.writeText(url).then(
+    function() {
+      console.log('Async: Copying to clipboard was successful!')
+    },
+    function(err) {
+      console.error('Async: Could not copy text: ', err)
+    }
+  )
+}
+
+const Header = ({ page }) => {
+  const url = constants.origin + page.url
+  return (
+    <Container>
+      <Content>
+        <Title>{page.name}</Title>
+        <Footer>
+          <input id="copy-text" type="hidden" value={url} />
+          <ButtonGroup>
+            <Tooltip text="copy URL">
+              <MdCopy
+                onClick={() => copy(url)}
+                fontSize="16px"
+                color={colors.grayText}
+              />
+            </Tooltip>
+            <VSeparator>|</VSeparator>
+            <Tooltip text="twitter">
+              <TwitterShareButton url={url}>
+                <LogoTwitter fontSize="16px" color={colors.grayText} />
+              </TwitterShareButton>
+            </Tooltip>
+            <VSeparator>|</VSeparator>
+            <Tooltip text="reddit">
+              <RedditShareButton url={url}>
+                <LogoReddit fontSize="16px" color={colors.grayText} />
+              </RedditShareButton>
+            </Tooltip>
+            <VSeparator>|</VSeparator>
+            <Tooltip text='facebook'>
+              <FacebookShareButton url={url}>
+                <LogoFacebook fontSize="16px" color={colors.grayText} />
+              </FacebookShareButton>
+            </Tooltip>
+            <VSeparator>|</VSeparator>
+          </ButtonGroup>
+          <Description>{page.description}</Description>
+        </Footer>
+      </Content>
+      <Separator text={date} />
+    </Container>
+  )
+}
 
 export default Header
