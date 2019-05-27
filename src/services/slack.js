@@ -1,8 +1,9 @@
 import slack from 'slack-notify'
+import constants from 'constants'
 
-const url = process.env.SLACK_WEBHOOK_URL
+const url = constants.slackWebhookURL
 const notifier = url ? slack(url) : undefined
-console.log('notifier:', !!notifier, process.env)
+console.log('notifier:', !!notifier)
 
 export const notify = message => {
   const { content } = message
