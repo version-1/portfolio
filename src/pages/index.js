@@ -5,6 +5,7 @@ import Context from 'context'
 import { H3, P, LI, Bold, More } from 'components/styles'
 import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
+import constants from 'constants'
 
 class Component extends React.PureComponent {
   componentDidMount() {
@@ -23,10 +24,48 @@ class Component extends React.PureComponent {
     return (
       <Page state={state} getters={getters}>
         <Message
+          title={constants.author}
+          body={
+            <>
+              <p>
+                <Bold>Hello! Welcome to my portfolio site.</Bold> You can check
+                about me in following links.
+              </p>
+              <H3 fontSize={14}>Channels:</H3>
+              <LI>
+                <Link to={channels.top.url}>
+                  <More>#{channels.top.name}</More>
+                </Link>{' '}
+                ・・・Here. If you lost in this site, it's goot to back this
+                channel.
+              </LI>
+              <LI>
+                <Link to={channels.carrier.url}>
+                  <More>#{channels.carrier.name}</More>
+                </Link>{' '}
+                ・・・You can see my work history.
+              </LI>
+              <LI>
+                <Link to={channels.works.url}>
+                  <More>#{channels.works.name}</More>
+                </Link>{' '}
+                ・・・Drop by this channel and take a look at my works.
+              </LI>
+              <LI>
+                <Link to={channels.blog.url}>
+                  <More>#{channels.blog.name}</More>
+                </Link>{' '}
+                ・・・You can read my blog's recently articles.
+              </LI>
+              <p>↓↓↓↓↓↓And introduction is HERE ↓↓↓↓↓↓</p>
+            </>
+          }
+        />
+        <Message
           title="Full Stack Engineer(React, React Native, Ruby on Rails)"
           body={
             <>
-              <p></p>
+              <p />
               <LI>
                 Programmer with skill of developping high quality and scalable
                 web system. Be familiar With React and Ruby on Rails.{' '}
@@ -90,43 +129,6 @@ class Component extends React.PureComponent {
               <P indent={20}>Windows, Mac, Linux</P>
               <H3 fontSize={14}>Database:</H3>
               <P indent={20}>PostgresSQL, MySQL</P>
-            </>
-          }
-        />
-        <Message
-          title="Site Map"
-          body={
-            <>
-              <P>
-                This site is my portfolio site. You can check about me in
-                following links.
-              </P>
-              <H3 fontSize={14}>Channels:</H3>
-              <LI>
-                <Link to={channels.top.url}>
-                  <More>#{channels.top.name}</More>
-                </Link>{' '}
-                ・・・Here. If you lost in this site, it's goot to back this
-                channel.
-              </LI>
-              <LI>
-                <Link to={channels.carrier.url}>
-                  <More>#{channels.carrier.name}</More>
-                </Link>{' '}
-                ・・・You can see my work history.
-              </LI>
-              <LI>
-                <Link to={channels.works.url}>
-                  <More>#{channels.works.name}</More>
-                </Link>{' '}
-                ・・・Drop by this channel and take a look at my works.
-              </LI>
-              <LI>
-                <Link to={channels.blog.url}>
-                  <More>#{channels.blog.name}</More>
-                </Link>{' '}
-                ・・・You can read my blog's recently articles.
-              </LI>
             </>
           }
         />
