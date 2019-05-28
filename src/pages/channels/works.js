@@ -8,7 +8,6 @@ import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
 import Blog from 'components/templates/works/Blog'
 import Snake from 'components/templates/works/Snake'
-import Kurouto from 'components/templates/works/Kurouto'
 import Smama from 'components/templates/works/Smama'
 
 const Thumbnail = styled.img`
@@ -34,13 +33,6 @@ class Component extends React.PureComponent {
     this.props.context.mutations.showModal({
       title: 'Work',
       content: <Snake />,
-    })
-  }
-
-  onClickKurouto = () => {
-    this.props.context.mutations.showModal({
-      title: 'Work',
-      content: <Kurouto />,
     })
   }
 
@@ -106,18 +98,6 @@ class Component extends React.PureComponent {
                 <a href="https://github.com/version-1/react-native-various-form">
                   more...
                 </a>
-              </p>
-            </>
-          }
-        />
-        <Message
-          title="KUROUTO ACT"
-          body={
-            <>
-              React Native application for real estate agent. They can output
-              documents required on trade easily with this.
-              <p>
-                <More onClick={this.onClickKurouto}>more...</More>
               </p>
             </>
           }
