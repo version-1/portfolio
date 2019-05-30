@@ -37,10 +37,10 @@ const Input = styled.textarea`
 
 const CHAT_INPUT_FORM = 'chat-input-form'
 
-const Footer = ({ page, postMessage }) => {
+const Footer = ({ mobile, page, postMessage }) => {
   const [focus, setFocus] = useState(false)
   const [content, setContent] = useState('')
-  const placeholder = [
+  const placeholder = (mobile) => mobile ? ['Message', `#${page.name}`].join(' ') : [
     'Message',
     `#${page.name}.`,
     'Send message by pushing Enter..',
@@ -50,7 +50,7 @@ const Footer = ({ page, postMessage }) => {
       <Content focus={focus}>
         <Input
           className={CHAT_INPUT_FORM}
-          placeholder={placeholder}
+          placeholder={placeholder(mobile)}
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
           onChange={e => {

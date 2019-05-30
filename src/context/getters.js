@@ -1,3 +1,4 @@
+import constants from 'constants'
 export default {
   messages: function() {
     const { key } = this.state.page
@@ -7,6 +8,6 @@ export default {
     if (!this.layout) {
       return null
     }
-    return window
+    return this.layout.width <= constants.breakpoints.mobile
   },
 }
