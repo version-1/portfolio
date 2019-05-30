@@ -15,6 +15,7 @@ import MdCopy from 'react-ionicons/lib/MdCopy'
 
 import Separator from 'components/atoms/Separator'
 import Tooltip from 'components/atoms/Tooltip'
+import { media } from 'components/styles'
 
 const Container = styled.header`
   height: ${constants.headerHeight};
@@ -22,10 +23,15 @@ const Container = styled.header`
 `
 const Content = styled.div`
   padding: 16px;
+  ${media.mobile `padding: 8px;`}
 `
 
 const Title = styled.h1`
   font-size: 20px;
+  ${media.mobile `
+    text-align: center;
+    padding: 8px;
+  `}
   &::before {
     content: '#';
   }
@@ -39,6 +45,7 @@ const Description = styled.p`
 const Footer = styled.div`
   display: flex;
   align-items: center;
+  ${media.mobile `display: none;`}
 `
 
 const ButtonGroup = styled.div`

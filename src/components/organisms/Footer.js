@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import colors from 'constants/colors'
+import { media } from 'components/styles'
 
 const Container = styled.footer`
   width: 100%;
   height: 62px;
   padding: 8px 16px;
+  ${media.mobile `padding: 4px 8px;`}
 `
 
 const Content = styled.div`
