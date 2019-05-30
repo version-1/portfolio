@@ -40,13 +40,15 @@ const Main = styled.div`
   justify-content: center;
 `
 
-const Loading = ({ show }) => {
+const Loading = ({ mobile, show }) => {
   return (
     <Container show={show}>
-      <Sidebar>
-        <SidebarLeft />
-        <SidebarRight />
-      </Sidebar>
+      {!mobile && (
+        <Sidebar>
+          <SidebarLeft />
+          <SidebarRight />
+        </Sidebar>
+      )}
       <Main>
         <Spinner />
       </Main>

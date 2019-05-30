@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import GlobalStyle from 'components/styles/GlobalStyle'
 
 import Header from 'components/organisms/Header'
+import MobileHeader from 'components/organisms/MobileHeader'
 import Footer from 'components/organisms/Footer'
 import Sidebar from 'components/organisms/Sidebar'
 import Modal from 'components/templates/Modal'
@@ -38,30 +39,44 @@ const Layout = ({ children }) => (
           const {
             state: { page, modal, channels, dm, loading },
             mutations: { hideModal, postMessage },
+            getters: { mobile },
           } = context
           if (constants.development) {
             console.log('rerender', context.state)
+            console.log('mobile', mobile())
           }
+          const isMobile = mobile()
           return (
             <>
               <GlobalStyle />
               <Container>
-                <Sidebar
-                  state={context.state}
-                  channels={Object.values(channels)}
-                  dm={Object.values(dm)}
-                />
+                {!isMobile && (
+                  <Sidebar
+                    mobile={isMobile}
+                    state={context.state}
+                    channels={Object.values(channels)}
+                    dm={Object.values(dm)}
+                  />
+                )}
                 <main>
-                  <Header page={page} />
+                  {isMobile ? (
+                    <MobileHeader page={page} />
+                  ) : (
+                    <Header mobile={mobile} page={page} />
+                  )}
                   {loading.content ? (
                     <ContentLoading show={loading.content} />
                   ) : (
                     <Body className="content-body">{children}</Body>
                   )}
-                  <Footer page={page} postMessage={postMessage} />
+                  <Footer
+                    mobile={isMobile}
+                    page={page}
+                    postMessage={postMessage}
+                  />
                 </main>
                 <Modal {...modal} hideModal={hideModal} />
-                <Loading show={loading.page} />
+                <Loading mobile={isMobile} show={loading.page} />
               </Container>
             </>
           )
