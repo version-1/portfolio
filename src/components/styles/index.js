@@ -1,5 +1,6 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import colors from 'constants/colors'
+import constants from 'constants'
 
 export const Body = styled.div`
   margin-top: 30px;
@@ -38,3 +39,12 @@ export const More = styled.span`
     color: ${colors.linkHoverText};
   }
 `
+
+export const media = Object.keys(constants.breakpoints).reduce((acc, label) => {
+  acc[label] = (...args) => css`
+    @media (max-width: ${constants.breakpoints[label]}px) {
+      ${css(...args)}
+    }
+  `
+  return acc
+}, {})

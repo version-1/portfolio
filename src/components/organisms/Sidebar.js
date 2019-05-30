@@ -5,11 +5,13 @@ import ChannelList from 'components/molecules/ChannelList'
 import Header from 'components/molecules/SidebarHeader'
 import colors from 'constants/colors'
 import constants from 'constants'
+import { media } from 'components/styles'
 
 const Container = styled.div`
   min-width: ${constants.sidebarWidth};
   width: ${constants.sidebarWidth};
   display: flex;
+  ${media.mobile `display: none;`}
 `
 
 const Left = styled.div`

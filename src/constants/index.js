@@ -14,5 +14,10 @@ export default {
     github: 'https://github.com',
     linkedin: 'https://www.linkedin.com/in/jiro-onodera-1b3766145',
     twitter: 'https://twitter.com/version1_2017'
+  },
+  breakpoints: {
+    desktop: 1024,
+    tablet: 896,
+    mobile: 480
   }
 }
