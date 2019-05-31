@@ -51,7 +51,7 @@ export class Provider extends React.Component {
 
   get layout() {
     if (!window) {
-      return false
+      return
     }
     return window.parent.screen
   }

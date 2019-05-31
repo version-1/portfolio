@@ -5,6 +5,7 @@ import Context from 'context'
 import More from 'components/atoms/More'
 import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
+import { Thumbnail } from 'components/styles'
 
 class Component extends React.PureComponent {
   componentDidMount() {
@@ -36,11 +37,7 @@ class Component extends React.PureComponent {
                 <>
                   <p>{moment(article.pubDate).format('LL')}</p>
                   <a href={article.guid}>
-                    <img
-                      src={article.thumbnail}
-                      alt={article.title}
-                      width="320"
-                    />
+                    <Thumbnail src={article.thumbnail} alt={article.title} />
                   </a>
                   <p>{article.contentSnippet}</p>
                   <More href={article.guid} />

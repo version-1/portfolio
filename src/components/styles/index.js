@@ -2,6 +2,15 @@ import styled, { css } from 'styled-components'
 import colors from 'constants/colors'
 import constants from 'constants'
 
+export const media = Object.keys(constants.breakpoints).reduce((acc, label) => {
+  acc[label] = (...args) => css`
+    @media (max-width: ${constants.breakpoints[label]}px) {
+      ${css(...args)}
+    }
+  `
+  return acc
+}, {})
+
 export const Body = styled.div`
   margin-top: 30px;
 `
@@ -40,11 +49,9 @@ export const More = styled.span`
   }
 `
 
-export const media = Object.keys(constants.breakpoints).reduce((acc, label) => {
-  acc[label] = (...args) => css`
-    @media (max-width: ${constants.breakpoints[label]}px) {
-      ${css(...args)}
-    }
-  `
-  return acc
-}, {})
+export const Thumbnail = styled.img`
+  cursor: pointer;
+  width: 320px;
+  ${media.mobile`width: 280px;`}
+  margin: 16px 0px;
+`
