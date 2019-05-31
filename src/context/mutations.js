@@ -98,4 +98,8 @@ export default {
       body.scrollTop = body.scrollHeight
     }
   },
+  toggleSidebar() {
+    const { mobile } = this.state
+    this.setState({ mobile: { showSidebar: !mobile.showSidebar } })
+  },
 }
