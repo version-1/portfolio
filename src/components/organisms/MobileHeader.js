@@ -2,13 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
 import constants from 'constants'
-import colors from 'constants/colors'
 import Separator from 'components/atoms/Separator'
 import MdMenu from 'react-ionicons/lib/MdMenu'
+import { media } from 'components/styles'
 
 const Container = styled.header`
   height: ${constants.headerHeight};
   width: 100%;
+  ${media.mobile`height: auto;`}
 `
 const Content = styled.div`
   padding: 16px;
@@ -25,6 +26,9 @@ const Title = styled.h1`
     opacity: 0.6;
   }
 `
+const Menu = styled.div`
+  cursor: pointer;
+`
 
 const Left = styled.div`
   margin-right: 16px;
@@ -38,12 +42,14 @@ const date = moment()
   .join(' ')
   .slice(0, -1)
 
-const MobileHeader = ({ page }) => {
+const MobileHeader = ({ page, toggleSidebar }) => {
   return (
     <Container>
       <Content>
         <Left>
-          <MdMenu />
+          <Menu onClick={toggleSidebar}>
+            <MdMenu />
+          </Menu>
         </Left>
         <Title>{page.name}</Title>
       </Content>

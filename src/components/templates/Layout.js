@@ -1,6 +1,7 @@
 import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
+import MdMenu from 'react-ionicons/lib/MdMenu'
 import GlobalStyle from 'components/styles/GlobalStyle'
 
 import Header from 'components/organisms/Header'
@@ -12,6 +13,7 @@ import Loading from 'components/templates/Loading'
 import ContentLoading from 'components/templates/ContentLoading'
 import Context from 'context'
 import constants from 'constants'
+import colors from 'constants/colors'
 
 const Container = styled.div`
   display: flex;
@@ -21,6 +23,68 @@ const Body = styled.div`
   overflow: scroll;
   height: calc(100vh - 180px);
 `
+
+const Menu = styled.div`
+  padding: 16px;
+  cursor: pointer;
+  border-bottom: 1px solid ${colors.border}
+`
+
+const Content = ({ children, state, mutations, channels, dm }) => {
+  const { hideModal, postMessage } = mutations
+  const { page, loading, modal } = state
+  return (
+    <>
+      <Sidebar state={state} channels={channels} dm={dm} />
+      <main>
+        <Header page={page} />
+        {loading.content ? (
+          <ContentLoading show={loading.content} />
+        ) : (
+          <Body className="content-body">{children}</Body>
+        )}
+        <Footer page={page} postMessage={postMessage} />
+      </main>
+      <Modal {...modal} hideModal={hideModal} />
+      <Loading show={loading.page} />
+    </>
+  )
+}
+
+const MobileContent = ({ children, state, mutations, channels, dm }) => {
+  const { hideModal, postMessage, toggleSidebar } = mutations
+  const { page, loading, modal, mobile } = state
+  return (
+    <>
+      <Sidebar
+        isMobile
+        state={state}
+        channels={channels}
+        dm={dm}
+        toggleSidebar={toggleSidebar}
+      />
+      {!mobile.showSidebar ? (
+        <main>
+          <MobileHeader page={page} toggleSidebar={toggleSidebar} />
+          {!mobile.showSidebar && loading.content ? (
+            <ContentLoading show={loading.content} />
+          ) : (
+            <Body className="content-body">{children}</Body>
+          )}
+          <Footer page={page} postMessage={postMessage} />
+        </main>
+      ) : (
+        <main>
+          <Menu onClick={toggleSidebar}>
+            <MdMenu />
+          </Menu>
+        </main>
+      )}
+      <Modal {...modal} hideModal={hideModal} />
+      <Loading mobile show={loading.page} />
+    </>
+  )
+}
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -36,47 +100,37 @@ const Layout = ({ children }) => (
     render={data => (
       <Context.Consumer>
         {context => {
-          const {
-            state: { page, modal, channels, dm, loading },
-            mutations: { hideModal, postMessage },
-            getters: { mobile },
-          } = context
+          const { state, mutations, getters } = context
           if (constants.development) {
-            console.log('rerender', context.state)
-            console.log('mobile', mobile())
+            console.log('rerender', state)
+            console.log('mobile', getters.mobile())
           }
-          const isMobile = mobile()
+          const isMobile = getters.mobile()
+          const channels = Object.values(state.channels)
+          const dm = Object.values(state.dm)
           return (
             <>
               <GlobalStyle />
               <Container>
-                {!isMobile && (
-                  <Sidebar
-                    mobile={isMobile}
-                    state={context.state}
-                    channels={Object.values(channels)}
-                    dm={Object.values(dm)}
+                {isMobile ? (
+                  <MobileContent
+                    children={children}
+                    state={state}
+                    mutations={mutations}
+                    getters={getters}
+                    channels={channels}
+                    dm={dm}
+                  />
+                ) : (
+                  <Content
+                    children={children}
+                    state={state}
+                    mutations={mutations}
+                    getters={getters}
+                    channels={channels}
+                    dm={dm}
                   />
                 )}
-                <main>
-                  {isMobile ? (
-                    <MobileHeader page={page} />
-                  ) : (
-                    <Header mobile={mobile} page={page} />
-                  )}
-                  {loading.content ? (
-                    <ContentLoading show={loading.content} />
-                  ) : (
-                    <Body className="content-body">{children}</Body>
-                  )}
-                  <Footer
-                    mobile={isMobile}
-                    page={page}
-                    postMessage={postMessage}
-                  />
-                </main>
-                <Modal {...modal} hideModal={hideModal} />
-                <Loading mobile={isMobile} show={loading.page} />
               </Container>
             </>
           )

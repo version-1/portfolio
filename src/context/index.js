@@ -16,6 +16,9 @@ const initialState = {
   },
   messages,
   modal,
+  mobile: {
+    showSidebar: false
+  },
   loading: {
     page: false,
     content: false,
