@@ -1,10 +1,14 @@
 import styled, { css } from 'styled-components'
 import colors from 'constants/colors'
-import constants from 'constants'
+const breakpoints = {
+  desktop: 1024,
+  tablet: 896,
+  mobile: 480,
+}
 
-export const media = Object.keys(constants.breakpoints).reduce((acc, label) => {
+export const media = Object.keys(breakpoints).reduce((acc, label) => {
   acc[label] = (...args) => css`
-    @media (max-width: ${constants.breakpoints[label]}px) {
+    @media (max-width: ${breakpoints[label]}px) {
       ${css(...args)}
     }
   `
