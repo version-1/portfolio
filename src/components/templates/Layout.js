@@ -7,6 +7,7 @@ import GlobalStyle from 'components/styles/GlobalStyle'
 import Header from 'components/organisms/Header'
 import MobileHeader from 'components/organisms/MobileHeader'
 import Footer from 'components/organisms/Footer'
+import MobileFooter from 'components/organisms/MobileFooter'
 import Sidebar from 'components/organisms/Sidebar'
 import Modal from 'components/templates/Modal'
 import Loading from 'components/templates/Loading'
@@ -14,6 +15,7 @@ import ContentLoading from 'components/templates/ContentLoading'
 import Context from 'context'
 import constants from 'constants'
 import colors from 'constants/colors'
+import { media } from 'components/styles'
 
 const Container = styled.div`
   display: flex;
@@ -22,12 +24,13 @@ const Container = styled.div`
 const Body = styled.div`
   overflow: scroll;
   height: calc(100vh - 180px);
+  ${media.mobile `height: calc(100vh - 160px);` };
 `
 
 const Menu = styled.div`
   padding: 16px;
   cursor: pointer;
-  border-bottom: 1px solid ${colors.border}
+  border-bottom: 1px solid ${colors.border};
 `
 
 const Content = ({ children, state, mutations, channels, dm }) => {
@@ -71,7 +74,7 @@ const MobileContent = ({ children, state, mutations, channels, dm }) => {
           ) : (
             <Body className="content-body">{children}</Body>
           )}
-          <Footer page={page} postMessage={postMessage} />
+          <MobileFooter page={page} postMessage={postMessage} />
         </main>
       ) : (
         <main>
