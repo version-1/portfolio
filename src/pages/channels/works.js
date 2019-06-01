@@ -9,14 +9,7 @@ import Page from 'components/templates/Page'
 import Blog from 'components/templates/works/Blog'
 import Snake from 'components/templates/works/Snake'
 import Smama from 'components/templates/works/Smama'
-import { media } from 'components/styles'
-
-const Thumbnail = styled.img`
-  cursor: pointer;
-  width: 320px;
-  ${media.mobile `width: 280px;`}
-  margin: 16px 0px;
-`
+import { Thumbnail } from 'components/styles'
 
 class Component extends React.PureComponent {
   componentDidMount() {
