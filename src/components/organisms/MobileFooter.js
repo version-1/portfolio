@@ -7,7 +7,10 @@ const Container = styled.footer`
   width: 100%;
   height: 48px;
   padding: 8px 16px;
-  ${media.mobile`padding: 4px 8px;`}
+  ${media.mobile`
+    padding: 4px 8px;
+    position: fixed;
+  `}
 `
 
 const Content = styled.div`
