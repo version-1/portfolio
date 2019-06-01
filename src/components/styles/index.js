@@ -57,6 +57,6 @@ export const More = styled.span`
 export const Thumbnail = styled.img`
   cursor: pointer;
   width: 320px;
-  ${media.mobile`width: 280px;`}
+  ${media.mobile`width: 100%;`}
   margin: 16px 0px;
 `
