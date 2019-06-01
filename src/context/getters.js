@@ -1,4 +1,5 @@
 import constants from 'constants'
+import { breakpoints } from 'components/styles'
 export default {
   messages: function() {
     const { key } = this.state.page
@@ -8,6 +9,6 @@ export default {
     if (!this.layout) {
       return null
     }
-    return this.layout.width <= constants.breakpoints.mobile
+    return this.layout.width <= breakpoints.mobile
   },
 }
