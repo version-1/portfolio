@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { media } from 'components/styles'
 
 const Container = styled.div``
 const Header = styled.div``
@@ -10,6 +11,7 @@ const Body = styled.div`
   & h3 {
     text-align: center;
   }
+  ${media.mobile `padding: 8px;`}
 `
 const Title = styled.h2`
   text-align: center;
@@ -17,6 +19,7 @@ const Title = styled.h2`
 
 const Video = styled.video`
   width: 480px;
+  ${media.mobile `width: 100%;`}
 `
 const Spacer = styled.div`
   height: 30px;

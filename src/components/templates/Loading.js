@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import constants from 'constants'
 import colors from 'constants/colors'
 import Spinner from 'components/atoms/Spinner'
+import { media } from 'components/styles'
 
 const Container = styled.div`
   display: ${({ show }) => (show ? 'flex' : 'none')};
@@ -21,6 +22,7 @@ const Sidebar = styled.div`
   display: flex;
   height: 100%;
   min-width: ${constants.sidebarWidth};
+  ${media.mobile `display: none;`}
 `
 const SidebarLeft = styled.div`
   background-color: ${colors.sidebarLeft};
@@ -40,13 +42,15 @@ const Main = styled.div`
   justify-content: center;
 `
 
-const Loading = ({ show }) => {
+const Loading = ({ mobile, show }) => {
   return (
     <Container show={show}>
-      <Sidebar>
-        <SidebarLeft />
-        <SidebarRight />
-      </Sidebar>
+      {!mobile && (
+        <Sidebar>
+          <SidebarLeft />
+          <SidebarRight />
+        </Sidebar>
+      )}
       <Main>
         <Spinner />
       </Main>

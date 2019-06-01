@@ -1,5 +1,19 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import colors from 'constants/colors'
+const breakpoints = {
+  desktop: 1024,
+  tablet: 896,
+  mobile: 480,
+}
+
+export const media = Object.keys(breakpoints).reduce((acc, label) => {
+  acc[label] = (...args) => css`
+    @media (max-width: ${breakpoints[label]}px) {
+      ${css(...args)}
+    }
+  `
+  return acc
+}, {})
 
 export const Body = styled.div`
   margin-top: 30px;
@@ -37,4 +51,11 @@ export const More = styled.span`
   :hover {
     color: ${colors.linkHoverText};
   }
+`
+
+export const Thumbnail = styled.img`
+  cursor: pointer;
+  width: 320px;
+  ${media.mobile`width: 280px;`}
+  margin: 16px 0px;
 `

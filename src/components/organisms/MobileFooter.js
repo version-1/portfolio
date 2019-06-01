@@ -5,9 +5,9 @@ import { media } from 'components/styles'
 
 const Container = styled.footer`
   width: 100%;
-  height: 62px;
+  height: 48px;
   padding: 8px 16px;
-  ${media.mobile `padding: 4px 8px;`}
+  ${media.mobile`padding: 4px 8px;`}
 `
 
 const Content = styled.div`
@@ -35,22 +35,31 @@ const Input = styled.textarea`
   }
 `
 
+const FormFooter = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 0;
+`
+
+const Button = styled.a`
+  border-radius: 6px;
+  background: ${colors.accent};
+  color: white;
+  padding: 10px 16px;
+`
+
 const CHAT_INPUT_FORM = 'chat-input-form'
 
 const Footer = ({ mobile, page, postMessage }) => {
   const [focus, setFocus] = useState(false)
   const [content, setContent] = useState('')
-  const placeholder = (mobile) => mobile ? ['Message', `#${page.name}`].join(' ') : [
-    'Message',
-    `#${page.name}.`,
-    'Send message by pushing Enter..',
-  ].join(' ')
+  const placeholder = ['Message', `#${page.name}.`].join(' ')
   return (
     <Container>
       <Content focus={focus}>
         <Input
           className={CHAT_INPUT_FORM}
-          placeholder={placeholder(mobile)}
+          placeholder={placeholder}
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
           onChange={e => {
@@ -59,24 +68,20 @@ const Footer = ({ mobile, page, postMessage }) => {
             }
             setContent(e.target.value)
           }}
-          onKeyUp={e => {
-            const _content = content.replace(/\n$/, '')
-            const __content = content.replace(/\n/g, '')
-            if (!__content || !_content || e.keyCode !== 13) {
-              return
-            }
-            if (e.shiftKey && e.keyCode === 13) {
-              setContent(`${e.target.value}\n`)
-              return
-            }
-            e.preventDefault()
-            postMessage({ sender: 'you', content: _content })
+        />
+      </Content>
+      <FormFooter>
+        <Button
+          onClick={() => {
+            postMessage({ sender: 'you', content })
             setContent('')
             const ele = document.querySelector(`.${CHAT_INPUT_FORM}`)
             ele.value = ''
           }}
-        />
-      </Content>
+        >
+          send
+        </Button>
+      </FormFooter>
     </Container>
   )
 }
