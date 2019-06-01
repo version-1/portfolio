@@ -17,7 +17,8 @@ const initialState = {
   messages,
   modal,
   mobile: {
-    showSidebar: false
+    showSidebar: false,
+    height: null,
   },
   loading: {
     page: false,
@@ -39,6 +40,16 @@ export class Provider extends React.Component {
     Object.entries(getters).forEach(([key, value]) => {
       this.getters[key] = value.bind(this)
     })
+  }
+
+  componentDidMount() {
+    if (window && this.getters.mobile()) {
+      const height = window.innerHeight
+      const vh = height * 0.01
+      document.documentElement.style.setProperty('--vh', `${vh}px`)
+      const { mobile } = this.state
+      this.setState({ mobile: { ...mobile, height } })
+    }
   }
 
   get value() {

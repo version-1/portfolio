@@ -24,7 +24,7 @@ const Container = styled.div`
 const Body = styled.div`
   overflow: scroll;
   height: calc(100vh - 180px);
-  ${media.mobile `height: calc(100vh - 210px);` };
+  ${media.mobile `height: calc(calc(var(--vh, 1vh) * 100) - 160px);` };
 `
 
 const Menu = styled.div`
