@@ -10,6 +10,7 @@ const Container = styled.footer`
   ${media.mobile`
     padding: 4px 8px;
     position: fixed;
+    bottom: 50px;
   `}
 `
 
