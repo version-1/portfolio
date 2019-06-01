@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import kuroutoThumbnail from 'assets/kurouto.thumbnail.png'
+import { media } from 'components/styles'
 
 const Container = styled.div``
 const Header = styled.div``
@@ -11,12 +12,15 @@ const Body = styled.div`
   & h3 {
     text-align: center;
   }
+  ${media.mobile `padding: 8px;`}
 `
 const Title = styled.h2`
   text-align: center;
 `
 
-const Thumbnail = styled.img``
+const Thumbnail = styled.img`
+  width: 100%;
+`
 
 const Blog = props => {
   return (

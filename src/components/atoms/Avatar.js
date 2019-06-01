@@ -1,12 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 import avatar from 'assets/avatar.png'
+import { media } from 'components/styles'
 
 const Container = styled.div``
 
 const Img = styled.img`
   height: 52px;
   width: 52px;
+  ${media.mobile `
+    height: 32px;
+    width: 32px;
+  `}
   border-radius: 6px;
 `
 

@@ -2,9 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import colors from 'constants/colors'
 import Avatar from 'components/atoms/Avatar'
+import { media } from 'components/styles'
 
 const Container = styled.div`
   padding: 16px;
+  ${media.mobile `padding: 8px;`}
   display: flex;
   :hover {
     background: #efefef40;
