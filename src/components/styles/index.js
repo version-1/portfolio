@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 import colors from 'constants/colors'
-const breakpoints = {
+
+export const breakpoints = {
   desktop: 1024,
   tablet: 896,
   mobile: 480,
