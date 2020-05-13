@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import blogThumbnail from 'assets/ver-1-0.net.thumbnail.png'
+import blogThumbnail from 'assets/blog.png'
+import snakeThumbnail from 'assets/snake.png'
 
 import Context from 'context'
 import { More } from 'components/styles'
@@ -51,8 +52,10 @@ class Component extends React.PureComponent {
           title="My Blog implemented by Gatsbyjs"
           body={
             <>
-              Blog's Theme is engineering, work for freelnce, travel. I designed
-              UI and developed and wrote all articles in this blog.
+              <p>
+                Blog's Theme is engineering, work for freelnce, travel. I
+                designed UI and developed and wrote all articles in this blog.
+              </p>
               <Thumbnail
                 onClick={this.onClickBlog}
                 src={blogThumbnail}
@@ -74,7 +77,7 @@ class Component extends React.PureComponent {
               </p>
               <Thumbnail
                 onClick={this.onClickSnake}
-                src="https://statics.ver-1-0.net/uploads/2018/06/20180627_react-snake-game-3/snake.png"
+                src={snakeThumbnail}
                 alt="snake thumbanail"
               />
               <p>
