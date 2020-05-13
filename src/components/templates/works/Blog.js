@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import blogThumbnail from 'assets/ver-1-0.net.thumbnail.png'
+import blogThumbnail from 'assets/blog.png'
 import constants from 'constants'
 import { media } from 'components/styles'
 

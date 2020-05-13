@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { media } from 'components/styles'
+import snakeThumbnail from 'assets/snake.png'
+import snakeVideo from 'assets/snake.mp4'
 
 const Container = styled.div``
 const Header = styled.div``
@@ -33,8 +35,7 @@ const Blog = props => {
       </Header>
       <Body>
         <Video
-          poster="https://statics.ver-1-0.net/uploads/2018/06/20180627_react-snake-game-3/snake.png"
-          src="https://statics.ver-1-0.net/uploads/2018/06/20180627_react-snake-game-3/snake.mp4"
+          src={snakeVideo}
           controls
         />
         <p>
