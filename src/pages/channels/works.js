@@ -52,8 +52,10 @@ class Component extends React.PureComponent {
           title="My Blog implemented by Gatsbyjs"
           body={
             <>
-              Blog's Theme is engineering, work for freelnce, travel. I designed
-              UI and developed and wrote all articles in this blog.
+              <p>
+                Blog's Theme is engineering, work for freelnce, travel. I
+                designed UI and developed and wrote all articles in this blog.
+              </p>
               <Thumbnail
                 onClick={this.onClickBlog}
                 src={blogThumbnail}
