@@ -61,24 +61,24 @@ const Title = styled.div`
 `
 
 interface Props {
-  isMobile: boolean
-  state: any
+  mobile: boolean
+  pathname: string
   channels: any
   dm: any
-  toggleSidebar: () => void
+  toggleSidebar?: () => void
 }
 
 const Sidebar: React.FC<Props> = ({
-  isMobile,
-  state,
+  mobile,
+  pathname,
   channels,
   dm,
   toggleSidebar,
 }) => {
-  const onClick = () => isMobile && toggleSidebar()
+  const onClick = () => mobile && toggleSidebar && toggleSidebar()
   return (
-    <Container mobile={state.mobile}>
-      <Left mobile={state.mobile}>
+    <Container mobile={mobile}>
+      <Left mobile={mobile}>
         <SNSLinks />
       </Left>
       <Right>
@@ -86,11 +86,11 @@ const Sidebar: React.FC<Props> = ({
         <Body>
           <Public>
             <Title>Channels</Title>
-            <ChannelList page={state.page} list={channels} onClick={onClick} />
+            <ChannelList pathname={pathname} list={channels} onClick={onClick} />
           </Public>
           <Private>
             <Title>Direct Messages</Title>
-            <ChannelList page={state.page} list={dm} onClick={onClick} />
+            <ChannelList pathname={pathname} list={dm} onClick={onClick} />
           </Private>
         </Body>
       </Right>

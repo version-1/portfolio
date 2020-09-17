@@ -29,6 +29,7 @@
       "styles/*": ["./src/components/styles/*"],
       "constants/*": ["./src/constants/*"],
       "context/*": ["./src/context/*"],
+      "hooks/*": ["./src/hooks/*"],
       "pages/*": ["./src/pages/*"],
       "components/*": ["./src/components/*"],
       "services/*": ["./src/services/*"]
