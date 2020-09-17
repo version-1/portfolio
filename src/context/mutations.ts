@@ -1,7 +1,6 @@
 import moment from 'moment'
 import * as slack from 'services/slack'
 import data from 'context/data'
-import { fetchRss, fetchThumbnails } from 'services/rss'
 
 const { allChannels, notifableChannels, modal, channels } = data
 
@@ -37,26 +36,6 @@ export default {
     }
     this.setState({ messages: { ...this.state.messages, [key]: newMessages } })
     setTimeout(() => this.mutations.scrollBottom(), 100)
-  },
-  fetchRssFeedAsync: async function() {
-    const { addArticleList, startLoading, stopLoading } = this.mutations
-    if (this.state.articles.list.length > 0) {
-      return
-    }
-    startLoading('content')
-    const { items } = await fetchRss()
-    const targets = items.slice(0, 30)
-    this.mutations.updateArticles(targets)
-    const count = Math.ceil(targets.length / 10)
-    new Array(count).fill('').map(async (_, index) => {
-      const group = targets.slice(index * 10, (index + 1) * 10)
-      const _group = await fetchThumbnails(group, console.error)
-      await setTimeout(() => {}, 3000)
-      addArticleList(_group)
-      if (index === 0) {
-        stopLoading('content')
-      }
-    })
   },
   showModal: function({ title, content }) {
     const modal = { show: true, title, content }

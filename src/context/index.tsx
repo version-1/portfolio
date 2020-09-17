@@ -3,7 +3,6 @@ import mutations from 'context/mutations'
 import getters from 'context/getters'
 import data from 'context/data'
 
-const Context = React.createContext({})
 const { page, channels, dm, messages, modal } = data
 
 const initialState = {
@@ -26,6 +25,12 @@ const initialState = {
   },
   isReady: false,
 }
+
+const Context = React.createContext({
+  state: initialState,
+  getters: getters,
+  mutations: mutations
+})
 
 export class Provider extends React.Component {
   mutations: any = {}

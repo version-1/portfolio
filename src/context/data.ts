@@ -15,9 +15,14 @@ const channels = {
     url: '/channels/works',
     description: 'Here is my work list. enjoy it.',
   },
-  blog: {
-    name: 'blog',
-    url: '/channels/blog',
+  'blog-ja': {
+    name: 'blog-ja',
+    url: '/channels/blog/ja',
+    description: 'Recent posts in my blog is posted here.',
+  },
+  'blog-en': {
+    name: 'blog-en',
+    url: '/channels/blog/en',
     description: 'Recent posts in my blog is posted here.',
   },
 }

@@ -22,6 +22,7 @@ exports.onCreateWebpackConfig = ({
         context: path.resolve(__dirname, 'src/context'),
         images: path.resolve(__dirname, 'src/images'),
         components: path.resolve(__dirname, 'src/components'),
+        styles: path.resolve(__dirname, 'src/styles'),
         lib: path.resolve(__dirname, 'src/lib'),
         pages: path.resolve(__dirname, 'src/pages'),
         services: path.resolve(__dirname, 'src/services'),

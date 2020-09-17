@@ -58,8 +58,8 @@ class Component extends React.PureComponent<Props> {
                 ・・・Drop by this channel and take a look at my works.
               </LI>
               <LI>
-                <Link to={channels.blog.url}>
-                  <More>#{channels.blog.name}</More>
+                <Link to={channels['blog-en'].url}>
+                  <More>#{channels['blog-en'].name}</More>
                 </Link>
                 ・・・You can read my blog's recently articles.
               </LI>
