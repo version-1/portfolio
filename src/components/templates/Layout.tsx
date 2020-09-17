@@ -15,6 +15,7 @@ import Modal from 'components/templates/Modal'
 import Loading from 'components/templates/Loading'
 import ContentLoading from 'components/templates/ContentLoading'
 import Context from 'context/index'
+import usePage from 'hooks/usePage'
 import constants from 'constants/index'
 import colors from 'constants/colors'
 import { media } from 'components/styles'
@@ -36,6 +37,7 @@ const Menu = styled.div`
 `
 
 interface ContentProps {
+  pathname: string
   children: ReactNode
   state: any
   mutations: any
@@ -44,6 +46,7 @@ interface ContentProps {
 }
 
 const Content: React.FC<ContentProps> = ({
+  pathname,
   children,
   state,
   mutations,
@@ -54,7 +57,12 @@ const Content: React.FC<ContentProps> = ({
   const { page, loading, modal } = state
   return (
     <>
-      <Sidebar state={state} channels={channels} dm={dm} />
+      <Sidebar
+        pathname={pathname}
+        mobile={false}
+        channels={channels}
+        dm={dm}
+      />
       <main>
         <Header page={page} />
         {loading.content ? (
@@ -71,6 +79,7 @@ const Content: React.FC<ContentProps> = ({
 }
 
 const MobileContent: React.FC<ContentProps> = ({
+  pathname,
   children,
   state,
   mutations,
@@ -82,7 +91,8 @@ const MobileContent: React.FC<ContentProps> = ({
   return (
     <>
       <Sidebar
-        isMobile
+        mobile
+        pathname={pathname}
         state={state}
         channels={channels}
         dm={dm}
@@ -115,56 +125,61 @@ interface Props {
   children: ReactNode
 }
 
-const Layout: React.FC<Props> = ({ children }) => (
-  <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
+const Layout: React.FC<Props> = ({ children }) => {
+  const { mobile, pathname } = usePage()
+  return (
+    <StaticQuery
+      query={graphql`
+        query SiteTitleQuery {
+          site {
+            siteMetadata {
+              title
+            }
           }
         }
-      }
-    `}
-    render={() => (
-      <Context.Consumer>
-        {(context: any) => {
-          const { state, mutations, getters } = context
-          if (constants.development) {
-            console.log('rerender', state)
-            console.log('mobile', getters.mobile())
-          }
-          const isMobile = getters.mobile()
-          const channels = Object.values(state.channels)
-          const dm = Object.values(state.dm)
-          return (
-            <>
-              <GlobalStyle />
-              <Container>
-                {isMobile ? (
-                  <MobileContent
-                    children={children}
-                    state={state}
-                    mutations={mutations}
-                    channels={channels}
-                    dm={dm}
-                  />
-                ) : (
-                  <Content
-                    children={children}
-                    state={state}
-                    mutations={mutations}
-                    channels={channels}
-                    dm={dm}
-                  />
-                )}
-              </Container>
-            </>
-          )
-        }}
-      </Context.Consumer>
-    )}
-  />
-)
+      `}
+      render={() => (
+        <Context.Consumer>
+          {(context: any) => {
+            const { state, mutations } = context
+            if (constants.development) {
+              console.log('rerender', state)
+              console.log('mobile', mobile)
+            }
+            const channels = Object.values(state.channels)
+            const dm = Object.values(state.dm)
+            return (
+              <>
+                <GlobalStyle />
+                <Container>
+                  {mobile ? (
+                    <MobileContent
+                      mobile={mobile}
+                      children={children}
+                      state={state}
+                      mutations={mutations}
+                      channels={channels}
+                      dm={dm}
+                    />
+                  ) : (
+                    <Content
+                      mobile={mobile}
+                      pathname={pathname}
+                      children={children}
+                      state={state}
+                      mutations={mutations}
+                      channels={channels}
+                      dm={dm}
+                    />
+                  )}
+                </Container>
+              </>
+            )
+          }}
+        </Context.Consumer>
+      )}
+    />
+  )
+}
 
 export default Layout
