@@ -2,8 +2,8 @@ import React from 'react'
 import { More as MoreStyle } from 'components/styles'
 
 interface Props {
-  href: string
-  text: string
+  href?: string
+  text?: string
 }
 
 const More: React.FC<Props> = ({ href, text, ...rest }) => {

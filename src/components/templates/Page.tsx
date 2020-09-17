@@ -12,21 +12,18 @@ const parseContent = (content: string) => {
 
 interface Props {
   children: ReactNode
-  state: any
-  getters: any
+  title: string
+  messages?: any[]
 }
 
-const Page: React.FC<Props> = ({ children, state, getters }) => {
-  const { page } = state
-  const { messages } = getters
-
+const Page: React.FC<Props> = ({ children, title, messages }) => {
   return (
     <Layout>
-      <SEO title={page.name} />
+      <SEO title={title} />
       <Body>
         <>
           {children}
-          {messages().map((message: any) => (
+          {messages?.map((message: any) => (
             <Message
               icon={you}
               title={message.sender}
