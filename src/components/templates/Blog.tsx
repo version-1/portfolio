@@ -5,7 +5,7 @@ import More from 'components/atoms/More'
 import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
 import { Thumbnail } from 'components/styles'
-import { fetchRss, fetchThumbnails } from 'services/rss'
+import { fetchRss } from 'services/rss'
 
 interface Props {
   title: string
@@ -17,10 +17,9 @@ const Blog: React.FC<Props> = ({ title, language = 'ja' }) => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const feeds = await fetchRss(language)
-        const list = await fetchThumbnails(feeds)
+        const feed = await fetchRss(language)
 
-        setArticles(list)
+        setArticles(feed.items)
       } catch (e) {
         alert('Fetch Feeds Failed')
       }
@@ -43,7 +42,7 @@ const Blog: React.FC<Props> = ({ title, language = 'ja' }) => {
               <>
                 <p>{moment(article.pubDate).format('LL')}</p>
                 <a href={article.guid}>
-                  <Thumbnail src={article.thumbnail} alt={article.title} />
+                  <Thumbnail src={article.thumbnailUrl} alt={article.title} />
                 </a>
                 <p>{article.contentSnippet}</p>
                 <More href={article.guid} />

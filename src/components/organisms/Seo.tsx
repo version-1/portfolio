@@ -98,7 +98,7 @@ const SEO: React.FC<Props> = ({ description, lang, meta, title }) => {
           if (!item) {
             return
           }
-          return <meta {...item} />
+          return <meta key={`${item.name}-${item.property}`}{...item} />
         })}
       <link rel="shortcut icon" href={favicon} />
     </Helmet>
