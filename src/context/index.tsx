@@ -2,6 +2,7 @@ import React from 'react'
 import mutations from 'context/mutations'
 import getters from 'context/getters'
 import data from 'context/data'
+import { breakpoints } from 'components/styles'
 
 const { page, channels, dm, messages, modal } = data
 
@@ -29,10 +30,10 @@ const initialState = {
 const Context = React.createContext({
   state: initialState,
   getters: getters,
-  mutations: mutations
+  mutations: mutations,
 })
 
-export class Provider extends React.Component {
+export class Provider extends React.Component<any, typeof initialState> {
   mutations: any = {}
   getters: any = {}
   constructor(props: any) {
@@ -48,7 +49,7 @@ export class Provider extends React.Component {
   }
 
   componentDidMount() {
-    if (window && this.getters.mobile()) {
+    if (window && this.mobile) {
       const height = window.innerHeight
       const vh = height * 0.01
       document.documentElement.style.setProperty('--vh', `${vh}px`)
@@ -57,19 +58,19 @@ export class Provider extends React.Component {
     }
   }
 
+  get mobile() {
+    if (!window) {
+      return false
+    }
+    return window.parent.screen.width <= breakpoints.mobile
+  }
+
   get value() {
     return {
       state: this.state,
       mutations: this.mutations,
       getters: this.getters,
     }
-  }
-
-  get layout() {
-    if (!window) {
-      return
-    }
-    return window.parent.screen
   }
 
   render() {
