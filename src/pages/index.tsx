@@ -24,11 +24,11 @@ class Component extends React.PureComponent<Props> {
       // block beause error occurs on build
       return <></>
     }
-    const { getters, state } = this.props.context
-    const { channels } = state
+    const { state } = this.props.context
+    const { page, channels, messages } = state
 
     return (
-      <Page state={state} getters={getters}>
+      <Page messages={messages[page.name]}>
         <Message
           title={constants.author}
           body={

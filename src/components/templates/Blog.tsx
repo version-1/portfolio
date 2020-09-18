@@ -6,17 +6,12 @@ import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
 import { Thumbnail } from 'components/styles'
 import { fetchRss } from 'services/rss'
+import { scrollBottom } from '../../utils'
+
 interface Props {
   title: string
   language?: string
   startLoading: (type: string) => () => void
-}
-
-const scrollBottom = () => {
-  const body = document.body.querySelector('.content-body')
-  if (body) {
-    body.scrollTo({ top: body.scrollHeight, behavior: 'smooth' })
-  }
 }
 
 const Blog: React.FC<Props> = ({

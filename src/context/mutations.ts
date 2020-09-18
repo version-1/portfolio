@@ -1,5 +1,6 @@
 import * as slack from 'services/slack'
 import data from 'context/data'
+import { scrollBottom } from '../utils'
 
 const { allChannels, notifableChannels, modal, channels } = data
 
@@ -18,7 +19,7 @@ export default {
       slack.notify(message)
     }
     this.setState({ messages: { ...this.state.messages, [key]: newMessages } })
-    setTimeout(() => this.mutations.scrollBottom(), 100)
+    setTimeout(() => scrollBottom(), 100)
   },
   showModal: function ({ title, content }) {
     const modal = { show: true, title, content }
