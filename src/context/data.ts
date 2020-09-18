@@ -38,6 +38,7 @@ const dm = {
     name: 'me',
     url: '/channels/me',
     description: 'You can free to send message to me.',
+    notify: true
   },
 }
 
