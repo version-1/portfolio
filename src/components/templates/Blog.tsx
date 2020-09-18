@@ -6,11 +6,17 @@ import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
 import { Thumbnail } from 'components/styles'
 import { fetchRss } from 'services/rss'
-
 interface Props {
   title: string
   language?: string
   startLoading: (type: string) => () => void
+}
+
+const scrollBottom = () => {
+  const body = document.body.querySelector('.content-body')
+  if (body) {
+    body.scrollTo({ top: body.scrollHeight, behavior: 'smooth' })
+  }
 }
 
 const Blog: React.FC<Props> = ({
@@ -26,6 +32,7 @@ const Blog: React.FC<Props> = ({
         const feed = await fetchRss(language)
 
         setArticles(feed.items || [])
+        setTimeout(() => scrollBottom(), 500)
       } catch (e) {
         alert('Fetch Feeds Failed')
       } finally {

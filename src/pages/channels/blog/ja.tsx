@@ -7,6 +7,7 @@ const BlogJa = () => {
   const {
     mutations: { startLoading },
   } = context
+
   return (
     <Blog
       title="#blog-ja"
