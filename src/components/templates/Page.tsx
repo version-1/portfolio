@@ -13,8 +13,8 @@ const parseContent = (content: string) => {
 }
 
 interface Props {
-  children: ReactNode
-  title: string
+  children?: ReactNode
+  title?: string
   messages?: any[]
 }
 
