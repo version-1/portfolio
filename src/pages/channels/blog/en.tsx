@@ -1,6 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Blog from 'components/templates/Blog'
+import Context from 'context/index'
 
-const BlogJa = () => <Blog title='#blog-en' language='en' />
+const BlogEn = () => {
+  const context = useContext(Context)
+  const {
+    mutations: { startLoading },
+  } = context
+  return (
+    <Blog
+      title="#blog-en"
+      language="en"
+      startLoading={startLoading}
+    />
+  )
+}
 
-export default BlogJa
+export default BlogEn

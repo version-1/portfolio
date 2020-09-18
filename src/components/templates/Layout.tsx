@@ -53,16 +53,11 @@ const Content: React.FC<ContentProps> = ({
   channels,
   dm,
 }) => {
-  const { hideModal, postMessage } = mutations
-  const { page, loading, modal } = state
+  const { postMessage } = mutations
+  const { page, loading } = state
   return (
     <>
-      <Sidebar
-        pathname={pathname}
-        mobile={false}
-        channels={channels}
-        dm={dm}
-      />
+      <Sidebar pathname={pathname} mobile={false} channels={channels} dm={dm} />
       <main>
         <Header page={page} />
         {loading.content ? (
@@ -72,8 +67,6 @@ const Content: React.FC<ContentProps> = ({
         )}
         <Footer page={page} postMessage={postMessage} />
       </main>
-      <Modal {...modal} hideModal={hideModal} />
-      <Loading show={loading.page} />
     </>
   )
 }
@@ -86,8 +79,8 @@ const MobileContent: React.FC<ContentProps> = ({
   channels,
   dm,
 }) => {
-  const { hideModal, postMessage, toggleSidebar } = mutations
-  const { page, loading, modal, mobile } = state
+  const { postMessage, toggleSidebar } = mutations
+  const { page, loading, mobile } = state
   return (
     <>
       <Sidebar
@@ -115,8 +108,6 @@ const MobileContent: React.FC<ContentProps> = ({
           </Menu>
         </main>
       )}
-      <Modal {...modal} hideModal={hideModal} />
-      <Loading mobile show={loading.page} />
     </>
   )
 }
@@ -148,6 +139,8 @@ const Layout: React.FC<Props> = ({ children }) => {
             }
             const channels = Object.values(state.channels)
             const dm = Object.values(state.dm)
+            const { hideModal } = mutations
+            const { loading, modal } = state
             return (
               <>
                 <GlobalStyle />
@@ -172,6 +165,8 @@ const Layout: React.FC<Props> = ({ children }) => {
                       dm={dm}
                     />
                   )}
+                  <Modal {...modal} hideModal={hideModal} />
+                  <Loading show={loading.page} />
                 </Container>
               </>
             )

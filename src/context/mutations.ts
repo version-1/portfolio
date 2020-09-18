@@ -1,33 +1,16 @@
-import moment from 'moment'
 import * as slack from 'services/slack'
 import data from 'context/data'
 
 const { allChannels, notifableChannels, modal, channels } = data
 
 export default {
-  updatePage: function(page) {
+  updatePage: function (page) {
     const [key] = Object.entries(allChannels).find(
       ([key, val]) => val.url === page.url
     )
     this.setState({ page: { ...page, key } })
   },
-  updateArticles: function(items) {
-    const { list } = this.state.articles
-    this.setState({ articles: { queue: items, list } })
-  },
-  addArticleList: function(list) {
-    const { queue, list: prevList } = this.state.articles
-    const links = list.map(article => article.link)
-    const _queue = queue.filter(item => !links.includes(item.link))
-    const newList = [...prevList, ...list]
-    const sortedList = newList.sort(
-      (a, b) => moment(a.pubDate).unix() - moment(b.pubDate).unix()
-    )
-    this.setState({ articles: { queue: _queue, list: sortedList } }, () =>
-      this.mutations.scrollBottom()
-    )
-  },
-  postMessage: function(message) {
+  postMessage: function (message) {
     const { key } = this.state.page
     const _messages = this.state.messages[key]
     const newMessages = [..._messages, message]
@@ -37,29 +20,24 @@ export default {
     this.setState({ messages: { ...this.state.messages, [key]: newMessages } })
     setTimeout(() => this.mutations.scrollBottom(), 100)
   },
-  showModal: function({ title, content }) {
+  showModal: function ({ title, content }) {
     const modal = { show: true, title, content }
     this.setState({ modal })
   },
-  hideModal: function() {
+  hideModal: function () {
     this.setState({ modal })
   },
-  startLoading: function(type) {
+  startLoading: function (type) {
     const { loading } = this.state
     this.setState({ loading: { ...loading, [type]: true } })
+
+    return () => this.setState({ loading: { ...loading, [type]: false } })
   },
-  stopLoading: function(type) {
-    const { loading } = this.state
-    this.setState({ loading: { ...loading, [type]: false } })
-  },
-  endLoading: function() {
-    this.setState({ isLoading: false })
-  },
-  init: function(path) {
+  init: function (path) {
     if (!this.state.isReady) {
-      this.mutations.startLoading('page')
+      const end = this.mutations.startLoading('page')
       setTimeout(() => {
-        this.mutations.stopLoading('page')
+        end()
         this.setState({ isReady: true })
       }, 1000)
     }

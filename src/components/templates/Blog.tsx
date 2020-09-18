@@ -10,18 +10,26 @@ import { fetchRss } from 'services/rss'
 interface Props {
   title: string
   language?: string
+  startLoading: (type: string) => () => void
 }
 
-const Blog: React.FC<Props> = ({ title, language = 'ja' }) => {
+const Blog: React.FC<Props> = ({
+  title,
+  language = 'ja',
+  startLoading
+}) => {
   const [articles, setArticles] = useState<any[]>([])
   useEffect(() => {
     const fetch = async () => {
+      const end = startLoading('content')
       try {
         const feed = await fetchRss(language)
 
-        setArticles(feed.items)
+        setArticles(feed.items || [])
       } catch (e) {
         alert('Fetch Feeds Failed')
+      } finally {
+        end()
       }
     }
     fetch()
