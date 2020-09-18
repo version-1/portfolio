@@ -29,13 +29,19 @@ const initialState = {
 
 const Context = React.createContext({
   state: initialState,
+  startLoading: (_type: string) => () => {},
+  postMessage: (_message: string) => {},
+  showModal: () => ()=> {},
+  hideModal: ()=> {},
+  toggleSidebar: () => {},
+  messages: []
 })
 
 const { allChannels } = data
 
 export const useApp = () => {
   const [_page, setPage] = useState<typeof page>()
-  const [_messages, setMessages] = useState<typeof messages>()
+  const [_messages, setMessages] = useState<typeof messages>({})
   const [_mobileLayout, setMobileLayout] = useState<
     typeof initialState.mobileLayout
   >()
@@ -65,7 +71,7 @@ export const useApp = () => {
       setTimeout(() => {
         end()
         setReady(true)
-      }, 500)
+      }, 1000)
     }
 
     const pathname = window ? window.location.pathname : undefined
@@ -78,11 +84,15 @@ export const useApp = () => {
   }, [])
 
   const updatePage = (page: any) => {
+    if (!page) {
+      return
+    }
     const [key] = Object.entries(allChannels).find(
       ([key, val]) => val.url === page.url
     )
     setPage({ ...page, key })
   }
+
   const postMessage = (message: string) => {
     const { key } = _page
     const prevMessages = _messages[key]
@@ -100,6 +110,10 @@ export const useApp = () => {
     return () => setModal(modal)
   }
 
+  const hideModal = ({ title, content }) => {
+    setModal(data.modal)
+  }
+
   const startLoading = (type: 'page' | 'content') => {
     setLoading({ ..._loading, [type]: true })
 
@@ -110,18 +124,22 @@ export const useApp = () => {
   }
 
   const value = {
+    ready: _ready,
     state: {
       page: _page,
       modal: _modal,
+      channels,
+      dm,
       loading: _loading,
       mobile: _mobileLayout,
     },
-    messages: (_messages as any)[page.name],
+    messages: (_messages as any)[page?.name],
     updatePage,
     postMessage,
     showModal,
+    hideModal,
     startLoading,
-    toggleSidebar,
+    toggleSidebar
   }
 
   return {

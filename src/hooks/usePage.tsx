@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { breakpoints } from 'components/styles'
 
 const usePage = () => {
-  const [mobile, setMobile] = useState(true)
+  const [mobile, setMobile] = useState(false)
   const [pathname, setPathname] = useState('')
 
   useEffect(() => {

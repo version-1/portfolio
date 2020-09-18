@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { useContext, ReactNode } from 'react'
 // @ts-ignore
 import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
@@ -14,7 +14,7 @@ import Sidebar from 'components/organisms/Sidebar'
 import Modal from 'components/templates/Modal'
 import Loading from 'components/templates/Loading'
 import ContentLoading from 'components/templates/ContentLoading'
-import Context from 'context/index'
+import Context from 'hooks/useApp'
 import usePage from 'hooks/usePage'
 import constants from 'constants/index'
 import colors from 'constants/colors'
@@ -40,7 +40,8 @@ interface ContentProps {
   pathname: string
   children: ReactNode
   state: any
-  mutations: any
+  postMessage?: any
+  toggleSidebar?: any
   channels: any
   dm: any
 }
@@ -49,11 +50,10 @@ const Content: React.FC<ContentProps> = ({
   pathname,
   children,
   state,
-  mutations,
+  postMessage,
   channels,
   dm,
 }) => {
-  const { postMessage } = mutations
   const { page, loading } = state
   return (
     <>
@@ -75,18 +75,17 @@ const MobileContent: React.FC<ContentProps> = ({
   pathname,
   children,
   state,
-  mutations,
+  postMessage,
+  toggleSidebar,
   channels,
   dm,
 }) => {
-  const { postMessage, toggleSidebar } = mutations
   const { page, loading, mobile } = state
   return (
     <>
       <Sidebar
         mobile
         pathname={pathname}
-        state={state}
         channels={channels}
         dm={dm}
         toggleSidebar={toggleSidebar}
@@ -118,6 +117,7 @@ interface Props {
 
 const Layout: React.FC<Props> = ({ children }) => {
   const { mobile, pathname } = usePage()
+  const { state, postMessage, hideModal, toggleSidebar } = useContext(Context)
   return (
     <StaticQuery
       query={graphql`
@@ -129,50 +129,45 @@ const Layout: React.FC<Props> = ({ children }) => {
           }
         }
       `}
-      render={() => (
-        <Context.Consumer>
-          {(context: any) => {
-            const { state, mutations } = context
-            if (constants.development) {
-              console.log('rerender', state)
-              console.log('mobile', mobile)
-            }
-            const channels = Object.values(state.channels)
-            const dm = Object.values(state.dm)
-            const { hideModal } = mutations
-            const { loading, modal } = state
-            return (
-              <>
-                <GlobalStyle />
-                <Container>
-                  {mobile ? (
-                    <MobileContent
-                      mobile={mobile}
-                      children={children}
-                      state={state}
-                      mutations={mutations}
-                      channels={channels}
-                      dm={dm}
-                    />
-                  ) : (
-                    <Content
-                      mobile={mobile}
-                      pathname={pathname}
-                      children={children}
-                      state={state}
-                      mutations={mutations}
-                      channels={channels}
-                      dm={dm}
-                    />
-                  )}
-                  <Modal {...modal} hideModal={hideModal} />
-                  <Loading show={loading.page} />
-                </Container>
-              </>
-            )
-          }}
-        </Context.Consumer>
-      )}
+      render={() => {
+        if (constants.development) {
+          console.log('rerender', state)
+          console.log('mobile', mobile)
+        }
+        const channels = Object.values(state.channels)
+        const dm = Object.values(state.dm)
+        const { loading, modal } = state
+        return (
+          <>
+            <GlobalStyle />
+            <Container>
+              {mobile ? (
+                <MobileContent
+                  pathname={pathname}
+                  children={children}
+                  state={state}
+                  postMessage={postMessage}
+                  toggleSidebar={toggleSidebar}
+                  channels={channels}
+                  dm={dm}
+                />
+              ) : (
+                <Content
+                  pathname={pathname}
+                  children={children}
+                  state={state}
+                  postMessage={postMessage}
+                  toggleSidebar={toggleSidebar}
+                  channels={channels}
+                  dm={dm}
+                />
+              )}
+              <Modal {...modal} hideModal={hideModal} />
+              <Loading show={loading.page} />
+            </Container>
+          </>
+        )
+      }}
     />
   )
 }

@@ -58,12 +58,11 @@ const Button = styled.a`
 const CHAT_INPUT_FORM = 'chat-input-form'
 
 interface Props {
-  mobile: boolean
   page: any
   postMessage: string
 }
 
-const Footer: React.FC<Props> = ({ mobile, page, postMessage }) => {
+const Footer: React.FC<Props> = ({ page, postMessage }) => {
   const [focus, setFocus] = useState(false)
   const [content, setContent] = useState('')
   const placeholder = ['Message', `#${page.name}.`].join(' ')

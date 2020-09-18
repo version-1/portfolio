@@ -42,26 +42,20 @@ const Input = styled.textarea`
 const CHAT_INPUT_FORM = 'chat-input-form'
 
 interface Props {
-  mobile: boolean
   page: any
   postMessage: any
 }
 
-const Footer: React.FC<Props> = ({ mobile, page, postMessage }) => {
+const Footer: React.FC<Props> = ({ page, postMessage }) => {
   const [focus, setFocus] = useState(false)
   const [content, setContent] = useState('')
-  const placeholder = (mobile: boolean) =>
-    mobile
-      ? ['Message', `#${page.name}`].join(' ')
-      : ['Message', `#${page.name}.`, 'Send message by pushing Enter..'].join(
-          ' '
-        )
+  const placeholder = ['Message', `#${page.name}.`, 'Send message by pushing Enter..'].join(' ')
   return (
     <Container>
       <Content focus={focus}>
         <Input
           className={CHAT_INPUT_FORM}
-          placeholder={placeholder(mobile)}
+          placeholder={placeholder}
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
           onChange={(e: any) => {
