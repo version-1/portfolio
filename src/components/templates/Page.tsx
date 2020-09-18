@@ -5,6 +5,7 @@ import { Body, P } from 'components/styles'
 import Layout from 'components/templates/Layout'
 import Message from 'components/molecules/Message'
 import SEO from 'components/organisms/Seo'
+import constants from 'constants/index'
 import { useApp } from 'hooks/useApp'
 
 const parseContent = (content: string) => {
@@ -22,15 +23,25 @@ const Page: React.FC<Props> = ({ children, title }) => {
   if (!value.ready) {
     return null
   }
+  const { state, postMessage, hideModal, toggleSidebar } = value
+  if (constants.development) {
+    console.log('rerender', state)
+  }
   return (
     <Provider value={value}>
-      <Layout>
+      <Layout
+        state={value.state}
+        postMessage={postMessage}
+        hideModal={hideModal}
+        toggleSidebar={toggleSidebar}
+      >
         <SEO title={title} />
         <Body>
           <>
             {children}
-            {value.messages?.map((message: any) => (
+            {value.messages?.map((message: any, index: number) => (
               <Message
+                key={index}
                 icon={you}
                 title={message.sender}
                 body={parseContent(message.content)}

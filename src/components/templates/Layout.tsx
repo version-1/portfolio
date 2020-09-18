@@ -14,9 +14,7 @@ import Sidebar from 'components/organisms/Sidebar'
 import Modal from 'components/templates/Modal'
 import Loading from 'components/templates/Loading'
 import ContentLoading from 'components/templates/ContentLoading'
-import Context from 'hooks/useApp'
 import usePage from 'hooks/usePage'
-import constants from 'constants/index'
 import colors from 'constants/colors'
 import { media } from 'components/styles'
 
@@ -39,7 +37,9 @@ const Menu = styled.div`
 interface ContentProps {
   pathname: string
   children: ReactNode
-  state: any
+  page: any,
+  loading: any,
+  mobile: any,
   postMessage?: any
   toggleSidebar?: any
   channels: any
@@ -47,14 +47,14 @@ interface ContentProps {
 }
 
 const Content: React.FC<ContentProps> = ({
+  page,
+  loading,
   pathname,
   children,
-  state,
   postMessage,
   channels,
   dm,
 }) => {
-  const { page, loading } = state
   return (
     <>
       <Sidebar pathname={pathname} mobile={false} channels={channels} dm={dm} />
@@ -72,15 +72,16 @@ const Content: React.FC<ContentProps> = ({
 }
 
 const MobileContent: React.FC<ContentProps> = ({
+  page,
+  loading,
+  mobile,
   pathname,
   children,
-  state,
   postMessage,
   toggleSidebar,
   channels,
   dm,
 }) => {
-  const { page, loading, mobile } = state
   return (
     <>
       <Sidebar
@@ -113,11 +114,20 @@ const MobileContent: React.FC<ContentProps> = ({
 
 interface Props {
   children: ReactNode
+  state: any
+  hideModal: () => void
+  postMessage: (message: string) => void
+  toggleSidebar: () => void
 }
 
-const Layout: React.FC<Props> = ({ children }) => {
+const Layout: React.FC<Props> = ({
+  state,
+  children,
+  hideModal,
+  postMessage,
+  toggleSidebar,
+}) => {
   const { mobile, pathname } = usePage()
-  const { state, postMessage, hideModal, toggleSidebar } = useContext(Context)
   return (
     <StaticQuery
       query={graphql`
@@ -130,10 +140,6 @@ const Layout: React.FC<Props> = ({ children }) => {
         }
       `}
       render={() => {
-        if (constants.development) {
-          console.log('rerender', state)
-          console.log('mobile', mobile)
-        }
         const channels = Object.values(state.channels)
         const dm = Object.values(state.dm)
         const { loading, modal } = state
@@ -143,9 +149,9 @@ const Layout: React.FC<Props> = ({ children }) => {
             <Container>
               {mobile ? (
                 <MobileContent
+                  {...state}
                   pathname={pathname}
                   children={children}
-                  state={state}
                   postMessage={postMessage}
                   toggleSidebar={toggleSidebar}
                   channels={channels}
@@ -153,9 +159,9 @@ const Layout: React.FC<Props> = ({ children }) => {
                 />
               ) : (
                 <Content
+                  {...state}
                   pathname={pathname}
                   children={children}
-                  state={state}
                   postMessage={postMessage}
                   toggleSidebar={toggleSidebar}
                   channels={channels}
