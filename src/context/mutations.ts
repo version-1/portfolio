@@ -49,12 +49,6 @@ export default {
       this.mutations.updatePage(allChannels[key])
     }
   },
-  scrollBottom() {
-    const body = document.body.querySelector('.content-body')
-    if (body) {
-      body.scrollTop = body.scrollHeight
-    }
-  },
   toggleSidebar() {
     const { mobile } = this.state
     this.setState({ mobile: { showSidebar: !mobile.showSidebar } })

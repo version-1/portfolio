@@ -16,7 +16,7 @@ const usePage = () => {
 
   return {
     mobile,
-    pathname,
+    pathname
   }
 }
 
