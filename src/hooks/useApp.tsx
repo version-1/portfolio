@@ -110,7 +110,7 @@ export const useApp = () => {
     return () => setModal(modal)
   }
 
-  const hideModal = ({ title, content }) => {
+  const hideModal = () => {
     setModal(data.modal)
   }
 
