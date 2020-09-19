@@ -75,7 +75,7 @@ const MobileContent: React.FC<ContentProps> = ({
   return (
     <>
       <Sidebar
-        mobile
+        mobile={mobile}
         pathname={pathname}
         channels={channels}
         dm={dm}

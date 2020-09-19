@@ -16,15 +16,15 @@ const Container = styled.div`
       mobile.showSidebar
         ? `
         display: flex;
+        visibility: visible;
         min-width: 80%;
         width: 80%;
-        transition: min-width cubic-bezier(0.25, 0.46, 0.45, 0.94) .3s, width cubic-bezier(0.25, 0.46, 0.45, 0.94) .3s;
-      `
+        transition: min-width linear .05s, width linear .05s;
+        `
         : `
-        display: none;
+        visibility: hidden;
         min-width: 0;
         width: 0;
-        transition: min-width cubic-bezier(0.25, 0.46, 0.45, 0.94) .3s, width cubic-bezier(0.25, 0.46, 0.45, 0.94) .3s;
       `}
   `}
 `
@@ -37,9 +37,11 @@ const Left = styled.div`
     ${({ mobile }: any) =>
       mobile.showSidebar
         ? `
+        display: block
         width: ${constants.sidebarLeftWidth};
       `
         : `
+        display: none
         width: 0;
       `}
   `}
