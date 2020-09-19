@@ -6,7 +6,6 @@ const BlogEn = () => {
     <Blog
       title="#blog-en"
       language="en"
-      startLoading={() => () => {}}
     />
   )
 }

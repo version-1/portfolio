@@ -26,10 +26,10 @@ const initialState = {
 const Context = React.createContext({
   state: initialState,
   postMessage: (_message: string) => {},
-  showModal: () => ()=> {},
-  hideModal: ()=> {},
+  showModal: () => () => {},
+  hideModal: () => {},
   toggleSidebar: () => {},
-  messages: []
+  messages: [],
 })
 
 const { allChannels } = data
@@ -63,8 +63,10 @@ export const useApp = () => {
     if (!pathname) {
       updatePage(channels.top)
     } else {
-      const [key] = pathname.split('/').slice(-1)
-      updatePage((allChannels as any)[key])
+      const page = Object.values(allChannels).find(
+        channel => channel.url === pathname
+      )
+      updatePage(page)
     }
     setReady(true)
   }, [])
@@ -83,7 +85,7 @@ export const useApp = () => {
     const { key } = _page
     const prevMessages = _messages[key]
     const newMessages = [...prevMessages, message]
-    if (page.notify) {
+    if (_page.notify) {
       slack.notify(message)
     }
     setMessages({ ..._messages, [key]: newMessages })
@@ -101,7 +103,10 @@ export const useApp = () => {
   }
 
   const toggleSidebar = () => {
-    setMobileLayout({ ..._mobileLayout, showSidebar: !_mobileLayout.showSidebar })
+    setMobileLayout({
+      ..._mobileLayout,
+      showSidebar: !_mobileLayout.showSidebar,
+    })
   }
 
   const value = {
@@ -113,12 +118,12 @@ export const useApp = () => {
       dm,
       mobile: _mobileLayout,
     },
-    messages: (_messages as any)[page?.name],
+    messages: (_messages as any)[page?.key],
     updatePage,
     postMessage,
     showModal,
     hideModal,
-    toggleSidebar
+    toggleSidebar,
   }
 
   return {
