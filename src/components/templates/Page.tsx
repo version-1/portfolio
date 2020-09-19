@@ -25,9 +25,11 @@ const Page: React.FC<Props> = ({ children, title }) => {
   if (!value.ready) {
     return <Loading show />
   }
-  const { state, postMessage, hideModal, toggleSidebar } = value
+  const { state, messages, postMessage, hideModal, toggleSidebar } = value
   if (constants.development) {
     console.log('rerender', state)
+    console.log('page', state.page)
+    console.log('messages', messages)
   }
   return (
     <Provider value={value}>
@@ -41,7 +43,7 @@ const Page: React.FC<Props> = ({ children, title }) => {
         <Body>
           <>
             {children}
-            {value.messages?.map((message: any, index: number) => (
+            {messages?.map((message: any, index: number) => (
               <Message
                 key={index}
                 icon={you}
