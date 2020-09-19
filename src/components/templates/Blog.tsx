@@ -11,18 +11,15 @@ import { scrollBottom } from '../../utils'
 interface Props {
   title: string
   language?: string
-  startLoading: (type: string) => () => void
 }
 
 const Blog: React.FC<Props> = ({
   title,
-  language = 'ja',
-  startLoading
+  language = 'ja'
 }) => {
   const [articles, setArticles] = useState<any[]>([])
   useEffect(() => {
     const fetch = async () => {
-      const end = startLoading('content')
       try {
         const feed = await fetchRss(language)
 
@@ -30,8 +27,6 @@ const Blog: React.FC<Props> = ({
         setTimeout(() => scrollBottom(), 500)
       } catch (e) {
         alert('Fetch Feeds Failed')
-      } finally {
-        end()
       }
     }
     fetch()

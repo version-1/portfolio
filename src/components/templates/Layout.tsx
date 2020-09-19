@@ -1,4 +1,4 @@
-import React, { useContext, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 // @ts-ignore
 import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
@@ -12,8 +12,6 @@ import Footer from 'components/organisms/Footer'
 import MobileFooter from 'components/organisms/MobileFooter'
 import Sidebar from 'components/organisms/Sidebar'
 import Modal from 'components/templates/Modal'
-import Loading from 'components/templates/Loading'
-import ContentLoading from 'components/templates/ContentLoading'
 import usePage from 'hooks/usePage'
 import colors from 'constants/colors'
 import { media } from 'components/styles'
@@ -37,9 +35,8 @@ const Menu = styled.div`
 interface ContentProps {
   pathname: string
   children: ReactNode
-  page: any,
-  loading: any,
-  mobile: any,
+  page: any
+  mobile: any
   postMessage?: any
   toggleSidebar?: any
   channels: any
@@ -48,7 +45,6 @@ interface ContentProps {
 
 const Content: React.FC<ContentProps> = ({
   page,
-  loading,
   pathname,
   children,
   postMessage,
@@ -60,11 +56,7 @@ const Content: React.FC<ContentProps> = ({
       <Sidebar pathname={pathname} mobile={false} channels={channels} dm={dm} />
       <main>
         <Header page={page} />
-        {loading.content ? (
-          <ContentLoading show={loading.content} />
-        ) : (
-          <Body className="content-body">{children}</Body>
-        )}
+        <Body className="content-body">{children}</Body>
         <Footer page={page} postMessage={postMessage} />
       </main>
     </>
@@ -73,7 +65,6 @@ const Content: React.FC<ContentProps> = ({
 
 const MobileContent: React.FC<ContentProps> = ({
   page,
-  loading,
   mobile,
   pathname,
   children,
@@ -94,11 +85,7 @@ const MobileContent: React.FC<ContentProps> = ({
       {!mobile.showSidebar ? (
         <main>
           <MobileHeader page={page} toggleSidebar={toggleSidebar} />
-          {!mobile.showSidebar && loading.content ? (
-            <ContentLoading show={loading.content} />
-          ) : (
-            <Body className="content-body">{children}</Body>
-          )}
+          <Body className="content-body">{children}</Body>
           <MobileFooter page={page} postMessage={postMessage} />
         </main>
       ) : (
@@ -142,7 +129,7 @@ const Layout: React.FC<Props> = ({
       render={() => {
         const channels = Object.values(state.channels)
         const dm = Object.values(state.dm)
-        const { loading, modal } = state
+        const { modal } = state
         return (
           <>
             <GlobalStyle />
@@ -169,7 +156,6 @@ const Layout: React.FC<Props> = ({
                 />
               )}
               <Modal {...modal} hideModal={hideModal} />
-              <Loading show={loading.page} />
             </Container>
           </>
         )

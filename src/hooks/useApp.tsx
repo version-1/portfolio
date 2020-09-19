@@ -20,16 +20,11 @@ const initialState = {
     showSidebar: false,
     height: 0,
   },
-  loading: {
-    page: false,
-    content: false,
-  },
   isReady: false,
 }
 
 const Context = React.createContext({
   state: initialState,
-  startLoading: (_type: string) => () => {},
   postMessage: (_message: string) => {},
   showModal: () => ()=> {},
   hideModal: ()=> {},
@@ -45,7 +40,6 @@ export const useApp = () => {
   const [_mobileLayout, setMobileLayout] = useState<
     typeof initialState.mobileLayout
   >()
-  const [_loading, setLoading] = useState<typeof initialState.loading>()
   const [_modal, setModal] = useState<typeof initialState.modal>()
   const [_ready, setReady] = useState<boolean>()
 
@@ -57,21 +51,12 @@ export const useApp = () => {
     setPage(initialState.page)
     setMessages(initialState.messages)
     setMobileLayout(initialState.mobileLayout)
-    setLoading(initialState.loading)
     setReady(initialState.isReady)
     if (window && mobile) {
       const height = window.innerHeight
       const vh = height * 0.01
       document.documentElement.style.setProperty('--vh', `${vh}px`)
       setMobileLayout({ ..._mobileLayout, height })
-    }
-    // init
-    if (!_ready) {
-      const end = startLoading('page')
-      setTimeout(() => {
-        end()
-        setReady(true)
-      }, 1000)
     }
 
     const pathname = window ? window.location.pathname : undefined
@@ -81,6 +66,7 @@ export const useApp = () => {
       const [key] = pathname.split('/').slice(-1)
       updatePage((allChannels as any)[key])
     }
+    setReady(true)
   }, [])
 
   const updatePage = (page: any) => {
@@ -114,11 +100,6 @@ export const useApp = () => {
     setModal(data.modal)
   }
 
-  const startLoading = (type: 'page' | 'content') => {
-    setLoading({ ..._loading, [type]: true })
-
-    return () => setLoading({ ..._loading, [type]: false })
-  }
   const toggleSidebar = () => {
     setMobileLayout({ ..._mobileLayout, showSidebar: !_mobileLayout.showSidebar })
   }
@@ -130,7 +111,6 @@ export const useApp = () => {
       modal: _modal,
       channels,
       dm,
-      loading: _loading,
       mobile: _mobileLayout,
     },
     messages: (_messages as any)[page?.name],
@@ -138,7 +118,6 @@ export const useApp = () => {
     postMessage,
     showModal,
     hideModal,
-    startLoading,
     toggleSidebar
   }
 
