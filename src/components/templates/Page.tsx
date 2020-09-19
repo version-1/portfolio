@@ -7,6 +7,7 @@ import Message from 'components/molecules/Message'
 import SEO from 'components/organisms/Seo'
 import constants from 'constants/index'
 import { useApp } from 'hooks/useApp'
+import Loading from 'components/templates/Loading'
 
 const parseContent = (content: string) => {
   return <>{content.split('\n').map(line => (line ? <P>{line}</P> : <p />))}</>
@@ -21,7 +22,7 @@ interface Props {
 const Page: React.FC<Props> = ({ children, title }) => {
   const { value, Provider } = useApp()
   if (!value.ready) {
-    return null
+    return <Loading show />
   }
   const { state, postMessage, hideModal, toggleSidebar } = value
   if (constants.development) {
