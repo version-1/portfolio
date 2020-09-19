@@ -13,6 +13,7 @@ interface Props {
 
 const Container = styled.div<Props>`
   display: ${({ show }) => (show ? 'flex' : 'none')};
+  transition: all ease-in-out .5s;
   z-index: 1000;
   background-color: white;
   position: fixed;

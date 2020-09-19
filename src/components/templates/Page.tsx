@@ -8,6 +8,7 @@ import SEO from 'components/organisms/Seo'
 import constants from 'constants/index'
 import { useApp } from 'hooks/useApp'
 import Loading from 'components/templates/Loading'
+import Modal from 'components/templates/Modal'
 
 const parseContent = (content: string) => {
   return <>{content.split('\n').map(line => (line ? <P>{line}</P> : <p />))}</>
@@ -51,6 +52,7 @@ const Page: React.FC<Props> = ({ children, title }) => {
           </>
         </Body>
       </Layout>
+       <Modal/>
     </Provider>
   )
 }

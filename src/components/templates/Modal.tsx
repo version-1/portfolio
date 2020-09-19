@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { useEffect, useState, ReactNode } from 'react'
 import styled from 'styled-components'
 
 // @ts-ignore
@@ -48,30 +48,46 @@ const Content = styled.div`
   justify-content: center;
 `
 
-interface Props {
-  show?: boolean
-  title: string
+let show = (_params: {
+  title?: string
   header?: ReactNode
   content?: ReactNode
-  hideModal: () => void
+}) => {}
+let hide = () => {}
+
+interface ClassMethods {
+  show: (_params: {
+  title?: string
+  header?: ReactNode
+  content?: ReactNode
+}) => void
+hide: () => void
 }
 
-const Modal: React.FC<Props> = ({
-  show,
-  title,
-  header,
-  content,
-  hideModal,
-}) => {
+const Modal: React.FC & ClassMethods = () => {
+  const [visible, setVisible] = useState(false)
+  const [header, setHeader] = useState<ReactNode | undefined>()
+  const [content, setContent] = useState<ReactNode | undefined>()
+  const [title, setTitle] = useState<ReactNode | undefined>()
+  useEffect(() => {
+    Modal.show = ({ title, header, content }) => {
+      setTitle(title)
+      setHeader(header)
+      setContent(content)
+      setVisible(true)
+    }
+    Modal.hide = () => setVisible(false)
+  }, [])
+
   return (
-    <Container show={show}>
+    <Container show={visible}>
       {header ? (
         header
       ) : (
-        <Header show={show}>
+        <Header show={visible}>
           <Title>{title}</Title>
           <Close>
-            <MdClose fontSize="30px" onClick={hideModal} />
+            <MdClose fontSize="30px" onClick={Modal.hide} />
           </Close>
         </Header>
       )}
@@ -79,5 +95,8 @@ const Modal: React.FC<Props> = ({
     </Container>
   )
 }
+
+Modal.show = show
+Modal.hide = hide
 
 export default Modal

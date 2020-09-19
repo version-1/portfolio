@@ -9,24 +9,19 @@ import Blog from 'components/templates/works/Blog'
 import Snake from 'components/templates/works/Snake'
 import Smama from 'components/templates/works/Smama'
 import { Thumbnail } from 'components/styles/index'
+import Modal from 'components/templates/Modal'
 
 const Component: React.FC = () => {
   const onClickBlog = () => {
-    // this.props.context.mutations.showModal({ title: 'Work', content: <Blog /> })
+    Modal.show({ title: 'Work', content: <Blog /> })
   }
 
   const onClickSnake = () => {
-    // this.props.context.mutations.showModal({
-    //   title: 'Work',
-    //   content: <Snake />,
-    // })
+    Modal.show({ title: 'Work', content: <Snake /> })
   }
 
   const onClickSmama = () => {
-    // this.props.context.mutations.showModal({
-    //   title: 'Work',
-    //   content: <Smama />,
-    // })
+    Modal.show({ title: 'Work', content: <Smama /> })
   }
 
   return (
