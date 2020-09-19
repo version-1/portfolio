@@ -1,28 +1,18 @@
-import React, { useContext } from 'react'
+import React from 'react'
 // @ts-ignore
 import { Link } from 'gatsby'
 
-import Context from 'hooks/useApp'
+import context from 'context/data'
 import { H3, P, LI, Bold, More } from 'components/styles'
 import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
 import constants from 'constants/index'
 
-interface Props {
-  props: any
-}
-
-const Component: React.FC<Props> = ({ props }) => {
-  const context = useContext(Context)
-  if (!context) {
-    // block beause error occurs on build
-    return <></>
-  }
-  const { state, messages } = context
-  const { channels } = state
+const Component: React.FC = () => {
+  const { channels } = context
 
   return (
-    <Page messages={messages}>
+    <Page>
       <Message
         title={constants.author}
         body={
@@ -43,7 +33,7 @@ const Component: React.FC<Props> = ({ props }) => {
               <Link to={channels.carrier.url}>
                 <More>#{channels.carrier.name}</More>
               </Link>
-              ・・・You can see my work history.
+              ・・・Work history.
             </LI>
             <LI>
               <Link to={channels.works.url}>
@@ -55,9 +45,8 @@ const Component: React.FC<Props> = ({ props }) => {
               <Link to={channels['blog-en'].url}>
                 <More>#{channels['blog-en'].name}</More>
               </Link>
-              ・・・You can read my blog's recently articles.
+              ・・・My own blog's recently articles.
             </LI>
-            <p>↓↓↓↓↓↓And introduction is HERE ↓↓↓↓↓↓</p>
           </>
         }
       />
@@ -68,7 +57,7 @@ const Component: React.FC<Props> = ({ props }) => {
             <p />
             <LI>
               Programmer with skill of developping high quality and scalable web
-              system. Be familiar With React and Ruby on Rails.{' '}
+              system. Be familiar With React and Ruby on Rails.
             </LI>
             <LI>
               Have Knowledge about React. Designed and Implemented my blog (with
@@ -81,7 +70,7 @@ const Component: React.FC<Props> = ({ props }) => {
             </LI>
             <LI>
               Work with wide field of view. Have some experiences I managed
-              small teams and review their design and code.{' '}
+              small teams and review their design and code.
             </LI>
             <P>
               github:{' '}
