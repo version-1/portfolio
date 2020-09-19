@@ -11,7 +11,6 @@ import MobileHeader from 'components/organisms/MobileHeader'
 import Footer from 'components/organisms/Footer'
 import MobileFooter from 'components/organisms/MobileFooter'
 import Sidebar from 'components/organisms/Sidebar'
-import Modal from 'components/templates/Modal'
 import usePage from 'hooks/usePage'
 import colors from 'constants/colors'
 import { media } from 'components/styles'
@@ -110,7 +109,6 @@ interface Props {
 const Layout: React.FC<Props> = ({
   state,
   children,
-  hideModal,
   postMessage,
   toggleSidebar,
 }) => {
@@ -129,7 +127,6 @@ const Layout: React.FC<Props> = ({
       render={() => {
         const channels = Object.values(state.channels)
         const dm = Object.values(state.dm)
-        const { modal } = state
         return (
           <>
             <GlobalStyle />
@@ -155,7 +152,6 @@ const Layout: React.FC<Props> = ({
                   dm={dm}
                 />
               )}
-              <Modal {...modal} hideModal={hideModal} />
             </Container>
           </>
         )
