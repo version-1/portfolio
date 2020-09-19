@@ -115,6 +115,7 @@ export const useApp = () => {
       page: _page,
       modal: _modal,
       channels,
+      messages: _messages,
       dm,
       mobile: _mobileLayout,
     },
