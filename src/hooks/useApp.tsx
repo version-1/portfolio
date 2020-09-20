@@ -43,7 +43,7 @@ export const useApp = () => {
   const [_modal, setModal] = useState<typeof initialState.modal>()
   const [_ready, setReady] = useState<boolean>()
 
-  const mobile = window
+  const mobile = typeof window !== 'undefined'
     ? window.parent.screen.width <= breakpoints.mobile
     : false
 
