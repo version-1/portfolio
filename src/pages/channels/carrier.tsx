@@ -100,9 +100,6 @@ export const Component: React.FC = () => {
             <LI>
               Refactor to make the code be understandable and less dependency.
             </LI>
-            <p>
-              <More onClick={onClickSmama}>more...</More>
-            </p>
           </>
         }
       />
