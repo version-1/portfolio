@@ -1,10 +1,13 @@
 import React from 'react'
+import kuroutoThumbnail from 'assets/kurouto.png'
+import smamaThumbnail from 'assets/smama.thumbnail.png'
 
 import { LI, H3, Bold } from 'components/styles'
 import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
 import Smama from 'components/templates/works/Smama'
 import { More } from 'components/styles'
+import { Thumbnail } from 'components/styles/index'
 import Modal from 'components/templates/Modal'
 
 export const Component: React.FC = () => {
@@ -20,6 +23,12 @@ export const Component: React.FC = () => {
           <>
             <p>
               Lead Programmer (Freelancer), <Bold>Oct 2018 to Current</Bold>
+            </p>
+            <p>
+            <Thumbnail
+              src={kuroutoThumbnail}
+              alt="kurouto thumbanail"
+            />
             </p>
             <p>
               React, React Native, Vue, Ruby on Rails, Firebase Realtime
@@ -78,6 +87,12 @@ export const Component: React.FC = () => {
               <Bold>Nov 2017 to Sep 2018</Bold>
             </p>
             <p>React, React Native, Express, Firebase, MySQL</p>
+            <p>
+              <Thumbnail
+                src={smamaThumbnail}
+                alt="smama thumbanail"
+              />
+            </p>
             <H3>Accomplishment</H3>
             <LI>
               Developed app with React Native and server-side with Express
