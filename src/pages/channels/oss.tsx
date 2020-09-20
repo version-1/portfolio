@@ -7,6 +7,20 @@ const Component: React.FC = () => {
   return (
     <Page>
       <Message
+        title="Contributed Vuex"
+        body={
+          <>
+            Tiny contrubition to fix typo of Japanese Documents.
+            <p>
+              Link:{' '}
+              <a href="https://github.com/vuejs/vuex/pull/1825">
+                https://github.com/vuejs/vuex/pull/1825
+              </a>
+            </p>
+          </>
+        }
+      />
+      <Message
         title="Cnstnts"
         body={
           <>

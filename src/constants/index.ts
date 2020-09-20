@@ -10,6 +10,7 @@ export default {
   sidebarLeftWidth: '80px',
   sidebarRightWidth: '176ox',
   url: {
+    papyrus: 'https://papyrus-app.org',
     blog: 'https://ver-1-0.net',
     github: 'https://github.com',
     linkedin: 'https://www.linkedin.com/in/jiro-onodera-1b3766145',
