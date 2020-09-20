@@ -3,7 +3,6 @@ import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
 
 const Component: React.FC = () => {
-
   return (
     <Page>
       <Message

@@ -119,7 +119,7 @@ export const useApp = () => {
       dm,
       mobile: _mobileLayout,
     },
-    messages: (_messages as any)[page?.key],
+    messages: (_messages as any)[_page?.key],
     updatePage,
     postMessage,
     showModal,
