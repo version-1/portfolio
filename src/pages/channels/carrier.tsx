@@ -3,8 +3,15 @@ import React from 'react'
 import { LI, H3, Bold } from 'components/styles'
 import Message from 'components/molecules/Message'
 import Page from 'components/templates/Page'
+import Smama from 'components/templates/works/Smama'
+import { More } from 'components/styles'
+import Modal from 'components/templates/Modal'
 
 export const Component: React.FC = () => {
+  const onClickSmama = () => {
+    Modal.show({ title: 'Work', content: <Smama /> })
+  }
+
   return (
     <Page>
       <Message
@@ -78,6 +85,9 @@ export const Component: React.FC = () => {
             <LI>
               Refactor to make the code be understandable and less dependency.
             </LI>
+            <p>
+              <More onClick={onClickSmama}>more...</More>
+            </p>
           </>
         }
       />

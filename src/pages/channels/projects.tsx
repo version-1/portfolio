@@ -19,11 +19,6 @@ const Component: React.FC = () => {
   const onClickSnake = () => {
     Modal.show({ title: 'Work', content: <Snake /> })
   }
-
-  const onClickSmama = () => {
-    Modal.show({ title: 'Work', content: <Smama /> })
-  }
-
   return (
     <Page>
       <Message
@@ -60,32 +55,6 @@ const Component: React.FC = () => {
             />
             <p>
               <More onClick={onClickSnake}>more...</More>
-            </p>
-          </>
-        }
-      />
-      <Message
-        title="React Native Various Form"
-        body={
-          <>
-            npm package. It provides some components for Input Form. You can
-            implement Field, Form and Validator easily on React Native.
-            <p>
-              <a href="https://github.com/version-1/react-native-various-form">
-                more...
-              </a>
-            </p>
-          </>
-        }
-      />
-      <Message
-        title="SMAMA"
-        body={
-          <>
-            C to C Web Service. User can sale their used home appliances and buy
-            them cheaper.
-            <p>
-              <More onClick={onClickSmama}>more...</More>
             </p>
           </>
         }
