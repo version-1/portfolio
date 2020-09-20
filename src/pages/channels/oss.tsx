@@ -8,7 +8,7 @@ const Component: React.FC = () => {
   return (
     <Page>
       <Message
-        title="Contributed Vuex"
+        title="Vuex Contribution"
         body={
           <>
             Tiny contrubition to fix typo of Japanese Documents.
