@@ -36,8 +36,8 @@ const Component: React.FC = () => {
               ・・・Work history.
             </LI>
             <LI>
-              <Link to={channels.works.url}>
-                <More>#{channels.works.name}</More>
+              <Link to={channels.projects.url}>
+                <More>#{channels.projects.name}</More>
               </Link>
               ・・・Drop by this channel and take a look at my works.
             </LI>

@@ -1,7 +1,7 @@
 
 export default {
   author: 'version-1',
-  origin: window ? window.location.origin : 'http://localhost:8000',
+  origin: typeof window !== 'undefined' ? window.location.origin : 'http://localhost:8000',
   development: process.env.NODE_ENV === 'development',
   production: process.env.NODE_ENV === 'production',
   slackWebhookURL: 'https://hooks.slack.com/services/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',

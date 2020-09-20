@@ -1,0 +1,43 @@
+import React from 'react'
+import Message from 'components/molecules/Message'
+import Page from 'components/templates/Page'
+
+const Component: React.FC = () => {
+
+  return (
+    <Page>
+      <Message
+        title="Cnstnts"
+        body={
+          <>
+            npm package. Easily define "Plain Object-base" enum helper.
+            It is good to use it for Redux or Hooks API useReducer's actions.
+            <p>
+              Link:{' '}
+              <a href="https://github.com/version-1/cnstnts">
+                https://github.com/version-1/cnstnts
+              </a>
+            </p>
+          </>
+        }
+      />
+      <Message
+        title="React Native Various Form"
+        body={
+          <>
+            npm package. It provides some components for Input Form. You can
+            implement Field, Form and Validator easily on React Native.
+            <p>
+              Link:{' '}
+              <a href="https://github.com/version-1/react-native-various-form">
+                https://github.com/version-1/react-native-various-form
+              </a>
+            </p>
+          </>
+        }
+      />
+    </Page>
+  )
+}
+
+export default Component

@@ -10,11 +10,17 @@ const channels = {
     url: '/channels/carrier',
     description: 'This is page about my carrier.',
   },
-  works: {
-    name: 'works',
-    url: '/channels/works',
-    description: 'Here is my work list. enjoy it.',
+  projects: {
+    name: 'projects',
+    url: '/channels/projects',
+    description: 'My own project is listed.',
   },
+  oss: {
+    name: 'oss',
+    url: '/channels/oss',
+    description: 'This is my OSS work summary',
+  },
+
   'blog-ja': {
     name: 'blog-ja',
     url: '/channels/blog/ja',
