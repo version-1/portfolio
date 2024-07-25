@@ -1,13 +1,8 @@
-import React from 'react'
-import styled from 'styled-components'
-//@ts-ignore
-import LogoGithub from 'react-ionicons/lib/LogoGithub'
-//@ts-ignore
-import LogoLinkedin from 'react-ionicons/lib/LogoLinkedin'
-//@ts-ignore
-import LogoTwitter from 'react-ionicons/lib/LogoTwitter'
-import colors from 'constants/colors'
-import LogoBlog from 'components/atoms/icon/blog'
+import React from "react";
+import styled from "styled-components";
+import Icon from "components/atoms/icon";
+import colors from "constants/colors";
+import LogoBlog from "components/atoms/icon/blog";
 
 const BlogIcon = styled.div`
   height: 60;
@@ -17,17 +12,17 @@ const BlogIcon = styled.div`
   background-color: ${colors.sidebarLeftIcon};
   border-radius: 6px;
   padding: 10;
-  color: '#ffffff';
-`
+  color: "#ffffff";
+`;
 const Item = styled.li`
   text-align: center;
-`
-const Container = styled.div``
+`;
+const Container = styled.div``;
 
 const snsLinks = [
   {
-    text: 'blog',
-    to: 'https://ver-1-0.net',
+    text: "blog",
+    to: "https://ver-1-0.net",
     icon: (
       <BlogIcon>
         <LogoBlog />
@@ -35,33 +30,33 @@ const snsLinks = [
     ),
   },
   {
-    text: 'github',
-    to: 'https://github.com/version-1',
+    text: "github",
+    to: "https://github.com/version-1",
     icon: (
       <BlogIcon>
-        <LogoGithub color="#ffffff" />
+        <Icon name="github" color="#ffffff" />
       </BlogIcon>
     ),
   },
   {
-    text: 'linkedin',
-    to: 'https://www.linkedin.com/in/jiro-onodera-1b3766145',
+    text: "linkedin",
+    to: "https://www.linkedin.com/in/jiro-onodera-1b3766145",
     icon: (
       <BlogIcon>
-        <LogoLinkedin color="#ffffff" />
+        <Icon name="linkedin" color="#ffffff" />
       </BlogIcon>
     ),
   },
   {
-    text: 'twitter',
-    to: 'https://twitter.com/version1_2017',
+    text: "twitter",
+    to: "https://twitter.com/version1_2017",
     icon: (
       <BlogIcon>
-        <LogoTwitter color="#ffffff" />
+        <Icon name="twitter" color="#ffffff" />
       </BlogIcon>
     ),
   },
-]
+];
 
 const SNSLinks: React.FC = () => {
   return (
@@ -76,6 +71,6 @@ const SNSLinks: React.FC = () => {
         ))}
       </ul>
     </Container>
-  )
-}
-export default SNSLinks
+  );
+};
+export default SNSLinks;

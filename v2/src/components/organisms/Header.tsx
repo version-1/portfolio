@@ -3,14 +3,7 @@ import styled from 'styled-components'
 import moment from 'moment'
 import constants from 'constants/index'
 import colors from 'constants/colors'
-// @ts-ignore
-import LogoTwitter from 'react-ionicons/lib/LogoTwitter'
-// @ts-ignore
-import LogoFacebook from 'react-ionicons/lib/LogoFacebook'
-// @ts-ignore
-import LogoReddit from 'react-ionicons/lib/LogoReddit'
-// @ts-ignore
-import MdCopy from 'react-ionicons/lib/MdCopy'
+import Icon from 'components/atoms/icon'
 import {
   TwitterShareButton,
   RedditShareButton,
@@ -88,28 +81,29 @@ const Header: React.FC<Props> = ({ page }) => {
           <input id="copy-text" type="hidden" value={url} />
           <ButtonGroup>
             <Tooltip text="copy URL">
-              <MdCopy
+              <Icon
+                name="copy"
                 onClick={() => copy(url)}
-                fontSize="16px"
+                size={16}
                 color={colors.grayText}
               />
             </Tooltip>
             <VSeparator>|</VSeparator>
             <Tooltip text="twitter">
               <TwitterShareButton url={url}>
-                <LogoTwitter fontSize="16px" color={colors.grayText} />
+                <Icon name="twitter" size={16} color={colors.grayText} />
               </TwitterShareButton>
             </Tooltip>
             <VSeparator>|</VSeparator>
             <Tooltip text="reddit">
               <RedditShareButton url={url}>
-                <LogoReddit fontSize="16px" color={colors.grayText} />
+                <Icon name="reddit" size={16} color={colors.grayText} />
               </RedditShareButton>
             </Tooltip>
             <VSeparator>|</VSeparator>
             <Tooltip text="facebook">
               <FacebookShareButton url={url}>
-                <LogoFacebook fontSize="16px" color={colors.grayText} />
+                <Icon name="facebook" size={16} color={colors.grayText} />
               </FacebookShareButton>
             </Tooltip>
             <VSeparator>|</VSeparator>

@@ -3,8 +3,7 @@ import styled from 'styled-components'
 import moment from 'moment'
 import constants from 'constants/index'
 import Separator from 'components/atoms/separator'
-// @ts-ignore
-import MdMenu from 'react-ionicons/lib/MdMenu'
+import Icon from 'components/atoms/icon'
 import { media } from 'components/styles'
 
 const Container = styled.header`
@@ -54,7 +53,7 @@ const MobileHeader: React.FC<Props> = ({ page, toggleSidebar }) => {
       <Content>
         <Left>
           <Menu onClick={toggleSidebar}>
-            <MdMenu />
+            <Icon name="menu" size={24} />
           </Menu>
         </Left>
         <Title>{page.name}</Title>
