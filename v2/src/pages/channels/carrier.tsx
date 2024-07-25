@@ -3,12 +3,9 @@ import kuroutoThumbnail from 'assets/kurouto.png'
 import smamaThumbnail from 'assets/smama.thumbnail.png'
 
 import { LI, H3, Bold } from 'components/styles'
-import Message from 'components/molecules/Message'
-import Page from 'components/templates/Page'
-import Smama from 'components/templates/works/Smama'
-import { More } from 'components/styles'
+import Message from 'components/domains/channel/message'
+import Page from 'components/shared/templates/page'
 import { Thumbnail } from 'components/styles/index'
-import Modal from 'components/templates/Modal'
 
 export const Component: React.FC = () => {
   return (

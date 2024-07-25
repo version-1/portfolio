@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link } from 'gatsby'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
-import Modal from 'components/templates/Modal'
+import Modal from 'components/shared/templates/modal'
 import notFound from 'assets/404.png'
 
 const Content = styled.div`

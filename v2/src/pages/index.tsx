@@ -1,10 +1,9 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-import constant from 'constants/index'
 import { H3, P, LI, Bold, More } from 'components/styles'
-import Message from 'components/molecules/Message'
-import Page from 'components/templates/Page'
+import Message from 'components/domains/channel/message'
+import Page from 'components/shared/templates/page'
 import constants from 'constants/index'
 
 const Component: React.FC = () => {

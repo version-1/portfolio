@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components'
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
 import colors from 'constants/colors'
 
 export const breakpoints = {
@@ -10,7 +11,7 @@ export const breakpoints = {
 export const media: any = Object.keys(breakpoints).reduce(
   (acc: any, label: string) => {
     acc[label] = (...args: any[]) => css`
-      @media (max-width: ${breakpoints[label as keyof breakpoints]}px) {
+      @media (max-width: ${breakpoints[label as keyof typeof breakpoints]}px) {
         ${css(...args)}
       }
     `
@@ -19,21 +20,27 @@ export const media: any = Object.keys(breakpoints).reduce(
   {}
 )
 
-export const Body = styled.div`
+type Props = {
+  fontSize?: number
+}
+
+export const Body = styled.div<Props>`
   margin-top: 30px;
 `
 
-export const H3 = styled.h3`
+export const H3 = styled.h3<Props>`
   margin: 5px 0;
   font-size: ${({ fontSize }: any) =>
     fontSize ? [fontSize, 'px'].join('') : '16px'};
   font-weight: ${({ fontWeight }: any) => (fontWeight ? fontWeight : 'bold')};
 `
-export const P = styled.p`
+
+
+export const P = styled.p<{ indent?: number }>`
   margin: 0px;
   margin-bottom: 2px;
   padding: 0;
-  padding-left: ${({ indent }: any) => (indent ? [indent, 'px'].join('') : 0)};
+  padding-left: ${({ indent }) => (indent ? [indent, 'px'].join('') : 0)};
 `
 
 export const LI = styled.p`

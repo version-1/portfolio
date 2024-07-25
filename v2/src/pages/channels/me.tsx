@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { P } from 'components/styles'
-import Message from 'components/molecules/Message'
-import Page from 'components/templates/Page'
+import Message from 'components/domains/channel/message'
+import Page from 'components/shared/templates/page'
 import constants from 'constants/index'
 
 const Component: React.FC = () => {
