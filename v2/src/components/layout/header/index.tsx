@@ -12,6 +12,7 @@ import {
 
 import Separator from 'components/shared/atoms/separator'
 import Tooltip from 'components/shared/atoms/tooltip'
+import useChannel from 'context/channel'
 
 const Container = styled.header`
   height: ${constants.headerHeight};
@@ -67,16 +68,14 @@ const copy = (url: string) => {
   )
 }
 
-interface Props {
-  page: any
-}
+const Header: React.FC = () => {
+  const { state: { current } } = useChannel()
+  const url = constants.origin + current?.url
 
-const Header: React.FC<Props> = ({ page }) => {
-  const url = constants.origin + page.url
   return (
     <Container>
       <Content>
-        <Title>{page.name}</Title>
+        <Title>{current?.name}</Title>
         <Footer>
           <input id="copy-text" type="hidden" value={url} />
           <ButtonGroup>
@@ -108,7 +107,7 @@ const Header: React.FC<Props> = ({ page }) => {
             </Tooltip>
             <VSeparator>|</VSeparator>
           </ButtonGroup>
-          <Description>{page.description}</Description>
+          <Description>{current?.description}</Description>
         </Footer>
       </Content>
       <Separator text={date} />

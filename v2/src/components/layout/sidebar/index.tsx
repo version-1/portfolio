@@ -1,11 +1,13 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import Links from 'components/layout/sidebar/links'
-import ChannelList from 'components/domains/channel/list'
-import Header from './header'
-import colors from 'constants/colors'
-import constants from 'constants/index'
-import { media } from 'components/styles'
+import React from "react";
+import styled from "@emotion/styled";
+import Links from "components/layout/sidebar/links";
+import ChannelList from "components/domains/channel/list";
+import Header from "./header";
+import colors from "constants/colors";
+import constants from "constants/index";
+import { media } from "components/styles";
+import useChannel from "context/channel";
+import useApp from "context/app";
 
 const Container = styled.div`
   min-width: ${constants.sidebarWidth};
@@ -27,7 +29,7 @@ const Container = styled.div`
         width: 0;
       `}
   `}
-`
+`;
 
 const Left = styled.div`
   background-color: ${colors.sidebarLeft};
@@ -45,39 +47,40 @@ const Left = styled.div`
         width: 0;
       `}
   `}
-`
+`;
 const Right = styled.div`
   background-color: ${colors.sidebarRight};
   height: 100vh;
   width: 100%;
-`
-const Body = styled.div``
+`;
+const Body = styled.div``;
 const Public = styled.div`
   margin-bottom: 50px;
-`
-const Private = styled.div``
+`;
+const Private = styled.div``;
 const Title = styled.div`
   padding: 16px;
   padding-bottom: 0;
   color: ${colors.weakText};
-`
+`;
 
 interface Props {
-  mobile: boolean
-  pathname: string
-  channels: any
-  dm: any
-  toggleSidebar?: () => void
+  channels: any;
+  dm: any;
 }
 
-const Sidebar: React.FC<Props> = ({
-  mobile,
-  pathname,
-  channels,
-  dm,
-  toggleSidebar,
-}) => {
-  const onClick = () => mobile && toggleSidebar && toggleSidebar()
+const Sidebar: React.FC<Props> = ({ channels, dm }) => {
+  const {
+    state: {
+      mobile,
+    },
+    toggleSidebar,
+  } = useApp();
+  const {
+    state: { pathname },
+  } = useChannel();
+  const onClick = () => mobile && toggleSidebar && toggleSidebar();
+
   return (
     <Container mobile={mobile}>
       <Left mobile={mobile}>
@@ -88,7 +91,11 @@ const Sidebar: React.FC<Props> = ({
         <Body>
           <Public>
             <Title>Channels</Title>
-            <ChannelList pathname={pathname} list={channels} onClick={onClick} />
+            <ChannelList
+              pathname={pathname}
+              list={channels}
+              onClick={onClick}
+            />
           </Public>
           <Private>
             <Title>Direct Messages</Title>
@@ -97,7 +104,7 @@ const Sidebar: React.FC<Props> = ({
         </Body>
       </Right>
     </Container>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

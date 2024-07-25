@@ -15,7 +15,7 @@ const ChannelList: React.FC<Props> = ({ pathname, list, onClick }) => {
     <Container>
       <ul>
         {list.map(({ url, name }) => {
-          const selected = pathname === url
+          const selected = pathname === url || pathname === url + "/"
           return (
             <li key={url} onClick={onClick}>
               <ChannelItem url={url} name={name} selected={selected}/>

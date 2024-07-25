@@ -1,62 +1,56 @@
-import React, { ReactNode } from 'react'
-import { Body, P } from 'components/styles'
-import Layout from 'components/layout'
-import Message from 'components/domains/channel/message'
-import SEO from 'components/layout/seo'
-import constants from 'constants/index'
-import { useApp } from 'hooks/useApp'
-import Loading from 'components/shared/templates/loading'
-import Modal from 'components/shared/templates/modal'
+import React, { ReactNode } from "react";
+import { Body, P } from "components/styles";
+import Layout from "components/layout";
+import Message from "components/domains/channel/message";
+import SEO from "components/layout/seo";
+import useApp, { Provider as AppProvider } from "context/app";
+import useChannel, { Provider as ChannelProvider } from "context/channel";
+import Modal from "components/shared/templates/modal";
 
-import you from 'assets/you.png'
+import you from "assets/you.png";
 
 const parseContent = (content: string) => {
-  return <>{content.split('\n').map(line => (line ? <P>{line}</P> : <p />))}</>
-}
+  return (
+    <>{content.split("\n").map((line) => (line ? <P>{line}</P> : <p />))}</>
+  );
+};
 
 interface Props {
-  children?: ReactNode
-  title?: string
-  messages?: any[]
+  children?: ReactNode;
+  title: string;
 }
 
 const Page: React.FC<Props> = ({ children, title }) => {
-  const { value, Provider } = useApp()
-  if (!value.ready) {
-    return <Loading show />
-  }
-  const { state, messages, postMessage, hideModal, toggleSidebar } = value
-  if (constants.development) {
-    console.log('rerender', state)
-    console.log('page', state.page)
-    console.log('messages', messages)
-  }
-  return (
-    <Provider value={value}>
-      <Layout
-        state={value.state}
-        postMessage={postMessage}
-        hideModal={hideModal}
-        toggleSidebar={toggleSidebar}
-      >
-        <SEO title={title} />
-        <Body>
-          <>
-            {children}
-            {messages?.map((message: any, index: number) => (
-              <Message
-                key={index}
-                icon={you}
-                title={message.sender}
-                body={parseContent(message.content)}
-              />
-            ))}
-          </>
-        </Body>
-      </Layout>
-       <Modal/>
-    </Provider>
-  )
-}
+  const {
+    config: { channels, dm },
+  } = useApp();
+  const {
+    selector: { messages },
+  } = useChannel();
 
-export default Page
+  return (
+    <AppProvider>
+      <ChannelProvider>
+        <Layout state={{ dm, channels }}>
+          <SEO title={title} />
+          <Body>
+            <>
+              {children}
+              {messages?.map((message: any, index: number) => (
+                <Message
+                  key={index}
+                  icon={you}
+                  title={message.sender}
+                  body={parseContent(message.content)}
+                />
+              ))}
+            </>
+          </Body>
+        </Layout>
+        <Modal />
+      </ChannelProvider>
+    </AppProvider>
+  );
+};
+
+export default Page;

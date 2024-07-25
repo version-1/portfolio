@@ -6,7 +6,7 @@ import vuexThumbnail from 'assets/vuex-contribution.png'
 
 const Component: React.FC = () => {
   return (
-    <Page>
+    <Page title="OSS">
       <Message
         title="Vuex Contribution"
         body={

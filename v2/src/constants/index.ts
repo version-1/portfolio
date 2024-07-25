@@ -1,46 +1,62 @@
-const channels = {
+const channels: { [key: string]: Channel } = {
   top: {
+    key: 'top',
     name: 'top',
     url: '/',
     description:
-      'This is my portfolio page.About my works are summarized in left pane. enjoy my site !!!!!',
+      'This is my personal portfolio website. You can see my profile and work here. Enjoy !!!',
   },
-  carrier: {
-    name: 'carrier',
-    url: '/channels/carrier',
-    description: 'This is page about my carrier.',
+  experience: {
+    key: 'experience',
+    name: 'experience',
+    url: '/channels/experience',
+    description: 'My work experience is summarized here.',
   },
   projects: {
+    key: 'projects',
     name: 'projects',
     url: '/channels/projects',
-    description: 'My own project is listed.',
+    description: 'My private projects are summarized here.',
   },
   oss: {
+    key: 'oss',
     name: 'oss',
     url: '/channels/oss',
-    description: 'This is my OSS work summary',
+    description: 'My open source projects are summarized here.',
   },
 
   'blog-ja': {
+    key: 'blog-ja',
     name: 'blog-ja',
     url: '/channels/blog/ja',
-    description: 'Recent posts in my blog is posted here.',
+    description: 'Recent posts in my blog in japanese is posted here.',
   },
   'blog-en': {
+    key: 'blog-en',
     name: 'blog-en',
     url: '/channels/blog/en',
-    description: 'Recent posts in my blog is posted here.',
+    description: 'Recent posts in my blog in english is posted here.',
   },
+}
+
+type ChannelKey = keyof typeof channels
+export type Channel = {
+  key: ChannelKey
+  name: string
+  url: string
+  description: string
 }
 
 const dm = {
   you: {
+    key: 'you',
     name: 'you',
     url: '/channels/you',
     description:
       'Here is your private chat space. Free to post what you think.',
   },
   me: {
+    key: 'me',
     name: 'me',
     url: '/channels/me',
     description: 'You can free to send message to me.',
@@ -65,7 +81,7 @@ const modal = {
 }
 
 export default {
-  author: 'version-1',
+  author: 'Jiro',
   origin: typeof window !== 'undefined' ? window.location.origin : 'http://localhost:8000',
   development: process.env.NODE_ENV === 'development',
   production: process.env.NODE_ENV === 'production',

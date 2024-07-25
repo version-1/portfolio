@@ -3,13 +3,15 @@ import { StaticQuery, graphql } from "gatsby";
 import styled from "@emotion/styled";
 import GlobalStyle from "components/styles/global";
 import Icon from "components/shared/atoms/icon";
+import Loader from "components/shared/templates/loading";
 
 import Header from "components/layout/header";
 import MobileHeader from "components/layout/mobile/header";
 import Footer from "components/layout/footer";
 import MobileFooter from "components/layout/mobile/footer";
 import Sidebar from "components/layout/sidebar";
-import usePage from "hooks/usePage";
+import useChannel from "context/channel";
+import useApp from "context/app";
 import colors from "constants/colors";
 import { media } from "components/styles";
 
@@ -30,60 +32,38 @@ const Menu = styled.div`
 `;
 
 interface ContentProps {
-  pathname: string;
   children: ReactNode;
-  page: any;
-  mobile: any;
-  postMessage?: any;
-  toggleSidebar?: any;
   channels: any;
   dm: any;
 }
 
-const Content: React.FC<ContentProps> = ({
-  page,
-  pathname,
-  children,
-  postMessage,
-  channels,
-  dm,
-}) => {
+const Content: React.FC<ContentProps> = ({ children, channels, dm }) => {
   return (
     <>
-      <Sidebar pathname={pathname} mobile={false} channels={channels} dm={dm} />
+      <Sidebar channels={channels} dm={dm} />
       <main>
-        <Header page={page} />
+        <Header />
         <Body className="content-body">{children}</Body>
-        <Footer page={page} postMessage={postMessage} />
+        <Footer />
       </main>
     </>
   );
 };
 
-const MobileContent: React.FC<ContentProps> = ({
-  page,
-  mobile,
-  pathname,
-  children,
-  postMessage,
-  toggleSidebar,
-  channels,
-  dm,
-}) => {
+const MobileContent: React.FC<ContentProps> = ({ children, channels, dm }) => {
+  const {
+    state: { layout },
+    toggleSidebar,
+  } = useApp();
+
   return (
     <>
-      <Sidebar
-        mobile={mobile}
-        pathname={pathname}
-        channels={channels}
-        dm={dm}
-        toggleSidebar={toggleSidebar}
-      />
-      {!mobile.showSidebar ? (
+      <Sidebar channels={channels} dm={dm} />
+      {!layout.mobile.showSidebar ? (
         <main>
-          <MobileHeader page={page} toggleSidebar={toggleSidebar} />
+          <MobileHeader />
           <Body className="content-body">{children}</Body>
-          <MobileFooter page={page} postMessage={postMessage} />
+          <MobileFooter />
         </main>
       ) : (
         <main>
@@ -99,18 +79,17 @@ const MobileContent: React.FC<ContentProps> = ({
 interface Props {
   children: ReactNode;
   state: any;
-  hideModal: () => void;
-  postMessage: (message: string) => void;
-  toggleSidebar: () => void;
 }
 
-const Layout: React.FC<Props> = ({
-  state,
-  children,
-  postMessage,
-  toggleSidebar,
-}) => {
-  const { mobile, pathname } = usePage();
+const Layout: React.FC<Props> = ({ state, children }) => {
+  const {
+    state: { ready, mobile },
+  } = useApp();
+
+  if (!ready) {
+    return <Loader show />;
+  }
+
   return (
     <StaticQuery
       query={graphql`
@@ -132,20 +111,14 @@ const Layout: React.FC<Props> = ({
               {mobile ? (
                 <MobileContent
                   {...state}
-                  pathname={pathname}
                   children={children}
-                  postMessage={postMessage}
-                  toggleSidebar={toggleSidebar}
                   channels={channels}
                   dm={dm}
                 />
               ) : (
                 <Content
                   {...state}
-                  pathname={pathname}
                   children={children}
-                  postMessage={postMessage}
-                  toggleSidebar={toggleSidebar}
                   channels={channels}
                   dm={dm}
                 />

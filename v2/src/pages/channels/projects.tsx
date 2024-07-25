@@ -24,7 +24,7 @@ const Component: React.FC = () => {
     Modal.show({ title: 'Work', content: <Snake /> })
   }
   return (
-    <Page>
+    <Page title="Projects">
       <Message
         title="Papyrus"
         body={

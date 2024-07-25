@@ -19,6 +19,8 @@ const Item = styled.li`
 `;
 const Container = styled.div``;
 
+const iconColor = '#2c2254';
+
 const snsLinks = [
   {
     text: "blog",
@@ -34,7 +36,7 @@ const snsLinks = [
     to: "https://github.com/version-1",
     icon: (
       <BlogIcon>
-        <Icon name="github" color="#ffffff" />
+        <Icon name="github" color={iconColor} />
       </BlogIcon>
     ),
   },
@@ -43,7 +45,7 @@ const snsLinks = [
     to: "https://www.linkedin.com/in/jiro-onodera-1b3766145",
     icon: (
       <BlogIcon>
-        <Icon name="linkedin" color="#ffffff" />
+        <Icon name="linkedin" color={iconColor} />
       </BlogIcon>
     ),
   },
@@ -52,7 +54,7 @@ const snsLinks = [
     to: "https://twitter.com/version1_2017",
     icon: (
       <BlogIcon>
-        <Icon name="twitter" color="#ffffff" />
+        <Icon name="twitter" color={iconColor} />
       </BlogIcon>
     ),
   },

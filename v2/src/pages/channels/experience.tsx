@@ -1,27 +1,24 @@
-import React from 'react'
-import kuroutoThumbnail from 'assets/kurouto.png'
-import smamaThumbnail from 'assets/smama.thumbnail.png'
+import React from "react";
+import kuroutoThumbnail from "assets/kurouto.png";
+import smamaThumbnail from "assets/smama.thumbnail.png";
 
-import { LI, H3, Bold } from 'components/styles'
-import Message from 'components/domains/channel/message'
-import Page from 'components/shared/templates/page'
-import { Thumbnail } from 'components/styles/index'
+import { LI, H3, Bold } from "components/styles";
+import Message from "components/domains/channel/message";
+import Page from "components/shared/templates/page";
+import { Thumbnail } from "components/styles/index";
 
 export const Component: React.FC = () => {
   return (
-    <Page>
+    <Page title="Experience">
       <Message
         title="Web and Native App(React Native) automating document outputs for Real Estate Agent"
         body={
           <>
             <p>
-              Lead Programmer (Freelancer), <Bold>Oct 2018 to Current</Bold>
+              Lead Programmer (Contract), <Bold>Oct 2018 to Current</Bold>
             </p>
             <p>
-            <Thumbnail
-              src={kuroutoThumbnail}
-              alt="kurouto thumbanail"
-            />
+              <Thumbnail src={kuroutoThumbnail} alt="kurouto thumbanail" />
             </p>
             <p>
               React, React Native, Vue, Ruby on Rails, Firebase Realtime
@@ -39,7 +36,7 @@ export const Component: React.FC = () => {
             </LI>
             <LI>
               Migration webpack 2 to 4 on production environment. Halve the time
-              of build when member develop and deploy.{' '}
+              of build when member develop and deploy.{" "}
             </LI>
             <LI>
               Dockernize the project’s environment to make members to use same
@@ -57,7 +54,7 @@ export const Component: React.FC = () => {
         body={
           <>
             <p>
-              React Native Programmer (Freelancer),{' '}
+              React Native Programmer (Freelancer),{" "}
               <Bold>Mar 2018 to Dec 2018</Bold>
             </p>
             <p>React, React Native, Express, Firebase, MySQL</p>
@@ -76,15 +73,12 @@ export const Component: React.FC = () => {
         body={
           <>
             <p>
-              React/ Ruby on Rails Programmer (Freelancer),{' '}
+              React/ Ruby on Rails Programmer (Freelancer),{" "}
               <Bold>Nov 2017 to Sep 2018</Bold>
             </p>
             <p>React, React Native, Express, Firebase, MySQL</p>
             <p>
-              <Thumbnail
-                src={smamaThumbnail}
-                alt="smama thumbanail"
-              />
+              <Thumbnail src={smamaThumbnail} alt="smama thumbanail" />
             </p>
             <H3>Accomplishment</H3>
             <LI>
@@ -140,7 +134,7 @@ export const Component: React.FC = () => {
         }
       />
     </Page>
-  )
-}
+  );
+};
 
-export default Component
+export default Component;
