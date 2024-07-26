@@ -10,7 +10,7 @@ import { scrollBottom } from 'utils/index'
 
 interface Props {
   title: string
-  language?: string
+  language?: 'ja' | 'en'
 }
 
 const Blog: React.FC<Props> = ({
@@ -25,16 +25,14 @@ const Blog: React.FC<Props> = ({
 
         setArticles(feed.items || [])
         setTimeout(() => scrollBottom(), 500)
-      } catch (e) {
-        alert('Fetch Feeds Failed')
+      } catch (error) {
+        const e = error
+        console.error(e)
+        alert('Fetching feeds failed')
       }
     }
     fetch()
   }, [])
-
-  if (!articles) {
-    return <></>
-  }
 
   return (
     <Page title={title}>

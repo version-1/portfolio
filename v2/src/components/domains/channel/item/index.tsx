@@ -9,7 +9,7 @@ interface ChannelParam {
 
 const Channel = styled.h2`
   color: ${({ selected }: ChannelParam) =>
-    selected ? colors.strongText : colors.weakText};
+    selected ? colors.strongText : colors.channelText};
   background-color: ${({ selected }: ChannelParam) =>
     selected ? colors.accent : ''};
   font-size: 16px;
@@ -19,9 +19,11 @@ const Channel = styled.h2`
   &::before {
     content: '#  ';
   }
+
   :hover {
     background-color: ${({ selected }: ChannelParam) =>
       selected ? '' : colors.keyHover};
+    color: ${colors.pureWhite};
   }
 `
 

@@ -1,15 +1,18 @@
-// import Parser from 'rss-parser'
-//
-// const parser = new Parser({
-//   headers: { 'Access-Control-Allow-Origin': '*' },
-//   customFields: {
-//     item: ['thumbnailUrl', 'language']
-//   }
-// })
-//
-// const domParser: any = typeof DOMParser !== 'undefined' && new DOMParser()
+import Parser from "lib/rssParser";
 
-export const fetchRss = async (lang: string) => {
-  return { items: [] }
-  // return await parser.parseURL(`https://ver-1-0.net/latest.${lang}.xml`)
-}
+const client = {
+  ja: new Parser({
+    url: "https://ver-1-0.net/latest.ja.xml",
+    limit: 10,
+  }),
+
+  en: new Parser({
+    url: "https://ver-1-0.net/latest.en.xml",
+    limit: 10,
+  }),
+};
+
+export const fetchRss = async (lang: 'ja' | 'en') => {
+  return client[lang].fetch();
+};
+

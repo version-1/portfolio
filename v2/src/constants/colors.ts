@@ -16,6 +16,7 @@ export default {
   linkText: '#00a6ea',
   linkHoverText: schema.warning,
   weakText: '#fafafa',
+  channelText: '#cdcad9',
   grayText: '#5f5c50',
   darkText: '#272100',
   keyHover: '#f9b444',
