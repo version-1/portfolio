@@ -1,16 +1,16 @@
 import React from 'react'
-import blogThumbnail from 'assets/blog.png'
+import blogThumbnail from 'assets/works/blog.png'
 import snakeThumbnail from 'assets/snake.png'
 import papyrusThumbnail from 'assets/papyrus.png'
 
 import { More } from 'components/styles'
-import Message from 'components/molecules/Message'
-import Page from 'components/templates/Page'
-import Papyrus from 'components/templates/works/Papyrus'
-import Blog from 'components/templates/works/Blog'
-import Snake from 'components/templates/works/Snake'
+import Message from 'components/domains/channel/message'
+import Page from 'components/shared/templates/page'
+import Papyrus from 'components/domains/works/papyrus'
+import Blog from 'components/domains/works/blog'
+import Snake from 'components/domains/works/snake'
 import { Thumbnail } from 'components/styles/index'
-import Modal from 'components/templates/Modal'
+import Modal from 'components/shared/templates/modal'
 
 const Component: React.FC = () => {
   const onClickPapyrus = () => {
@@ -24,7 +24,7 @@ const Component: React.FC = () => {
     Modal.show({ title: 'Work', content: <Snake /> })
   }
   return (
-    <Page>
+    <Page title="Projects">
       <Message
         title="Papyrus"
         body={

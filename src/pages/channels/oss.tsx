@@ -1,12 +1,12 @@
 import React from 'react'
-import Message from 'components/molecules/Message'
-import Page from 'components/templates/Page'
-import vuexThumbnail from 'assets/vuex-contribution.png'
+import Message from 'components/domains/channel/message'
+import Page from 'components/shared/templates/page'
 import { Thumbnail } from 'components/styles/index'
+import vuexThumbnail from 'assets/vuex-contribution.png'
 
 const Component: React.FC = () => {
   return (
-    <Page>
+    <Page title="OSS">
       <Message
         title="Vuex Contribution"
         body={

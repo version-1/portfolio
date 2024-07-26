@@ -1,5 +1,5 @@
 import React from 'react'
-import Blog from 'components/templates/Blog'
+import Blog from 'components/domains/channel/blog'
 
 const BlogEn = () => {
   return (

@@ -1,20 +1,26 @@
-import React from 'react'
-// @ts-ignore
-import { Link } from 'gatsby'
+import React from "react";
+import { Link } from "gatsby";
 
-import context from 'context/data'
-import { H3, P, LI, Bold, More } from 'components/styles'
-import Message from 'components/molecules/Message'
-import Page from 'components/templates/Page'
-import constants from 'constants/index'
+import { H3, P, LI, Bold, More } from "components/styles";
+import Message from "components/domains/channel/message";
+import Page from "components/shared/templates/page";
+import constants from "constants/index";
 
 const Component: React.FC = () => {
-  const { channels } = context
+  const {
+    channels: {
+      top,
+      experience,
+      projects,
+      "blog-en": blogEn,
+    },
+    author,
+  } = constants;
 
   return (
-    <Page>
+    <Page title="Top">
       <Message
-        title={constants.author}
+        title={author}
         body={
           <>
             <p>
@@ -23,27 +29,27 @@ const Component: React.FC = () => {
             </p>
             <H3 fontSize={14}>Channels:</H3>
             <LI>
-              <Link to={channels.top.url}>
-                <More>#{channels.top.name}</More>
+              <Link to={top.url}>
+                <More>#{top.name}</More>
               </Link>
               ・・・Here. If you lost in this site, it's goot to back this
               channel.
             </LI>
             <LI>
-              <Link to={channels.carrier.url}>
-                <More>#{channels.carrier.name}</More>
+              <Link to={experience.url}>
+                <More>#{experience.name}</More>
               </Link>
               ・・・Work history.
             </LI>
             <LI>
-              <Link to={channels.projects.url}>
-                <More>#{channels.projects.name}</More>
+              <Link to={projects.url}>
+                <More>#{projects.name}</More>
               </Link>
               ・・・Drop by this channel and take a look at my works.
             </LI>
             <LI>
-              <Link to={channels['blog-en'].url}>
-                <More>#{channels['blog-en'].name}</More>
+              <Link to={blogEn.url}>
+                <More>#{blogEn.name}</More>
               </Link>
               ・・・My own blog's recently articles.
             </LI>
@@ -73,7 +79,7 @@ const Component: React.FC = () => {
               small teams and review their design and code.
             </LI>
             <P>
-              github:{' '}
+              github:{" "}
               <a
                 href="https://github.com/version-1"
                 target="_blank"
@@ -83,7 +89,7 @@ const Component: React.FC = () => {
               </a>
             </P>
             <P>
-              blog:{' '}
+              blog:{" "}
               <a
                 href="https://ver-1-0.net"
                 target="_blank"
@@ -96,32 +102,29 @@ const Component: React.FC = () => {
         }
       />
       <Message
-        title="Technolody Summary"
+        title="Skills"
         body={
           <>
             <H3 fontSize={14}>Language:</H3>
             <P indent={20}>
-              <Bold>JavaScript, Ruby</Bold>, GO, Kotlin, Java, PHP, SQL, HTML,
+              <Bold>Go, Ruby, JavaScript</Bold>TypeScript, SQL, HTML,
               CSS, Bash
             </P>
             <H3 fontSize={14}>FrameWork:</H3>
             <P indent={20}>
-              <Bold>React, React Native, Ruby on Rails</Bold>, Vue, Gin,
-              Laravel, CakePHP, Spring ,Laravel, CodeIgniter, Apache Camel
+              <Bold>React, Next.js, Ruby on Rails, Expo</Bold>
             </P>
             <H3 fontSize={14}>Infrastructure:</H3>
             <P indent={20}>
-              GCP, AWS, Docker, Firebase, Virtualbox, Vagrant, Ansible
+              GCP, AWS, Docker, Kubernetes, Circle CI, Firebase
             </P>
-            <H3 fontSize={14}>OS:</H3>
-            <P indent={20}>Windows, Mac, Linux</P>
             <H3 fontSize={14}>Database:</H3>
             <P indent={20}>PostgresSQL, MySQL</P>
           </>
         }
       />
     </Page>
-  )
-}
+  );
+};
 
-export default Component
+export default Component;

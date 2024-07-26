@@ -1,44 +1,35 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "moduleResolution": "node",
-    "target": "ES5",
-    "module": "ES2020",
-    "lib": ["dom", "es2017"],
-    "allowJs": true,
-    "checkJs": true,
-    "jsx": "react",
-    "strict": true,
-    "strictNullChecks": true,
-    "strictBindCallApply": true,
-    "strictFunctionTypes": true,
-    "strictPropertyInitialization": true,
-    "noImplicitAny": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "noEmit": true,
-    "skipLibCheck": true,
+    /* Language and Environment */
+    "target": "esnext",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "lib": ["dom", "esnext"],                                        /* Specify a set of bundled library declaration files that describe the target runtime environment. */
+    "jsx": "react",                                /* Specify what JSX code is generated. */
+    /* Modules */
+    "module": "esnext",                                /* Specify what module code is generated. */
+    // "rootDir": "./",                                  /* Specify the root folder within your source files. */
+    "moduleResolution": "node",                       /* Specify how TypeScript looks up a file from a given module specifier. */
+    "baseUrl": "./",                                  /* Specify the base directory to resolve non-relative module names. */
     "paths": {
       "@/*": ["./src/*"],
       "assets/*": ["./src/assets/*"],
-      "atoms/*": ["./src/components/atoms/*"],
-      "molecules/*": ["./src/components/molecules/*"],
-      "organisms/*": ["./src/components/organisms/*"],
-      "templates/*": ["./src/components/templates/*"],
       "styles/*": ["./src/components/styles/*"],
       "constants/*": ["./src/constants/*"],
       "context/*": ["./src/context/*"],
       "hooks/*": ["./src/hooks/*"],
       "utils/*": ["./src/utils/*"],
+      "lib/*": ["./src/lib/*"],
       "pages/*": ["./src/pages/*"],
       "components/*": ["./src/components/*"],
       "services/*": ["./src/services/*"]
-    }
+    },
+    "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables `allowSyntheticDefaultImports` for type compatibility. */
+    "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
+
+    /* Type Checking */
+    "strict": true,                                      /* Enable all strict type-checking options. */
+
+    /* Completeness */
+    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
-  "exclude": ["node_modules"]
+  "include": ["./src/**/*", "./gatsby-node.ts", "./gatsby-config.ts", "./plugins/**/*"]
 }

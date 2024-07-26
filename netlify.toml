@@ -1,7 +1,0 @@
-[[headers]]
-  for = "*"
-  [headers.values]
-    X-Robots-Tag = "noindex"
-    Basic-Auth = "version-1:YwzdDTiC"
-
-
