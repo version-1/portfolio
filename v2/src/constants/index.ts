@@ -24,18 +24,17 @@ const channels: { [key: string]: Channel } = {
     url: '/channels/oss',
     description: 'My open source projects are summarized here.',
   },
-
-  'blog-ja': {
-    key: 'blog-ja',
-    name: 'blog-ja',
-    url: '/channels/blog/ja',
-    description: 'Recent posts in my blog in japanese is posted here.',
-  },
   'blog-en': {
     key: 'blog-en',
     name: 'blog-en',
     url: '/channels/blog/en',
     description: 'Recent posts in my blog in english is posted here.',
+  },
+  'blog-ja': {
+    key: 'blog-ja',
+    name: 'blog-ja',
+    url: '/channels/blog/ja',
+    description: 'Recent posts in my blog in japanese is posted here.',
   },
 }
 
@@ -45,6 +44,7 @@ export type Channel = {
   name: string
   url: string
   description: string
+  notify?: boolean
 }
 
 const dm = {
@@ -53,14 +53,14 @@ const dm = {
     name: 'you',
     url: '/channels/you',
     description:
-      'Here is your private chat space. Free to post what you think.',
+      'Here is your private chat space.',
   },
   me: {
     key: 'me',
-    name: 'me',
+    name: 'jiro',
     url: '/channels/me',
-    description: 'You can free to send message to me.',
-    notify: true
+    description: 'You can free to send "logical" message to me.',
+    // notify: true
   },
 }
 

@@ -20,13 +20,29 @@ interface Props {
   title: string;
 }
 
+function Messages() {
+  const {
+    selector: { messages },
+  } = useChannel();
+
+  return (
+    <>
+      {messages?.map((message: any, index: number) => (
+        <Message
+          key={`channel-messages-${index}`}
+          icon={you}
+          title={message.sender}
+          body={parseContent(message.content)}
+        />
+      ))}
+    </>
+  );
+}
+
 const Page: React.FC<Props> = ({ children, title }) => {
   const {
     config: { channels, dm },
   } = useApp();
-  const {
-    selector: { messages },
-  } = useChannel();
 
   return (
     <AppProvider>
@@ -34,17 +50,8 @@ const Page: React.FC<Props> = ({ children, title }) => {
         <Layout state={{ dm, channels }}>
           <SEO title={title} />
           <Body>
-            <>
-              {children}
-              {messages?.map((message: any, index: number) => (
-                <Message
-                  key={index}
-                  icon={you}
-                  title={message.sender}
-                  body={parseContent(message.content)}
-                />
-              ))}
-            </>
+            <>{children}</>
+            <Messages />
           </Body>
         </Layout>
         <Modal />

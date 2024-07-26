@@ -49,8 +49,8 @@ export const Provider = ({ children }: Props) => {
   const location = useLocation();
 
   const current = useMemo(() => {
-    const { channels } = constants;
-    const page = Object.values(channels).find((it) =>
+    const { channels, dm } = constants;
+    const page = [...Object.values(channels), ...Object.values(dm)].find((it) =>
       it.url === "/"
         ? location.pathname == it.url
         : location.pathname.startsWith(it.url),
@@ -60,7 +60,7 @@ export const Provider = ({ children }: Props) => {
 
   const postMessage = (message: Message) => {
     const { key } = current || {};
-    const prevMessages = _messages[key as Channel["key"]];
+    const prevMessages = _messages[key as Channel["key"]] || [];
     const newMessages = [...prevMessages, message];
     // if (_page.notify) {
     //   slack.notify(message)
