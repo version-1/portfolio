@@ -15,11 +15,6 @@ const parseContent = (content: string) => {
   );
 };
 
-interface Props {
-  children?: ReactNode;
-  title: string;
-}
-
 function Messages() {
   const {
     selector: { messages },
@@ -39,7 +34,13 @@ function Messages() {
   );
 }
 
-const Page: React.FC<Props> = ({ children, title }) => {
+type Props = {
+  children?: ReactNode;
+  siteTitle?: string;
+  title: string;
+}
+
+const Page: React.FC<Props> = ({ children, siteTitle, title }) => {
   const {
     config: { channels, dm },
   } = useApp();
@@ -48,7 +49,7 @@ const Page: React.FC<Props> = ({ children, title }) => {
     <AppProvider>
       <ChannelProvider>
         <Layout state={{ dm, channels }}>
-          <SEO title={title} />
+          <SEO title={siteTitle || title} />
           <Body>
             <>{children}</>
             <Messages />

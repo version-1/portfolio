@@ -1,12 +1,16 @@
-import React from 'react'
-import Message from 'components/domains/channel/message'
-import Page from 'components/shared/templates/page'
-import { Thumbnail } from 'components/styles/index'
-import vuexThumbnail from 'assets/vuex-contribution.png'
+import React from "react";
+import Message from "components/domains/channel/message";
+import Page from "components/shared/templates/page";
+import { Thumbnail } from "components/styles/index";
+import vuexThumbnail from "assets/vuex-contribution.png";
 
 const Component: React.FC = () => {
   return (
     <Page title="OSS">
+      <Message
+        title="Gooo - golang full-stack framework for web backend development"
+        body={<></>}
+      />
       <Message
         title="Vuex Contribution"
         body={
@@ -16,7 +20,7 @@ const Component: React.FC = () => {
               <Thumbnail src={vuexThumbnail} alt="papyrus thumbanail" />
             </p>
             <p>
-              Link:{' '}
+              Link:{" "}
               <a href="https://github.com/vuejs/vuex/pull/1825">
                 https://github.com/vuejs/vuex/pull/1825
               </a>
@@ -31,7 +35,7 @@ const Component: React.FC = () => {
             npm package. Easily define "Plain Object-base" enum helper. It is
             good to use it for Redux or Hooks API useReducer's actions.
             <p>
-              Link:{' '}
+              Link:{" "}
               <a href="https://github.com/version-1/cnstnts">
                 https://github.com/version-1/cnstnts
               </a>
@@ -46,7 +50,7 @@ const Component: React.FC = () => {
             npm package. It provides some components for Input Form. You can
             implement Field, Form and Validator easily on React Native.
             <p>
-              Link:{' '}
+              Link:{" "}
               <a href="https://github.com/version-1/react-native-various-form">
                 https://github.com/version-1/react-native-various-form
               </a>
@@ -55,7 +59,7 @@ const Component: React.FC = () => {
         }
       />
     </Page>
-  )
-}
+  );
+};
 
-export default Component
+export default Component;

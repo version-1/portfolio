@@ -35,7 +35,7 @@ const Blog: React.FC<Props> = ({
   }, [])
 
   return (
-    <Page title={title}>
+    <Page title="Blog">
       {articles.map((article: any) => {
         return (
           <Message

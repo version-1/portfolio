@@ -10,7 +10,6 @@ import MobileHeader from "components/layout/mobile/header";
 import Footer from "components/layout/footer";
 import MobileFooter from "components/layout/mobile/footer";
 import Sidebar from "components/layout/sidebar";
-import useChannel from "context/channel";
 import useApp from "context/app";
 import colors from "constants/colors";
 import { media } from "components/styles";

@@ -44,8 +44,7 @@ export const P = styled.p<{ indent?: number }>`
 `
 
 export const LI = styled.p`
-  margin: 0px;
-  margin-bottom: 10px;
+  margin: 12px 0px;
   padding: 0;
   ::before {
     content: '■  ';
@@ -70,3 +69,15 @@ export const Thumbnail = styled.img`
   ${media.mobile`width: 100%;`}
   margin: 16px 0px;
 `
+
+
+
+export const Table = styled.table``
+export const Tr = styled.tr``
+export const Th = styled.th`
+  padding: 8px 0;
+  padding-right: 16px;
+  text-align: left;
+`
+export const Td = styled.td``
+

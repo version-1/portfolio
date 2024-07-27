@@ -1,135 +1,276 @@
 import React from "react";
-import kuroutoThumbnail from "assets/kurouto.png";
-import smamaThumbnail from "assets/smama.thumbnail.png";
-
-import { LI, H3, Bold } from "components/styles";
+import styled from "@emotion/styled";
+import { LI, H3, Table, Th, Tr, Td } from "components/styles";
 import Message from "components/domains/channel/message";
 import Page from "components/shared/templates/page";
 import { Thumbnail } from "components/styles/index";
+
+const Container = styled.p`
+  padding: 0;
+  margin: 0;
+  margin-bottom: 12px;
+  display: flex;
+`;
+
+const Position = styled.h2`
+  margin: 0;
+  font-size: 18px;
+  margin-right: 16px;
+`;
+
+const Company = styled.span`
+  position: relative;
+  top: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  display: block;
+  margin-right: 4px;
+`;
+
+const Location = styled.span`
+  position: relative;
+  top: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  display: block;
+  margin-right: 4px;
+`;
+
+const Date = styled.span`
+  position: relative;
+  top: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  display: block;
+`;
+
+function Title({
+  position,
+  company,
+  location,
+  date,
+}: {
+  position: string;
+  company: string;
+  location: string;
+  date: string;
+}) {
+  return (
+    <Container>
+      <Position>{position}</Position>
+      <Company>- {company}</Company>
+      <Location>, {location}</Location>
+      <Date>( {date} )</Date>
+    </Container>
+  );
+}
 
 export const Component: React.FC = () => {
   return (
     <Page title="Experience">
       <Message
-        title="Web and Native App(React Native) automating document outputs for Real Estate Agent"
+        title={
+          <Title
+            company="Influitive"
+            position="Senior Software Developer"
+            location="Tronto, Canada"
+            date="Mar 2021 ~ Feb 2024"
+          />
+        }
         body={
           <>
-            <p>
-              Lead Programmer (Contract), <Bold>Oct 2018 to Current</Bold>
-            </p>
-            <p>
-              <Thumbnail src={kuroutoThumbnail} alt="kurouto thumbanail" />
-            </p>
-            <p>
-              React, React Native, Vue, Ruby on Rails, Firebase Realtime
-              Database, MySQL
-            </p>
+            <Table>
+              <Tr>
+                <Th>Product:</Th>
+                <Td>
+                  Customer Advocacy Saas for better customer success and feature
+                  improvement based on direct feedback
+                </Td>
+              </Tr>
+              <Tr>
+                <Th>Skills:</Th>
+                <Td>
+                  Go, Ruby on Rails, React, Next.js, TypeScript, GraphQL,
+                  Kubernetes, AWS
+                </Td>
+              </Tr>
+            </Table>
             <H3>Accomplishment</H3>
             <LI>
-              Developed a native application (React Native) with Full Scratch
-              and release. Choose which languages and libraries. Develop most of
-              the code of server-side and front-end.
+              - Played as one of the main contributors in the GraphQL project
+              from its inception to completion in order to implement the new
+              flexible UI.
             </LI>
             <LI>
-              Developed a new chat function with Vue, Firebase Realtime Database
-              and Rails.
+              - Resolved urgent bugs and customized the Rails forum
+              library(discourse) to meet specific project requirements.
             </LI>
             <LI>
-              Migration webpack 2 to 4 on production environment. Halve the time
-              of build when member develop and deploy.{" "}
+              - Actively participated in code reviews and contributed to the
+              development of a robust, maintainable codebase by reviewing pull
+              requests and implementing best practices.
             </LI>
             <LI>
-              Dockernize the project’s environment to make members to use same
-              library’s version and to build environemnts easily
-            </LI>
-            <LI>
-              Manageing members as lead programmer. Break down tasks requested
-              by Product Manager and assign it into them and Review their code.
+              - Collaborated with customer support and design teams to address
+              and resolve urgent user requirements and issues
             </LI>
           </>
         }
       />
       <Message
-        title="Native app(React Native) for communities. "
+        title={
+          <Title
+            company="Phronesis Inc."
+            position="Lead Developer"
+            location="Tokyo, Japan"
+            date="Oct 2018 ~ Dec 2020"
+          />
+        }
         body={
           <>
-            <p>
-              React Native Programmer (Freelancer),{" "}
-              <Bold>Mar 2018 to Dec 2018</Bold>
-            </p>
-            <p>React, React Native, Express, Firebase, MySQL</p>
+            <Table>
+              <Tr>
+                <Th>Product:</Th>
+                <Td>
+                  Automated document outputs for web and native apps (React
+                  Native) tailored for real estate agents.
+                </Td>
+              </Tr>
+              <Tr>
+                <Th>Skills:</Th>
+                <Td>
+                  React, TypeScript, React Native, Vue, Ruby on Rails, AWS,
+                  Circle CI, Firebase
+                </Td>
+              </Tr>
+            </Table>
             <H3>Accomplishment</H3>
             <LI>
-              Developed app with React Native and server-side with Express
+              - Led a team of 6 developers as the Lead Engineer, overseeing the
+              design of both web and mobile applications
             </LI>
             <LI>
-              Refactor to make the code be understandable and less dependency.
+              - Engineered core features across backend and frontend for web and
+              mobile apps, including chat functionality, file viewing, payment
+              processing, and certificate registration requests.
+            </LI>
+            <LI>
+              - Spearheaded the development and release of a React Native mobile
+              application from inception to deployment.
+            </LI>
+            <LI>
+              - Implemented Atomic Design principles to enhance development
+              efficiency and create highly reusable components for the mobile
+              app.
+            </LI>
+            <LI>
+              - Designed and implemented app-wide libraries, such as an HTTP
+              client library, to significantly boost development productivity
+              and code reusability.
+            </LI>
+            <LI>
+              - Improved product stability and increased test coverage by 10% by
+              creating a robust test code environment and active team
+              engagement.
+            </LI>
+            <LI>
+              - Ensured stable and efficient deployment processes for web and
+              mobile applications by implementing CI/CD pipelines.
             </LI>
           </>
         }
       />
       <Message
-        title="Used mobile device EC site"
+        title={
+          <Title
+            company="Jiraffe Inc."
+            position="React/ Ruby on Rails Developer"
+            location="Tokyo, Japan"
+            date="Nov 2017 ~ Sep 2018"
+          />
+        }
         body={
           <>
-            <p>
-              React/ Ruby on Rails Programmer (Freelancer),{" "}
-              <Bold>Nov 2017 to Sep 2018</Bold>
-            </p>
-            <p>React, React Native, Express, Firebase, MySQL</p>
-            <p>
-              <Thumbnail src={smamaThumbnail} alt="smama thumbanail" />
-            </p>
+            <Table>
+              <Tr>
+                <Th>Product:</Th>
+                <Td>
+                  Automated document outputs for web and native apps (React
+                  Native) tailored for real estate agents.
+                </Td>
+              </Tr>
+              <Tr>
+                <Th>Skills:</Th>
+                <Td>React, TypeScript, Ruby on Rails, AWS, Jenkins, MySQL</Td>
+              </Tr>
+            </Table>
             <H3>Accomplishment</H3>
             <LI>
-              Developed app with React Native and server-side with Express
+              Led the design and implementation of the web console for a new web
+              service, achieving peak sales of $10,000 in a single day.
             </LI>
             <LI>
-              Refactor to make the code be understandable and less dependency.
+              Streamlined the user registration flow by simplifying the
+              registration form, improving the overall user experience while
+              collaborating with the marketing team.
             </LI>
           </>
         }
       />
       <Message
-        title="Music School’s web system for internals and customers"
+        title={
+          <Title
+            company="EYS-STYLE"
+            position="Rails Developer"
+            location="Tokyo, Japan"
+            date="Nov 2016 ~ Oct 2017"
+          />
+        }
         body={
           <>
-            <p>
-              Programmer (fulltime), <Bold>Nov 2016 to Oct 2017</Bold>
-            </p>
-            <p>Ruby on Rails, JQuey, PostgresSQL</p>
+            <Table>
+              <Tr>
+                <Th>Product:</Th>
+                <Td>Lesson and customer management system for music school</Td>
+              </Tr>
+              <Tr>
+                <Th>Skills:</Th>
+                <Td>Ruby on Rails, JavaScript, AWS, PostgresSQL</Td>
+              </Tr>
+            </Table>
             <H3>Accomplishment</H3>
             <LI>
-              Managed head-quarter members and remote members(Mongol).Reviewed
-              code. Assigned Tasks.
+              - Led a development team of 3 members to create and maintain
+              system.
             </LI>
             <LI>
-              Operated and Supported two systems (for internals and customers).
-            </LI>
-            <LI>
-              Develop one-stop deploy scripts(gradle and bash) to enable for
-              developers to develop easily and speed up cycle of test and
-              deploy.
+              - Spearheaded a project to implement a new pricing plan, ensuring
+              a smooth and efficient transition.
             </LI>
           </>
         }
       />
       <Message
-        title="Web System related to Japan Central Bank"
+        title={
+          <Title
+            company="Axis Co., Ltd."
+            position="Java Developer / QA Engineer"
+            location="Tokyo, Japan"
+            date="Apr 2014 ~ Seq 2016"
+          />
+        }
         body={
           <>
-            <p>
-              Programmer (fulltime), <Bold>Apr 2014 to Seq 2016</Bold>
-            </p>
-            <p>
-              Bash, Java, Spring, MySQL, PostgresSQL, Jenkins, Apache Cample
-            </p>
-            <H3>Accomplishment</H3>
-            <LI>
-              Developed package system for routing with Java, Spring and Apache
-              Camel.
-            </LI>
-            <LI>Developed automation tools for deploy</LI>
+            <Table>
+              <Tr>
+                <Th>Product:</Th>
+                <Td>Web System related to Japan Central Bank</Td>
+              </Tr>
+              <Tr>
+                <Th>Skills:</Th>
+                <Td>Java, JavaScript, PostgresSQL, Jenkins, WAS, JBoss</Td>
+              </Tr>
+            </Table>
           </>
         }
       />

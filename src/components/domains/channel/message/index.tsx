@@ -16,6 +16,7 @@ const Container = styled.div`
 
 const Left = styled.div`
   padding: 0 8px;
+  padding-right: 16px;
 `
 const Right = styled.div``
 const Header = styled.div`
@@ -24,7 +25,6 @@ const Header = styled.div`
   color: ${colors.darkText};
 `
 const Body = styled.div`
-  padding: 3px;
   font-size: 16px;
   color: ${colors.darkText};
 `
@@ -32,8 +32,8 @@ const Body = styled.div`
 interface Props {
   icon?: string
   left?: JSX.Element
-  title?: string
-  body?: string | Element | JSX.Element
+  title?: React.ReactNode | string
+  body?: string | React.ReactNode
 }
 
 const Message: React.FC<Props> = ({ icon, left, title, body }) => {
