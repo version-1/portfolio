@@ -1,10 +1,7 @@
 import React from 'react'
-// @ts-ignore
-import { Link } from 'gatsby'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
-import Modal from 'components/templates/Modal'
-// @ts-ignore
+import Modal from 'components/shared/templates/modal'
 import notFound from 'assets/404.png'
 
 const Content = styled.div`
@@ -16,23 +13,8 @@ const Content = styled.div`
   }
 `
 
-const NotFoundPage = () => (
-  <Modal
-    show
-    title="Not Found 404"
-    hideModal={() => (window ? (window.location.href = '/') : undefined)}
-    content={
-      <Content>
-        <div>
-          <h1>NOT FOUND PAGE</h1>
-          <Link to="/">
-            <img src={notFound} alt="404" />
-          </Link>
-          <p>Click Image and Go to TOP.</p>
-        </div>
-      </Content>
-    }
-  />
-)
+const NotFoundPage = () => {
+  return <h1>NOT FOUND PAGE</h1>
+}
 
 export default NotFoundPage
